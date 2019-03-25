@@ -1,35 +1,129 @@
 import  Vue from  'vue';
-import  Login from  './components/Login/Login'
-import  Dashboard from  './components/Dashboard/UserDash'
 import  Header  from  './components/shared/Header'
 import  Footer from  './components/shared/Footer'
-import  Register from  './components/Register/Register'
-import  ForgetPass from  './components/ForgetPassword/ForgetPassword'
-import  RegisterCheck from  './components/RegisterCheck/RegisterCheck'
-import  CreateNewPass from  './components/CreateNewPassword/CreateNewPassword'
-import  FavProduct from  './components/FavoriteProduct/FavoriteProduct'
-import  Policy from  './components/Policy/Policy'
-import  Rules from   './components/Rules/Rules'
-import  ProtectionPersonalData from  './components/ProtectionPersonalData/ProtectionPersonalData'
-import  SharedProduct from  './components/SharedProduct/SharedProduct'
-import  NotificationList from  './components/NotificationList/NotificationList'
-import  User from  './components/Profile/User'
-import  MessageBox from './components/Message/Message'
-import  Revenue from  './components/Revenue/Revenue'
-import  Product from  './components/Product/Product'
-import  CreateNewProduct from  './components/CreateNewProduct/CreateNewProduct'
-import  CreateNewAnnouncement from  './components/CreateNewAnnouncement/CreateNewAnnouncement'
-import SharedAnnouncement from './components/SharedAnnouncement/SharedAnnouncement'
-import  DiscountPr from  './components/DiscountProducts/DiscountProducts'
-import  UserDetail from './components/Profile/UserDetail'
-import  ProductDetail from  './components/Product/ProductDetail'
-import  EditPr from  './components/Product/EditProduct'
-import Admin from  './components/Admin/Admin'
+const Login = resolve => {
+    require.ensure(['./components/Login/Login'], () => {
+        resolve(require('./components/Login/Login'))
+    })
+}
+const Dashboard = resolve => {
+    require.ensure(['./components/Dashboard/UserDash'], () => {
+        resolve(require('./components/Dashboard/UserDash'))
+    })
+}
+const Register = resolve => {
+    require.ensure(['./components/Register/Register'], () => {
+        resolve(require('./components/Register/Register'))
+    })
+}
+const ForgetPass = resolve => {
+    require.ensure(['./components/ForgetPassword/ForgetPassword'], () => {
+        resolve(require('./components/ForgetPassword/ForgetPassword'))
+    })
+}
+const RegisterCheck = resolve => {
+    require.ensure(['./components/RegisterCheck/RegisterCheck'], () => {
+        resolve(require('./components/RegisterCheck/RegisterCheck'))
+    })
+}
+const CreateNewPass = resolve => {
+    require.ensure(['./components/CreateNewPassword/CreateNewPassword'], () => {
+        resolve(require('./components/CreateNewPassword/CreateNewPassword'))
+    })
+}
+const FavProduct = resolve => {
+    require.ensure(['./components/FavoriteProduct/FavoriteProduct'], () => {
+        resolve(require('./components/FavoriteProduct/FavoriteProduct'))
+    })
+}
+const Policy = resolve => {
+    require.ensure(['./components/Policy/Policy'], () => {
+        resolve(require('./components/Policy/Policy'))
+    })
+}
+const Rules = resolve => {
+    require.ensure(['./components/Rules/Rules'], () => {
+        resolve(require('./components/Rules/Rules'))
+    })
+}
+const ProtectionPersonalData = resolve => {
+    require.ensure(['./components/ProtectionPersonalData/ProtectionPersonalData'], () => {
+        resolve(require('./components/ProtectionPersonalData/ProtectionPersonalData'))
+    })
+}
+const SharedProduct = resolve => {
+    require.ensure(['./components/SharedProduct/SharedProduct'], () => {
+        resolve(require('./components/SharedProduct/SharedProduct'))
+    })
+}
+const NotificationList = resolve => {
+    require.ensure(['./components/NotificationList/NotificationList'], () => {
+        resolve(require('./components/NotificationList/NotificationList'))
+    })
+}
+const User = resolve => {
+    require.ensure(['./components/Profile/User'], () => {
+        resolve(require('./components/Profile/User'))
+    })
+}
+const MessageBox = resolve => {
+    require.ensure(['./components/Message/Message'], () => {
+        resolve(require('./components/Message/Message'))
+    })
+}
+const Revenue = resolve => {
+    require.ensure(['./components/Revenue/Revenue'], () => {
+        resolve(require('./components/Revenue/Revenue'))
+    })
+}
+const Product = resolve => {
+    require.ensure(['./components/Product/Product'], () => {
+        resolve(require('./components/Product/Product'))
+    })
+}
+const CreateNewProduct = resolve => {
+    require.ensure(['./components/CreateNewProduct/CreateNewProduct'], () => {
+        resolve(require('./components/CreateNewProduct/CreateNewProduct'))
+    })
+}
+const CreateNewAnnouncement = resolve => {
+    require.ensure(['./components/CreateNewAnnouncement/CreateNewAnnouncement'], () => {
+        resolve(require('./components/CreateNewAnnouncement/CreateNewAnnouncement'))
+    })
+}
+const SharedAnnouncement = resolve => {
+    require.ensure(['./components/SharedAnnouncement/SharedAnnouncement'], () => {
+        resolve(require('./components/SharedAnnouncement/SharedAnnouncement'))
+    })
+}
+const DiscountPr = resolve => {
+    require.ensure(['./components/DiscountProducts/DiscountProducts'], () => {
+        resolve(require('./components/DiscountProducts/DiscountProducts'))
+    })
+}
+const UserDetail = resolve => {
+    require.ensure(['./components/Profile/UserDetail'], () => {
+        resolve(require('./components/Profile/UserDetail'))
+    })
+}
+const ProductDetail = resolve => {
+    require.ensure(['./components/Product/ProductDetail'], () => {
+        resolve(require('./components/Product/ProductDetail'))
+    })
+}
+const EditPr = resolve => {
+    require.ensure(['./components/Product/EditProduct'], () => {
+        resolve(require('./components/Product/EditProduct'))
+    })
+}
+const Admin = resolve => {
+    require.ensure(['./components/Admin/Admin'], () => {
+        resolve(require('./components/Admin/Admin'))
+    })
+}
 import  VueRouter from 'vue-router';
 import store from "./store"
-
 Vue.use(VueRouter)
-
 export const router = new VueRouter({
     routes: [
         {

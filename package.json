@@ -10,11 +10,9 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "@chenfengyuan/vue-carousel": "^1.0.1",
     "bootstrap-vue": "^2.0.0-rc.13",
     "gulp-htmlmin": "^5.0.1",
     "vue": "^2.6.8",
-    "vue-carousel": "^0.18.0-alpha",
     "vue-moment": "^4.0.0",
     "vue-router": "^3.0.2",
     "vue-underscore": "^0.1.4",

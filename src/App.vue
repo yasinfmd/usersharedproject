@@ -16,6 +16,7 @@
       appLogin
     },
       created(){
+          Component.showntf("Selam Nasılsın")
         this.$store.dispatch("userisempty");
       }
   }
