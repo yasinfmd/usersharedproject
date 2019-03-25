@@ -4,7 +4,7 @@ var WSProvider = {
   
         return $.ajax({
           type: 'POST',
-          url: "http://localhost/usershared/src/test.php",
+          url: "http://localhost/productproject/src/test.php",
           datatype: 'application/json',
           headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
           data: jsonParams,
