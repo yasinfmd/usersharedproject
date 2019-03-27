@@ -14,6 +14,11 @@ const store = new Vuex.Store({
         apptxt:"Giriş Yap",
         chatpopupstyle:"none",
         appicon:"fas fa-sign-in-alt",
+        paginationlist:[],
+        paginationcount:"",
+        isactivepaginate:0,
+        isfirstpaginete:0,
+        islastpaginate:10,
     },
     mutations : {
         setToken(state, token){
@@ -69,6 +74,25 @@ const store = new Vuex.Store({
                         resolve(false)
             }
             })
+        },
+        setpagination({commit,dispatch,state},list){
+            debugger
+            state.paginationlist=list[0].slice((list[1]*10)-10,(list[1]*10))
+            state.islastpaginate=list[1]*10;
+            state.isfirstpaginete=(list[1]*10)-10
+            state.isactivepaginate=list[1]-1
+
+        },
+        setpaginationcount({commit,dispatch,state},list){
+            const pagination=list.length/10;
+            if(pagination.toString().includes('.')){
+                state.paginationcount=Math.floor(pagination)+1;
+
+            }else{
+                state.paginationcount=Math.floor(pagination);
+
+            }
+            state.paginationlist=list.slice(0,10)
         },
         login({ commit, dispatch, state}, user){
             debugger
@@ -153,6 +177,21 @@ const store = new Vuex.Store({
         },
         getpopupstyle(state){
             return state.chatpopupstyle
+        },
+        getactivepaginate(state){
+        return state.isactivepaginate
+        },
+        getpaginationcount(state){
+         return   state.paginationcount
+        },
+        getfirspaginate(state){
+          return state.isfirstpaginete
+        },
+        getlastpaginate(state){
+            return state.islastpaginate
+        },
+        getpaginationlist(state){
+           return state.paginationlist
         }
     }
 })

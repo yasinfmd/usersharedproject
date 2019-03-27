@@ -57,7 +57,7 @@ var Component={
                     // onaylarsa bilgilendirme bildirimi gönderilecek
                     var notification = new Notification('Öğrenciysen.com', {
                         body:msg,
-                        icon: 'http://localhost/usershared/src/assets/img/icons.ico'
+                        icon: 'http://localhost/productproject/src/assets/img/icons.ico'
                     });
                 }
             });

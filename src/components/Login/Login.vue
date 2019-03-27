@@ -1,7 +1,6 @@
 <template>
   <div class="container h-100" style="padding-top: 6%">
     <div class="row">
-
       <div class="col">
         <div class="d-flex justify-content-center h-100">
 
@@ -114,6 +113,7 @@
       }
     },
     mounted() {
+
       const buttons = document.getElementsByClassName('liquid-button');
       for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
         const button = buttons[buttonIndex];

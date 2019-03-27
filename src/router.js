@@ -121,8 +121,14 @@ const Admin = resolve => {
         resolve(require('./components/Admin/Admin'))
     })
 }
+const Warning = resolve => {
+    require.ensure(['./components/Complaint/Complaint'], () => {
+        resolve(require('./components/Complaint/Complaint'))
+    })
+}
 import  VueRouter from 'vue-router';
 import store from "./store"
+import Complaint from "./components/Complaint/Complaint";
 Vue.use(VueRouter)
 export const router = new VueRouter({
     routes: [
@@ -144,6 +150,7 @@ export const router = new VueRouter({
             }
 
         },
+
         {
             path:"/ManageWebApp",
             name:"Admin",

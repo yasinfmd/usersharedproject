@@ -11,7 +11,7 @@
     </div>
     <div class="container">
       <div class="container-fluid">
-        <h6 class="display-5 text-right" style="font-family: 'Lucida Console'">İndirimdeki Ürünler</h6>
+        <h6 class="display-5 text-right" style="  font-family: 'Open Sans', sans-serif;">İndirimdeki Ürünler</h6>
         <hr style="    border: 1.5px solid #92FB63;
     background-color: #92FB63;
     color: #92FB63;">
@@ -31,16 +31,16 @@
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="carousel-control-prev-icon"  aria-hidden="true" style="width: 40px; background-color: black;border: 3px solid black;border-radius: 50px"></span>
+            <span class="sr-only">Geri</span>
           </a>
-          <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+          <a class="carousel-control-next text-faded" href="#carouselExample"  role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="width: 40px; background-color: black;border: 3px solid black;border-radius: 50px"></span>
+            <span class="sr-only">İleri</span>
           </a>
         </div>
       </div>
-      <h6 class="display-5 text-center"  style="font-family: 'Lucida Console'; padding-top: 20px">Vitrindeki Son İlanlar</h6>
+      <h6 class="display-5 text-center"  style="padding-top: 40px;font-family: 'Open Sans', sans-serif;'">Vitrindeki Son İlanlar</h6>
 
       <hr style="    border: 1.5px solid #92FB63;
     background-color: #92FB63;

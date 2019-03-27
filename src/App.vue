@@ -4,7 +4,7 @@
 
         </router-view>
       <transition name="fade" mode="out-in">
-        <router-view></router-view>
+        <router-view ></router-view>
       </transition>
       <router-view name="appfooter"></router-view>
   </div>
@@ -35,4 +35,5 @@
         transition: opacity .3s ease-out;
         opacity: 0;
     }
+
 </style>

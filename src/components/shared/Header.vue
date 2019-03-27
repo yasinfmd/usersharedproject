@@ -300,4 +300,6 @@
   #custom-search-input .fas fa-search{
     font-size: 23px;
   }
+
+
 </style>

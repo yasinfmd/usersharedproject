@@ -35,6 +35,13 @@
 
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label  class="col-4 col-form-label">Şikayet</label>
+                            <div class="col-4">
+                                <a role="button"  data-toggle="modal"   >       <p class="lead" style="cursor: pointer" >Ayşe Yılmaz'ı Şikayet  et <i class="fas fa-exclamation-triangle"></i></p></a>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
