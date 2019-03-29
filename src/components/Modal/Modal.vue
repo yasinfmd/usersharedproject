@@ -11,7 +11,7 @@
                     <p>{{content}}</p>
                 </div>
                 <div class="modal-footer ">
-                    <a data-dismiss="modal" style="background-color: #65b12d;margin-left: 0px" href="#">Tamam</a>
+                    <a data-dismiss="modal" style="background-color: #65b12d;margin-left: 0px" @click="setpadding" href="#">Tamam</a>
                 </div>
             </div>
         </div>
@@ -20,10 +20,17 @@
 
 <script>
     export default {
-        props:['content']
+        props:['content'],
+        methods:{
+            setpadding(){
+                document.body.style.paddingRight="0";
+            }
+        },
+        mounted() {
+            document.body.style.paddingRight="0";
+        }
     }
 </script>
 
 <style scoped>
-
 </style>

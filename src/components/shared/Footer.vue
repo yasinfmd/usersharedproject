@@ -1,5 +1,5 @@
 <template>
-    <footer class="page-footer font-small blue-grey lighten-5" style="margin-top: 450px ">
+    <footer class="page-footer font-small blue-grey lighten-5" style="margin-top: 600px ">
         <div style="background-color: rgb(2, 168, 255);">
             <div class="container">
                 <div class="row py-4 d-flex align-items-center">

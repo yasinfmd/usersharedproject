@@ -1,21 +1,7 @@
 <template>
     <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Resim</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <img :src="bigphoto" style="width: 100%; height: 100%">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <big-photo-card></big-photo-card>
         <div class="d-flex justify-content-center" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <TableHeader :res="favoritelist.length" title=" Üzgünüz Favorilerinize Eklediğiniz Bir İlan Bulamadık  " cimg="https://cdn0.iconfinder.com/data/icons/christmas-2200/64/star-rate-christmas-favorite-shapes-64.png" content="Favori İlanlarınız"></TableHeader>
@@ -68,8 +54,8 @@
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="operation-tab" data-toggle="tab" :href="'#operation'+i" role="tab" aria-controls="operation" aria-selected="false"> <img src="../../assets/icons/kservices.png">İlana Ait İşlemler</a>
                                                         </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" id="img-tab" data-toggle="tab" :href="'#img'+i" role="tab" aria-controls="img" aria-selected="false"> <img src="../../assets/icons/iconfinder_synfig_icon_24342.png">İlana Ait Tüm Resimler</a>
+                                                        <li class="nav-item" @click="setimglist">
+                                                            <a class="nav-link" id="img-tab" data-toggle="tab" :href="'#img'+i" role="tab" aria-controls="img" aria-selected="false"> <img src="../../assets/icons/iconfinder_synfig_icon_24342.png">İlana Ait  Resimler</a>
                                                         </li>
 
                                                     </ul>
@@ -81,13 +67,10 @@
                                                                     <small class="text-center"></small>
                                                                 </div>
                                                                 <hr style="border: 1px solid black; background-color: black; color: #000;">
-
-
-
-                                                             <small> Kategori :{{item.category}}</small><br>
-
-                                                                <small> Fiyat :{{item.price}} (TL)</small><br>
-                                                                <small> Tarih : <img src="../../assets/icons/calendar.png"> 25.04.2019 - Saat :  13:47 <img src="../../assets/icons/tower-16.png"></small>
+                                                              <p class="lead"> Kategori :{{item.category}}</p>
+                                                                <p class="lead"> Fiyat :{{item.price}} (TL)</p>
+                                                                <p class="lead"> Tarih : 25.04.2019</p>
+                                                                <p class="lead"> Saat :  13:47 </p>
                                                             </a>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'descraption'+i" role="tabpanel" aria-labelledby="operation-tab">
@@ -107,58 +90,7 @@
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'img'+i" role="tabpanel" aria-labelledby="img-tab">
                                                             <div class="container">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img  @click="bigphotodetail"  style="cursor: pointer" data-toggle="modal" data-target="#exampleModal" class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-                                                                        <div class="card">
-                                                                            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <img-card></img-card>
                                                             </div>
 
                                                         </div>
@@ -187,6 +119,8 @@
     import MsgPopup from  '../Message/MsgPopup'
     import Json from '../../product'
     import Paginate from  '../Pagination/Pagination'
+    import ImgCard from '../Card/Card'
+    import BigPhotoCard from '../Card/BigPhotoCard'
     export default {
         created(){
             Json.forEach((x)=>{
@@ -216,17 +150,14 @@
             {
                     TableHeader,
                     MsgPopup,
-                Paginate
+                Paginate,
+                ImgCard,
+                BigPhotoCard
             },
         methods:{
-            nextpaginate(i){
-                console.log(i)
-            },
-            showmore(param,i){
-
-            },
-            bigphotodetail(img){
-                this.bigphoto="https://picsum.photos/200/150/?random"
+            setimglist(){
+                //resim listesi
+                this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])
             },
             sendmsg(param){
                 debugger

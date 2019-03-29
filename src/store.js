@@ -19,6 +19,8 @@ const store = new Vuex.Store({
         isactivepaginate:0,
         isfirstpaginete:0,
         islastpaginate:10,
+        cardimg:"",
+        bigphoto:"",
     },
     mutations : {
         setToken(state, token){
@@ -75,8 +77,13 @@ const store = new Vuex.Store({
             }
             })
         },
+        setcardimg({commit,dispatch,state},list){
+            state.cardimg=list;
+        },
+        setbigphoto({commit,dispatch,state},photo){
+            state.bigphoto=photo
+        },
         setpagination({commit,dispatch,state},list){
-            debugger
             state.paginationlist=list[0].slice((list[1]*10)-10,(list[1]*10))
             state.islastpaginate=list[1]*10;
             state.isfirstpaginete=(list[1]*10)-10
@@ -192,6 +199,12 @@ const store = new Vuex.Store({
         },
         getpaginationlist(state){
            return state.paginationlist
+        },
+        getimglist(state){
+            return state.cardimg
+        },
+        getbigphoto(state){
+            return state.bigphoto
         }
     }
 })

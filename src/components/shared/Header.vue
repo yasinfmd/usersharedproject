@@ -13,7 +13,7 @@
     </a>
 
 
-    <div class="collapse navbar-collapse" id="navbarNavDropdown" :style="{visibility:onshow}">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown" >
       <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link menufont"  style="cursor: pointer" @click="routernavbar('Prof')">Profilim </a>
@@ -67,6 +67,34 @@
                   Duyuru Oluştur
                 </a>
               </li>
+
+
+
+                <li class="nav-item" v-if="onshow=='hidden'" >
+                    <hr style="    border: 1.5px solid #92FB63;
+    background-color: #92FB63;
+    color: #92FB63;">
+                </li>
+                <li class="nav-item" v-if="onshow=='hidden'" >
+                    <a class="nav-link navbaritemcls menufont" @click="routernavbar('Policy')">
+                        <img src="../../assets/icons/Asset_1340-32.png">
+                        Gizlilik Politikası
+                    </a>
+                </li>
+                <li class="nav-item" v-if="onshow=='hidden'">
+                    <a class="nav-link navbaritemcls menufont" @click="routernavbar('Rules')">
+                        <img src="../../assets/icons/5332_-_MySpace-32.png">
+                        Topluluk Kuralları
+                    </a>
+                </li>
+                <li class="nav-item" v-if="onshow=='hidden'">
+                    <a class="nav-link navbaritemcls menufont" @click="routernavbar('Protection')">
+                        <img src="../../assets/icons/lock_safe_password_protected-32.png">
+                        Kişisel Verilerin Korunması
+                    </a>
+                </li>
+
+
               <li class="nav-item" :style="{visibility:onshow}">
                 <a class="nav-link navbaritemcls menufont" @click="routernavbar('Favorite')"  >
                   <img src="../../assets/icons/file_documents-17-32.png">
@@ -122,23 +150,23 @@
                 </a>
               </li>
             </ul>
-              <hr style="    border: 1.5px solid #92FB63;
+              <hr :style="{visibility:onshow}" style="border: 1.5px solid #92FB63;
     background-color: #92FB63;
     color: #92FB63;">
             <ul class="nav flex-column mb-2">
-              <li class="nav-item">
+              <li class="nav-item"  :style="{visibility:onshow}">
                 <a class="nav-link navbaritemcls menufont" @click="routernavbar('Policy')">
                <img src="../../assets/icons/Asset_1340-32.png">
                   Gizlilik Politikası
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" :style="{visibility:onshow}">
                 <a class="nav-link navbaritemcls menufont" @click="routernavbar('Rules')">
              <img src="../../assets/icons/5332_-_MySpace-32.png">
        Topluluk Kuralları
                 </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" :style="{visibility:onshow}">
                 <a class="nav-link navbaritemcls menufont" @click="routernavbar('Protection')">
                 <img src="../../assets/icons/lock_safe_password_protected-32.png">
                 Kişisel Verilerin Korunması

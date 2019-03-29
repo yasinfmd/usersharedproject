@@ -18,7 +18,7 @@
       created(){
           Component.showntf("Selam Nasılsın")
         this.$store.dispatch("userisempty");
-      }
+      },
   }
    </script>
 <style>
@@ -35,5 +35,4 @@
         transition: opacity .3s ease-out;
         opacity: 0;
     }
-
 </style>

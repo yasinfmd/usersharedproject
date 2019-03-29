@@ -45,10 +45,14 @@
     export default {
         data(){
             return{
+                data:[],
                 notificationlist:[""]
             }
         },
         methods:{
+            vericek(){
+                this.data.push('')
+            },
             routeuserdetail(id){
                 this.$router.push("/UserDetail/"+1);
             }
@@ -84,5 +88,5 @@
     .n-user-list:after{clear:both; content:''; display:table;}
     .n-user-list li{float:left;}
     .n-user-list li + li{margin-left:3px;}
-    .n-user-list li a, .n-user-list li a:hober{text-decoration:none;}
+    .n-user-list li a, .n-user-list li a:hover{text-decoration:none;}
 </style>

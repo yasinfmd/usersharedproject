@@ -1,11 +1,10 @@
 <template>
     <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
+<big-photo-card></big-photo-card>
         <div class="d-flex justify-content-center" >
-
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
-
                 <TableHeader :res="productlist.length" title="Üzgünüz Paylaştığınız Bir İlan Bulamadık " cimg="https://cdn3.iconfinder.com/data/icons/shopping-icons-14/128/08_Sales-64.png" content="Paylaştığınız İlanlar"></TableHeader>
-                <div class="container">
+                <div class="container"  v-if="productlist.length!=0">
                     <div class="row" >
                         <div class="panel panel-default">
                         <div class="float-right">
@@ -47,10 +46,19 @@
                                                     <a class="nav-link active" id="home-tab" data-toggle="tab" :href="'#home'+i" role="tab" aria-controls="home" aria-selected="true"><img src="../../assets/icons/note_info.png">İlan Bilgisi </a>
                                                 </li>
                                                 <li class="nav-item">
+                                                    <a class="nav-link" id="descraption-tab" data-toggle="tab" :href="'#descraption'+i" role="tab" aria-controls="descraption" aria-selected="false"> <img src="../../assets/icons/constr_news-32.png">İlan Açıklaması</a>
+                                                </li>
+                                                <li class="nav-item">
                                                     <a class="nav-link" id="profile-tab" data-toggle="tab" :href="'#profile'+i" role="tab" aria-controls="profile" aria-selected="false"> <img src="../../assets/icons/statics.png">İlan İstatistikleri</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="operation-tab" data-toggle="tab" :href="'#operation'+i" role="tab" aria-controls="operation" aria-selected="false"> <img src="../../assets/icons/kservices.png">İlana Ait İşlemler</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="time-tab" data-toggle="tab" :href="'#time'+i" role="tab" aria-controls="time" aria-selected="false"> <img src="../../assets/icons/calendar.png">İlanın Geçerlilik Süresi</a>
+                                                </li>
+                                                <li class="nav-item" @click="setimglist">
+                                                    <a class="nav-link" id="img-tab" data-toggle="tab" :href="'#img'+i" role="tab" aria-controls="img" aria-selected="false"> <img src="../../assets/icons/iconfinder_synfig_icon_24342.png">İlana Ait  Resimler</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content" id="myTabContent">
@@ -59,34 +67,20 @@
                                                         <div class="d-flex w-100 justify-content-between">
                                                             <h4 class="mb-1" style="color: #E81C0C"> {{item.title}}</h4>
                                                             <small class="text-center"></small>
-                                                            <small>  <img src="../../assets/icons/calendar.png"> 25.04.2019 --  13:47 <img src="../../assets/icons/tower-16.png"></small>
                                                         </div>
                                                         <hr style="border: 1px solid black; background-color: black; color: #000;">
-                                                        <p class="mb-1" v-if="!show" >
-                                                            {{item.desc.slice(0,100)}}
-                                                            <small class="text-right" v-if="item.desc.length>100"><button @click="show=!show"  type="button" class="btn btn-primary btn-sm"> Devamını Oku</button>  </small>
+                                                        <p class="lead"> Kategori : Elektronik </p>
+                                                        <p class="lead">Fiyat :{{item.price}} (TL)</p>
 
-                                                        </p>
-                                                        <transition
-                                                                name="custom-classes-transition"
-                                                                enter-active-class="animated tada"
-                                                                leave-active-class="animated bounceOutRight"
-                                                        >
-                                                            <p v-if="show" class="mb-1">
-                                                                {{item.desc}}
-                                                                <small class="text-right" v-if="item.desc.length>100" ><button  @click="show=!show" type="button" class="btn btn-primary btn-sm"> Daha Az Göster</button>  </small>
+                                                        <p class="lead">Yayınladığı Tarih : 25.04.2019 </p>
+                                                        <p class="lead"> Yayınlandığı Saat:     13:47</p>
 
-                                                            </p>
-                                                        </transition>
-
-
-
-                                                        <small>{{item.price}} (TL)</small>
                                                     </a>
 
                                                 </div>
                                                 <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'profile'+i" role="tabpanel" aria-labelledby="profile-tab">
                                                     <p class="lead"> <img src="../../assets/icons/favimg.jpg" style="width: 32px;height: 32px"> İlanını Favorileri Ekleyenlerin Sayısı : 5</p>
+                                                    <p class="lead"><img src="https://cdn3.iconfinder.com/data/icons/flat-office-icons-1/140/Artboard_1-9-32.png"> İlanını Görüntüleyenlerin Sayısı : 18</p>
 
 
                                                 </div>
@@ -97,6 +91,33 @@
                                                     <a  role="button" @click="editpr(1)" style="color: white"  aria-pressed="true"  class="btn btn-warning btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
 
 
+
+
+                                                </div>
+                                                <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'descraption'+i" role="tabpanel" aria-labelledby="operation-tab">
+
+                                                        <transition
+                                                                name="custom-classes-transition"
+                                                                enter-active-class="animated tada"
+                                                                leave-active-class="animated bounceOutRight"
+                                                        >      <small>
+                                                            {{item.desc}}
+                                                        </small>
+
+                                                        </transition>
+
+                                                </div>
+                                                <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'img'+i" role="tabpanel" aria-labelledby="img-tab">
+                                                    <div class="container">
+
+                                                        <img-card></img-card>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'time'+i" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <p class="lead">  İlanının Geçerlilik  Tarihi : 10.12.2019</p>
+                                                    <p class="lead">  İlanının Sonlanmasına Kalan Süre  : 3 gün</p>
 
 
                                                 </div>
@@ -115,11 +136,7 @@
         </div>
         <Paginate :list="productlist"></Paginate>
 
-        <nav aria-label="Page navigation example">
-             <ul class="pagination justify-content-end">
-                 <li class="page-item  " :class="{'active':i==isactivepaginate}" v-for="(item,i) in paginationcount"><a class="page-link radiusitem" @click="getpaginate(i+1)" >{{i+1}}</a></li>
-             </ul>
-         </nav>
+
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
@@ -184,6 +201,8 @@
     import  Modal from  '../Modal/Modal'
     import TableHeader from '../TableHeaderComponent/TableHeader'
     import Paginate from '../Pagination/Pagination'
+    import ImgCard from '../Card/Card'
+    import BigPhotoCard from '../Card/BigPhotoCard'
     export default {
         created(){
             this.$store.dispatch("setpaginationcount",this.productlist)
@@ -347,12 +366,9 @@
                     {backcard:false,id:12,title:"Acil Satılık Klavye",desc:"Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık,Sorunsuz Klavye Satılık",price:"111",date:"26.02.2019",time:"17:44",primg:"data:image/jpeg;base64,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5exBmzJmWHa5exNrl7EGbMmZYdrl7El3L2IM2ZUzLDLuSS7kgzZkzLDLuSS7kgzZlTMsUu5JJ5IMuZMywy7kknkgzZkzLDJ5JJ5IM2ZUzLFJ5JJ5IMuZMyxX5JfkgyZklYpPJUJPJBdVcvpLvCfNQ/8AfX9oXzbh8O97msY1znuIDWNBc5zjua1ouSeS+qO9T3PVsBo+lQxAAql9So5oIOTOZDSRYkCJi0896ytewREUgvOY3uD0bVe+rUwdFz3kuc7LGZx3kxFybk8V6NEHlfFxoroNHsPvTxcaK6DR7D716pEyPK+LjRXQaPYfeni40V0Gj2H3r1SJkeV8XGiug0ew+9PFxoroNHsPvXqkQeV8XGiug0ew+9PFxoroNHsPvXqkQeV8W+iug0ew+9U8W+iug0ex3vXq0QeU8W+iug0ex3vTxb6K6DR7He9erRB5Xxb6K6DR7D708W+iug0ew+9eqRB5Xxb6K6DR7D708W+iug0ew+9eqRB5Xxb6K6DR7D708W+iug0ew+9eqRB5Xxb6K6DR7D708W+iug0ew+9eqRB5Xxb6K6DR7D71Txb6K6DR7He9erRB5Txb6K6DR7He9PFvoroNHsd716tEGj0P3H4HCVNbhsLSp1IIzhu0Ad8E7vsW8REBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z"},
                 ],
                 selectedfilter:"",
-
                 show:false,
-
                 searchpruser: "",
                 userlist: [],
-
                 isactive: false,
                 staractive:false,
                 footeractive:true,
@@ -384,7 +400,9 @@
         components:{
             Modal,
             TableHeader,
-            Paginate
+            Paginate,
+            ImgCard,
+            BigPhotoCard
         },
         mounted(){
             var arr = [
@@ -426,7 +444,13 @@
             createcomment(){
 
             },
-
+            bigphotodetail(img){
+                this.bigphoto="https://picsum.photos/200/150/?random"
+            },
+            setimglist(){
+                //resim listesi
+                this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])
+            },
             commentandstar(){
               this.staractive=true
                 this.isactive=false

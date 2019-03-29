@@ -16,7 +16,6 @@
     background-color: #92FB63;
     color: #92FB63;">
         <Modal :content="$store.getters.getmodalcontent"></Modal>
-
         <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
             <div class="carousel-item col-md-4 " :class="{'active':index===0}" v-for="(item,index) in discountpr" >

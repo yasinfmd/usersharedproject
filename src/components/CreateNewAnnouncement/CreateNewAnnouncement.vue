@@ -1,9 +1,10 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -530px">
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
         <div class="d-flex justify-content-start" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
-                <p class="lead">Yeni Duyuru Oluştur</p>
+                <p class="lead">Yeni Duyuru Oluştur  <img src="../../assets/icons/Asset_85-32.png"></p>
                 <hr class="my-4">
+
                 <div class="container" style="background-color: #f8f9fa">
                     <table class="table table-striped">
                         <tbody>
