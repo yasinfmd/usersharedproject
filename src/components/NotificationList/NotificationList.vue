@@ -50,9 +50,6 @@
             }
         },
         methods:{
-            vericek(){
-                this.data.push('')
-            },
             routeuserdetail(id){
                 this.$router.push("/UserDetail/"+1);
             }

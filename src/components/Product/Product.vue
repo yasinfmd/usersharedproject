@@ -205,7 +205,6 @@
             <hr style="    border: 1.5px solid #92FB63;
     background-color: #92FB63;
     color: #92FB63;">
-            <Modal :content="$store.getters.getmodalcontent"></Modal>
             <h1 class="display-5"  v-if="product.length==0" >  Üzgünüz Arama Sonuçlarınızla Eşleşen  Bir İlan Bulamadık  <img src="../../assets/icons/laugh_cry_emoticon_emoticons_emoji_emote-64.png"></h1>
             <div class="row cardpadding" v-if="product.length!=0">
                 <div class="col-xs-12 col-sm-6 col-md-4" v-for="item in product">
@@ -242,7 +241,6 @@
     </div>
 </template>
 <script>
-    import  Modal from '../Modal/Modal'
     export default {
         data(){
             return {
@@ -268,9 +266,6 @@
                 ]
             }
         },
-        components:{
-            Modal
-        },
         methods:{
             filterproduct(){
                 console.log(this.filtermodel)
@@ -280,11 +275,12 @@
                     if(res==true){
                         console.log("asdsad")
                         //ekle
-                        this.$store.commit("setModalTarget","")
-                        this.$store.commit("setModal","")
                     }else{
-                        this.$store.commit("setModalTarget","#WarningModalftblack")
-                        this.$store.commit("setModal","İlanı Favorilerinize Eklemek İçin Lütfen Giriş Yapın")
+                        swal({
+                            button: "Tamam ",
+                            title: "İlanı Favorilerinize Eklemek İçin Lütfen Giriş Yapın",
+                            icon: "warning"
+                        })
                     }
                 })
             },

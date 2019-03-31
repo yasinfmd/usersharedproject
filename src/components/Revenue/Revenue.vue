@@ -10,12 +10,11 @@
                     <div class="row" >
 
 
-                        <Modal :content="$store.getters.getmodalcontent"></Modal>
 
                         <div class="panel panel-default">
                                 <div class="float-right">
                                     <div class="btn-group">
-                                        <a  v-if="revenuelist.length!=0" aria-pressed="true" style="float: right" role="button" :data-target="$store.getters.gettarget" data-toggle="modal"   class="btn btn-danger btn-sm  " @click="deleteRevenueList">Sil</a>
+                                        <a  v-if="revenuelist.length!=0" aria-pressed="true" style="float: right" role="button"    class="btn btn-danger btn-sm  " @click="deleteRevenueList">Sil</a>
                                     </div>
                                 </div>
                                 <div class="table-container">
@@ -72,7 +71,6 @@
 </template>
 
 <script>
-    import Modal from '../Modal/Modal'
     import TableHeader from '../TableHeaderComponent/TableHeader'
     export default {
         data(){
@@ -221,17 +219,18 @@
             deleteRevenueList(){
                const deldata= _.where(this.revenuelist, {"select":true })
                     if(deldata.length==0){
-                        this.$store.commit("setModalTarget","#WarningModalftblack")
-                        this.$store.commit("setModal","Lütfen Silmek İstediğiniz İlanı Seçin.")
+                        swal({
+                            button: "Tamam ",
+                            title: "Lütfen Silmek İstediğiniz İlanı Seçin.",
+                            icon: "error"
+                        })
                     }else{
-                        this.$store.commit("setModalTarget","")
-                        this.$store.commit("setModal","")
+
                     }
                 console.log(deldata)
             },
         },
         components:{
-            Modal,
             TableHeader
         },
         mounted() {

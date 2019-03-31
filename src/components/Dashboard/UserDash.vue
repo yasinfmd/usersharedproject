@@ -15,7 +15,6 @@
         <hr style="    border: 1.5px solid #92FB63;
     background-color: #92FB63;
     color: #92FB63;">
-        <Modal :content="$store.getters.getmodalcontent"></Modal>
         <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
             <div class="carousel-item col-md-4" :key="index" :class="{'active':index===0}" v-for="(item,index) in discountpr" >
@@ -61,7 +60,7 @@
                   <button type="button" class="btn btn-primary btn-sm  cardbtncls" @click="routeprdetail(item)">İlana Git <i class="fas fa-hand-point-left godetail"></i>  </button>
 
 
-                  <a role="button" :data-target="$store.getters.gettarget" data-toggle="modal" style="color: white;border: 1px solid white;"  class="btn btn-primary btn-sm cardbtncls " @click="addFav">Favorilerime Ekle<i class="fas fa-star addfavcls"></i></a>
+                  <a role="button"  style="color: white;border: 1px solid white;"  class="btn btn-primary btn-sm cardbtncls " @click="addFav">Favorilerime Ekle<i class="fas fa-star addfavcls"></i></a>
 
                 </div>
               </div>
@@ -96,7 +95,6 @@
 
 </template>
 <script>
-  import  Modal from '../Modal/Modal'
   export default {
 
     data(){
@@ -132,9 +130,6 @@
       ]
       }
     },
-    components:{
-      Modal
-    },
     methods:{
       turncard(item,i){
           item.backcard=!item.backcard
@@ -143,12 +138,13 @@
           this.$store.dispatch("initAuth").then((res)=>{
             if(res==true){
               //ekle
-              this.$store.commit("setModalTarget","")
-              this.$store.commit("setModal","")
 
             }else{
-              this.$store.commit("setModalTarget","#WarningModalftblack")
-              this.$store.commit("setModal","İlanı Favorilerinize Eklemek İçin Lütfen Giriş Yapın")
+              swal({
+                button: "Tamam ",
+                title: "İlanı Favorilerinize Eklemek İçin Lütfen Giriş Yapın!",
+                icon: "warning"
+              })
             }
           })
       },

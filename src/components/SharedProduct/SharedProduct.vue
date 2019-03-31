@@ -198,7 +198,6 @@
 
 <script>
     import userjson from  '../../user'
-    import  Modal from  '../Modal/Modal'
     import TableHeader from '../TableHeaderComponent/TableHeader'
     import Paginate from '../Pagination/Pagination'
     import ImgCard from '../Card/Card'
@@ -398,7 +397,6 @@
             }
         },
         components:{
-            Modal,
             TableHeader,
             Paginate,
             ImgCard,

@@ -1,7 +1,6 @@
 var WSProvider = {
     ajaxPost: function(serviceName, methodName, jsonParams) {
       var deferred = new Promise(function(resolve, reject) {
-  
         return $.ajax({
           type: 'POST',
           url: "http://localhost/productproject/src/test.php",

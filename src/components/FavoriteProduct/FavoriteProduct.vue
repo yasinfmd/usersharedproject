@@ -79,14 +79,12 @@
                                                             </small>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'profile'+i" role="tabpanel" aria-labelledby="profile-tab">
-                                                            <p class="lead"> <img src="../../assets/icons/favimg.jpg" style="width: 32px;height: 32px"> İlanın Sahibi  : {{item.usname}} {{item.uslname}}</p>
-                                                            <p class="lead"> <img src="../../assets/icons/favimg.jpg" style="width: 32px;height: 32px"> Mail Adresi   :{{item.mail}}</p>
+                                                            <p class="lead" style="cursor: pointer"  @click="routeuserprofile(user)"> <img src="../../assets/icons/JD-07-32.png" style="width: 32px;height: 32px"> İlanın Sahibi  : {{item.usname}} {{item.uslname}}</p>
+                                                            <p class="lead"> <img src="../../assets/icons/JD-16-32.png" style="width: 32px;height: 32px"> Mail Adresi   :{{item.mail}}</p>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
                                                             <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-primary btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
-                                                            <a role="button" style="color: white"  data-toggle="modal" data-target="#exampleModalCenter"  aria-pressed="true"   class="btn btn-success btn-sm">     <i class="fas fa-hand-holding-usd" style="padding-right: 5px"></i>İlanı Satıldı Olarak İşaretle</a>
-                                                            <a  role="button" style="color: white" aria-pressed="true" class="btn btn-danger btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Kaldır</a>
-                                                            <a  role="button" @click="editpr(1)" style="color: white"  aria-pressed="true"  class="btn btn-warning btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
+                                                            <a  role="button" style="color: white" aria-pressed="true" class="btn btn-danger btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Favorilerimden Kaldır</a>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'img'+i" role="tabpanel" aria-labelledby="img-tab">
                                                             <div class="container">
@@ -141,7 +139,6 @@
             return{
                 bigphoto:"",
                 user:{},
-
                 favoritelist:Json,
                 selectedfilter:""
             }
@@ -155,6 +152,9 @@
                 BigPhotoCard
             },
         methods:{
+            routeuserprofile(user){
+                this.$router.push("/UserDetail/"+"1")
+            },
             setimglist(){
                 //resim listesi
                 this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])

@@ -88,8 +88,7 @@
               </div>
             </div>
           </div>
-          <Modal :content="alertcontent"></Modal>
-          <a  class="btnRegister"  :data-target="target"  data-toggle="modal" @click="registeruser" style="color: white;text-align: center">Kayıt Ol</a>
+          <a  class="btnRegister"   @click="registeruser" style="color: white;text-align: center">Kayıt Ol</a>
         </div>
       </div>
     </div>
@@ -98,7 +97,6 @@
 </template>
 
 <script>
-  import  Modal from  '../Modal/Modal'
 export  default{
   data(){
     return{
@@ -113,8 +111,6 @@ export  default{
           risstudent:null,
           rgender:null
         },
-      alertcontent:"",
-      target:"",
       city:[
         {cid:"0",cname:"Şehir Seçiniz"},
         {cid:"1",cname:"Ankara"},
@@ -140,56 +136,84 @@ export  default{
       captchacode:""
     }
   },
-  components:{
-    Modal
-  },
+
   methods:{
     registeruser(){
       if(this.registerdata.rufirstname.trim()=="" || this.registerdata.rufirstname.trim().length<3){
-        this.alertcontent="İsim Alanı Boş Yada 3 Karakterden Daha Az Olamaz.";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "İsim Alanı Boş Yada 3 Karakterden Daha Az Olamaz.",
+          icon: "error"
+        })
       }else if(this.registerdata.rlastname.trim()=="" ||this.registerdata.rlastname.trim().length<3 ){
-        this.alertcontent="SoyAd Alanı Boş Yada 3 Karakterden Daha Az Olamaz.";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "SoyAd Alanı Boş Yada 3 Karakterden Daha Az Olamaz.",
+          icon: "error"
+        })
       }else if(this.registerdata.rpass.trim()=="" || this.registerdata.rpass.trim().length<8){
-        this.alertcontent="Parola Alanı Boş Yada 8 Karakterden Daha Az Olamaz.";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Parola Alanı Boş Yada 8 Karakterden Daha Az Olamaz.",
+          icon: "error"
+        })
       }else if(this.registerdata.rcpass.trim()=="" || this.registerdata.rcpass.trim().length<8){
-        this.alertcontent="Parola Alanı Boş Yada 8 Karakterden Daha Az Olamaz.";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Parola Alanı Boş Yada 8 Karakterden Daha Az Olamaz.",
+          icon: "error"
+        })
       }else if(this.registerdata.rpass.trim()!=this.registerdata.rcpass){
-        this.alertcontent="Parolalar Eşleşmiyor";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Parolalar Eşleşmiyor.",
+          icon: "error"
+        })
       }
       else if(this.registerdata.rgender==null){
-        this.alertcontent="Lütfen Cinsiyet Belirtiniz";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Lütfen Cinsiyet Belirtiniz",
+          icon: "error"
+        })
       }
       else if(!Component.validateemail(this.registerdata.remail)){
-        this.alertcontent="Lütfen Geçerli Bir Email Adresi Kullanın";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Lütfen Geçerli Bir Email Adresi Kullanın",
+          icon: "error"
+        })
       }
       else if(this.registerdata.rphone.trim().length!="11"){
-        this.alertcontent="Lütfen Geçerli Telefon Numarası Giriniz.";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Lütfen Geçerli Telefon Numarası Giriniz.",
+          icon: "error"
+        })
       }
       else if(this.selectcity.id==0 || this.selectcity.id==undefined){
-        this.alertcontent="Lütfen Şehir Seçiniz";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Lütfen Şehir Seçiniz",
+          icon: "error"
+        })
       }
       else if(this.registerdata.risstudent!=true){
         if(this.selectedhighschools.id==0 || this.selectedhighschools.id==undefined){
-          this.alertcontent="Lütfen Üniversite Seçiniz";
-          this.target="#WarningModalftblack";
+          swal({
+            button: "Tamam ",
+            title: "Lütfen Üniversite Seçiniz",
+            icon: "error"
+          })
         }
       }else if(this.captchacode!=this.code){
-        debugger
-        this.alertcontent="Güvenlik Kodu Hatalı Girildi Lütfen Tekrar Deneyin";
-        this.target="#WarningModalftblack";
+        swal({
+          button: "Tamam ",
+          title: "Güvenlik Kodu Hatalı Girildi Lütfen Tekrar Deneyin",
+          icon: "error"
+        })
       }else{
         console.log(this.selectedhighschools)
-        this.alertcontent="";
-        this.target="";
         this.createuserregister(this.registerdata)
       }
     },

@@ -33,12 +33,6 @@ const store = new Vuex.Store({
                 state.appicon=appcon.icon;
                 state.apptxt=appcon.txt;
             },
-        setModal(state,content){
-            state.alertcontent=content
-        },
-        setModalTarget(state,modaltarget){
-            state.target=modaltarget
-        },
         setsearchbar(state,search){
           state.headersearch= search;
         },
@@ -169,12 +163,6 @@ const store = new Vuex.Store({
         },
         editprdata(state){
             return state.setpr;
-        },
-        gettarget(state){
-            return state.target
-        },
-        getmodalcontent(state){
-            return  state.alertcontent
         },
         getappicon(state){
             return state.appicon

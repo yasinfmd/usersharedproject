@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Modal :content="$store.getters.getmodalcontent"></Modal>
 
     <div class="container tab-pane in active animated flipInX custon-tab-style1 " style="margin-top: 20px">
         <div class="row">
@@ -31,7 +30,7 @@
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">İletişim</label>
                             <div class="col-4">
-                                <a role="button" :data-target="$store.getters.gettarget" data-toggle="modal" @click="sendmsg({usname:'Ayşe',uslname:'Yılmaz'})"  >       <p class="lead" style="cursor: pointer" >Ayşe Yılmaz ile sohbet et 💬</p></a>
+                                <a role="button"  @click="sendmsg({usname:'Ayşe',uslname:'Yılmaz'})"  >       <p class="lead" style="cursor: pointer" >Ayşe Yılmaz ile sohbet et 💬</p></a>
 
                             </div>
                         </div>
@@ -55,7 +54,6 @@
 
 <script>
     import MsgPopup from  '../Message/MsgPopup'
-    import  Modal from  '../Modal/Modal'
     export default {
         data(){
             return{
@@ -68,20 +66,20 @@
                     if(res==true){
                         this.user=param
                         //ekle
-                        this.$store.commit("setModalTarget","")
-                        this.$store.commit("setModal","")
                         this.$store.commit("setpopupstyle","block")
 
                     }else{
-                        this.$store.commit("setModalTarget","#WarningModalftblack")
-                        this.$store.commit("setModal","İlanı Sahibiyle İletişime Geçmek İçin Lütfen Giriş Yapın")
+                        swal({
+                            button: "Tamam ",
+                            title: "İlanı Sahibiyle İletişime Geçmek İçin Lütfen Giriş Yapın",
+                            icon: "error"
+                        })
                     }
                 })
             }
         },
         components:{
-            MsgPopup,
-            Modal
+            MsgPopup
         },
     }
 </script>

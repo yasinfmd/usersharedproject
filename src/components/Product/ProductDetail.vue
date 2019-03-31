@@ -4,7 +4,7 @@
             <p class="lead" >Ürün Detayları<img  src="https://cdn4.iconfinder.com/data/icons/miu/24/editor-more-detail-outline-stroke-64.png"></p>
             <hr class="my-4"   >
             <div class="row"  v-for="item in prlist">
-                <div class="col-8" @mousemove="zoomin(zoomimg)" @mouseover="zoomin(zoomimg)">
+                <div class="col-8">
 
                     	<span class='zoom' id='ex1'  >
                                <img :src="zoomimg"  style="width: 100%; height: 500px; border: 1px"  >
@@ -25,7 +25,6 @@
         </p>
 
         <hr class="my-4">
-        <Modal :content="$store.getters.getmodalcontent"></Modal>
         <p class="lead"> Ürüne Ait Bilgiler <img src="https://cdn0.iconfinder.com/data/icons/Hand_Drawn_Web_Icon_Set/32/tag_info.png"></p>
             <br>
 
@@ -57,8 +56,8 @@
                             </div>
                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <p class="lead" style="cursor: pointer" >
-                                    <img src="https://cdn0.iconfinder.com/data/icons/linkedin-ui-colored/48/JD-07-32.png" @click="routeuserprofile(user)"> Ayşe Yılmaz
-                                    <a  role="button" :data-target="$store.getters.gettarget" data-toggle="modal" aria-pressed="true" @click="createnewmsg(user)" style="color: #ffffff; float: right" class="btn btn-primary btn-sm"> Ayşe Yılmaz ile İletişime Geç</a>
+                                    <img src="../../assets/icons/JD-07-32.png" @click="routeuserprofile(user)"> Ayşe Yılmaz
+                                    <a  role="button" aria-pressed="true" @click="createnewmsg(user)" style="color: #ffffff; float: right" class="btn btn-primary btn-sm"> Ayşe Yılmaz ile İletişime Geç</a>
 
 
                                 </p>
@@ -77,7 +76,6 @@
 </template>
 
 <script>
-    import  Modal from  '../Modal/Modal'
     import MsgPopup from  '../Message/MsgPopup'
     export  default {
         created(){
@@ -85,7 +83,6 @@
 
         },
         components:{
-            Modal,
             MsgPopup
         },
         data(){
@@ -139,9 +136,6 @@
                 this.zoomimg=img;
               console.log(img);
             },
-            zoomin(img){
-                $('#ex1').zoom();
-            },
             routeuserprofile(param){
                 //param
                 this.$router.push("/UserDetail/"+"1")
@@ -149,12 +143,15 @@
             createnewmsg(param){
                 this.$store.dispatch("initAuth").then((res)=>{
                     if(res==true){
-                        this.$store.commit("setModalTarget","")
-                        this.$store.commit("setModal","")
+
                         this.$store.commit("setpopupstyle","block")
                     }else{
                         this.$store.commit("setModalTarget","#WarningModalftblack")
-                        this.$store.commit("setModal","İlan Sahibiyle İletişime Geçmek İçin Lütfen Giriş Yapın.")
+                        swal({
+                            button: "Tamam ",
+                            title: "İlan Sahibiyle İletişime Geçmek İçin Lütfen Giriş Yapın.",
+                            icon: "error"
+                        })
                     }
                 })
 

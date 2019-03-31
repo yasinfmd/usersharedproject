@@ -63,7 +63,7 @@
                                                             <img height="128" class="img-responsive text-center mb-3" style="padding-top: 10px"
                                                                  >
                                                             <input ref="file" type="file" style="display: none;" @change="onChange($event)" class="form-control">
-                                                            <a role="button" aria-pressed="true" class="btn btn-outline-secondary "  :data-target="target"  data-toggle="modal"  @click="$refs.file.click()">Resim Seç</a>
+                                                            <a role="button" aria-pressed="true" class="btn btn-outline-secondary "    @click="$refs.file.click()">Resim Seç</a>
                                                         </div>
 
                                                     </div>
@@ -119,13 +119,12 @@
                                                 </div>
                                             </div>
                                     </fieldset>
-                                    <Modal :content="alertcontent"></Modal>
                                 </div>
                             </td>
                             </tr>
                         </tbody>
                     </table>
-                    <a role="button" aria-pressed="true"  class="btn btn-primary"  :data-target="target"  data-toggle="modal" @click="createnewpr" style="color: white;text-align: center;float: right">İlan Oluştur</a>
+                    <a role="button" aria-pressed="true"  class="btn btn-primary"   @click="createnewpr" style="color: white;text-align: center;float: right">İlan Oluştur</a>
                 </div>
                 </div>
                 </div>
@@ -137,12 +136,10 @@
 </template>
 
 <script>
-    import  Modal from  '../../components/Modal/Modal'
     export  default {
         data(){
             return{
                 alertcontent:"",
-                target:"",
                 imagelist:[],
                 newproduct:{
                     title:"",
@@ -152,30 +149,43 @@
                 headimg:"http://kumova.com/userFiles/no-image.png",
             }
         },
-        components:{
-            Modal
-        },
         methods:{
             createnewpr(){
                 if(this.newproduct.title.trim()==""){
-                    this.alertcontent="İlan Başlığı Girilmesi Zorunludur";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "İlan Başlığı Girilmesi Zorunludur",
+                        icon: "error"
+                    })
+
                 }else if(this.newproduct.description.trim()==""){
-                    this.alertcontent="İlana Ait Açıklama Girilmek Zorundadır";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "İlana Ait Açıklama Girilmek Zorundadır",
+                        icon: "error"
+                    })
+
                 }else if(this.newproduct.price==""){
-                    this.alertcontent="İlana Ait Ücret Girin";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "İlana Ait Ücret Girin",
+                        icon: "error"
+                    })
                 }
                 ///kategori kontrolü
                 else if(this.imagelist.length==0){
-                    this.alertcontent="Lütfen En Az 1 Adet Fotoğraf Yükleyin";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "Lütfen En Az 1 Adet Fotoğraf Yükleyin",
+                        icon: "error"
+                    })
                 }else if(this.headimg=="http://kumova.com/userFiles/no-image.png"){
-                    this.alertcontent="Lütfen İlan Kapak Fotoğrafını Belirleyin.";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "Lütfen İlan Kapak Fotoğrafını Belirleyin.",
+                        icon: "error"
+                    })
                 }
-
                 else{
                     ///create product
                 }
@@ -203,8 +213,11 @@
                     })
                 }
                 else{
-                    this.alertcontent="En Fazla 10 Adet Resim Yükleyebilirisiniz .!";
-                    this.target="#WarningModalftblack";
+                    swal({
+                        button: "Tamam ",
+                        title: "En Fazla 10 Adet Resim Yükleyebilirisiniz .!",
+                        icon: "error"
+                    })
                 }
                 }
 

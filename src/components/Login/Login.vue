@@ -3,14 +3,10 @@
     <div class="row">
       <div class="col">
         <div class="d-flex justify-content-center h-100">
-
-
           <div class="user_card">
-
             <div class="d-flex justify-content-center">
               <div class="brand_logo_container">
                 <img src="../../assets/icons/13-256.png" class="brand_logo" alt="Logo">
-
               </div>
               <br><br>
               <h3 style="margin-top: 33%">Öğrencilerin Aradığı Herşey Burada!
@@ -96,7 +92,6 @@
         this.$store.commit("setappicontxt",{icon:"fas fa-sign-out-alt",
         txt:"Çıkış Yap",
         })
-
         this.$router.push("/Dashboard");
 
       })
@@ -214,6 +209,5 @@
   }
 
 
-/* The switch - the box around the slider */
 
 </style>

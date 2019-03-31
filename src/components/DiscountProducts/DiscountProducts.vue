@@ -10,7 +10,6 @@
                     <div class="row" >
 
 
-                        <Modal :content="$store.getters.getmodalcontent"></Modal>
 
 
                                 <table id="example" class="table table-striped table-bordered" style="width:120%;margin-top: 20px" v-if="revenuelist.length!=0">
@@ -56,7 +55,6 @@
 </template>
 
 <script>
-    import Modal from '../Modal/Modal'
     import TableHeader from '../TableHeaderComponent/TableHeader'
     export default {
         data(){
@@ -150,17 +148,17 @@
             deleteRevenueList(){
                 const deldata= _.where(this.revenuelist, {"select":true })
                 if(deldata.length==0){
-                    this.$store.commit("setModalTarget","#WarningModalftblack")
-                    this.$store.commit("setModal","Lütfen Silmek İstediğiniz İlanı Seçin.")
+                    swal({
+                        button: "Tamam ",
+                        title: "Lütfen Silmek İstediğiniz İlanı Seçin.!",
+                        icon: "error"
+                    })
                 }else{
-                    this.$store.commit("setModalTarget","")
-                    this.$store.commit("setModal","")
                 }
                 console.log(deldata)
             },
         },
         components:{
-            Modal,
             TableHeader
         },
         mounted() {
