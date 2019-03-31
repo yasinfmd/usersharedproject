@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
+      <div class="container-fluid">
         <div class="d-flex justify-content-center" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <TableHeader :res="sharedlist.length" title=" Üzgünüz Paylaştığınız Bir Duyuru Bulamadık  " cimg="https://cdn4.iconfinder.com/data/icons/digital-marketing-gradient-rave-and-glow/512/Promotion-64.png" content="Paylaştığınız Duyurular"></TableHeader>

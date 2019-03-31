@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
+     <div class="container-fluid">
         <!-- Modal -->
         <big-photo-card></big-photo-card>
         <div class="d-flex justify-content-center" >

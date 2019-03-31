@@ -1,6 +1,7 @@
 import  Vue from  'vue';
 import  Header  from  './components/shared/Header'
 import  Footer from  './components/shared/Footer'
+import AppNav from './components/shared/Nav.vue'
 const Login = resolve => {
     require.ensure(['./components/Login/Login'], () => {
         resolve(require('./components/Login/Login'))
@@ -142,6 +143,7 @@ export const router = new VueRouter({
             components:{
               default:Dashboard,
               "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next) {
@@ -219,6 +221,7 @@ export const router = new VueRouter({
             components:{
                 default:Policy,
                 "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next) {
@@ -232,6 +235,7 @@ export const router = new VueRouter({
             components:{
                 default:DiscountPr,
                 "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next) {
@@ -245,7 +249,8 @@ export const router = new VueRouter({
             components:{
                 default:ProductDetail,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next) {
                 store.commit("setpopupstyle","none")
@@ -258,6 +263,7 @@ export const router = new VueRouter({
             components:{
                 default:CreateNewProduct,
                 "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -279,7 +285,8 @@ export const router = new VueRouter({
             components:{
                 default:CreateNewAnnouncement,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next){
                 store.commit("setpopupstyle","none")
@@ -301,7 +308,8 @@ export const router = new VueRouter({
             components:{
                 default:Product,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next) {
                 store.commit("setpopupstyle","none")
@@ -314,7 +322,8 @@ export const router = new VueRouter({
             components:{
                 default:Revenue,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next){
                 store.commit("setpopupstyle","none")
@@ -335,7 +344,8 @@ export const router = new VueRouter({
             components:{
                 default:FavProduct,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next){
                 store.commit("setpopupstyle","none")
@@ -357,7 +367,8 @@ export const router = new VueRouter({
             components:{
                 default:User,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next){
                 store.commit("setpopupstyle","none")
@@ -378,7 +389,8 @@ export const router = new VueRouter({
             components:{
                 default:ProtectionPersonalData,
                 "appheader":Header,
-                "appfooter":Footer
+                "appnav":AppNav,
+                  "appfooter":Footer
             },
             beforeEnter(to,from,next) {
                 store.commit("setpopupstyle","none")
@@ -390,7 +402,8 @@ export const router = new VueRouter({
             name:"Rules",
             components:{
                 default:Rules,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next) {
@@ -403,7 +416,8 @@ export const router = new VueRouter({
             name:"EditPr",
             components:{
                 default:EditPr,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -425,7 +439,8 @@ export const router = new VueRouter({
             name:"Message",
             components:{
                 default:MessageBox,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -446,7 +461,8 @@ export const router = new VueRouter({
             name:"Notification",
             components:{
                 default:NotificationList,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -467,7 +483,8 @@ export const router = new VueRouter({
             name:"Share",
             components:{
                 default:SharedProduct,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -489,7 +506,8 @@ export const router = new VueRouter({
             name:"ShareAnnouncement",
             components:{
                 default:SharedAnnouncement,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){
@@ -509,7 +527,8 @@ export const router = new VueRouter({
             name:"UsDetail",
             components:{
                 default:UserDetail,
-                "appheader":Header,
+              "appheader":Header,
+              "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){

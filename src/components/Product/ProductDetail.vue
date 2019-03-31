@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="margin-top: -680px;padding-left: 100px">
+      <div class="container-fluid">
         <div class="container-fluid">
             <p class="lead" >Ürün Detayları<img  src="https://cdn4.iconfinder.com/data/icons/miu/24/editor-more-detail-outline-stroke-64.png"></p>
             <hr class="my-4"   >

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
+      <div class="container-fluid">
     <div class="d-flex justify-content-center" >
     <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
         <h1 class="display-4">GİZLİLİK POLİTİKASI</h1>

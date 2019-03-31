@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -540px">
+        <div class="container-fluid">
         <div class="d-flex justify-content-start" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <p class="lead">İlanı Düzenle</p>

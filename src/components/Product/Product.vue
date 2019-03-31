@@ -1,5 +1,5 @@
 <template>
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex justify-content-center" style="margin-top: -745px" >
+      <div class="container-fluid">
         <div class="container">
             <div class="d-flex justify-content-start">
                 <div class="container">
@@ -239,7 +239,7 @@
             </div>
         </div>
 
-    </main>
+    </div>
 </template>
 <script>
     import  Modal from '../Modal/Modal'

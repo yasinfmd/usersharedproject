@@ -1,5 +1,5 @@
 <template>
-  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex justify-content-center" style="margin-top: -720px" >
+     <div class="container-fluid" style="padding-top:3%">
     <div class="loading" :style="isloading">
       <div class="lds-ripple">
         <div style="margin-top: -300px"></div>
@@ -18,7 +18,7 @@
         <Modal :content="$store.getters.getmodalcontent"></Modal>
         <div id="carouselExample" class="carouselPrograms carousel slide" data-ride="carousel" data-interval="false">
           <div class="carousel-inner row w-100 mx-auto" role="listbox">
-            <div class="carousel-item col-md-4 " :class="{'active':index===0}" v-for="(item,index) in discountpr" >
+            <div class="carousel-item col-md-4" :key="index" :class="{'active':index===0}" v-for="(item,index) in discountpr" >
               <div class="panel panel-default">
                 <!-- :class="{'carousel-item active':index==0,'carousel-item':index!=0}" v-for="(item, index) in -->
                 <div class="panel-thumbnail" v>
@@ -92,7 +92,7 @@
       </div>
 
     </div>
-  </main>
+  </div>
 
 </template>
 <script>

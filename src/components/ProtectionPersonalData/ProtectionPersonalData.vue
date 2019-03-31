@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -520px">
+      <div class="container-fluid">
         <div class="d-flex justify-content-center" >
             <div class="jumbotron">
                 <h1 class="display-4">KİŞİSEL VERİLERİN KORUNMASI!</h1>

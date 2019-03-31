@@ -1,11 +1,13 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
-        <div class="d-flex justify-content-start" >
+      <div class="container-fluid">
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <p class="lead">Yeni İlan Oluştur <img src="../../assets/icons/Asset_85-32.png"></p>
+                        </div>
                 <hr class="my-4">
                 <div class="container" style="background-color: #f8f9fa">
-                    <table class="table table-bordered">
+                    <div class="row">
+                        <div class="col-sm-12">
+                    <table class="table table-bordered ">
                         <tbody>
                         <tr>
                             <td colspan="1">
@@ -124,11 +126,12 @@
                         </tbody>
                     </table>
                     <a role="button" aria-pressed="true"  class="btn btn-primary"  :data-target="target"  data-toggle="modal" @click="createnewpr" style="color: white;text-align: center;float: right">İlan Oluştur</a>
-
                 </div>
-                          </div>
+                </div>
+                </div>
+                  
 
-        </div>
+      
     </div>
 
 </template>

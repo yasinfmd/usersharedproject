@@ -1,5 +1,5 @@
 <template>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4" style="margin-top: -740px">
+      <div class="container-fluid">
         <div class="d-flex justify-content-center" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <TableHeader :res="revenuelist.length" title=" Üzgünüz Henüz Bir Ürün Satışı Gerçekleştirmediniz " cimg="https://cdn2.iconfinder.com/data/icons/new-year-resolutions/64/resolutions-24-64.png" content="Gelir Listeniz"></TableHeader>
