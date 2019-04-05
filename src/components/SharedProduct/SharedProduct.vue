@@ -148,11 +148,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div>{{selecteduser}}  </div>
                         <div class="star-rating" v-if="staractive">
                             <span :class="item.class" @click="changestar(index)"  v-for="(item,index) in stardata"></span>
                             <div class="form-group" v-if="staractive">
                                 <label for="comment">Yorumunuz :</label>
-                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <textarea class="form-control" rows="5" id="comment" v-model="commentuser" placeholder="Lütfen Yorumunuz Yazın.."></textarea>
                             </div>
                         </div>
                         <button style="float: left" v-if="staractive" type="button" @click="goback" class="btn btn-warning">Geri Dön.</button>
@@ -172,9 +173,10 @@
 
                                     <ul class="list-group">
                                         <!--active class selected olana verilecek -->
-                                        <li style="{cursor: pointer}" class="list-group-item" @click="changeactive(item,i)" :class="{'active':item.active}" v-for="(item,i) in searchlist">
+                                        <li style="{cursor: pointer}" class="list-group-item"  :class="{'active':item.active}" v-for="(item,i) in searchlist">
                                             <img :src="item.photo" style=" width: 40px; height: 40px" alt="Avatar"  class="md-avatar rounded-circle">
                                           {{item.name}}
+                                            <input type="radio" style="padding-left: auto" v-model="selecteduser"  name="gender" :value="item.id">
                                         </li>
                                     </ul>
                                 </div>
@@ -208,6 +210,8 @@
         },
         data() {
             return {
+                commentuser:"",
+                selecteduser:"",
                 headerlist:["Başlığa","Kategoriye","Açıklamaya","Tarihe","Saate","Fiyata"],
                 productlist:[
                     {backcard:false,id:1,title:"Acil Satılık Telefon",desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas augue sapien, facilisis sit amet posuere at, fringilla at urna. Fusce sit amet dignissim massa. Aenean malesuada, odio in vehicula aliquam, leo ante fringilla libero, non auctor arcu tellus ut justo. Sed vestibulum ligula quis blandit aliquet. Donec ac leo dolor. Aliquam et ultrices magna. Ut ut mollis ligula. Pellentesque in finibus sem, et tincidunt ex. Aliquam sollicitudin interdum felis quis malesuada. Praesent eleifend erat ut tempor congue. Fusce in pharetra turpis. Morbi sit amet purus mattis, pellentesque est non, pellentesque libero.Praesent et maximus sem. Fusce sed arcu ante. Vestibulum risus nisl, eleifend non augue egestas, rutrum cursus nisi. Nullam rhoncus tincidunt arcu, vitae tempus nibh suscipit iaculis. Duis condimentum vulputate erat sit amet fringilla. Aenean in lacus nisl. Fusce a finibus mauris. Nulla faucibus varius quam, nec lacinia lectus condimentum at. Donec placerat augue ac iaculis dignissim",price:"500",date:"27.02.2019",time:"17:22",primg:"https://cdn.vatanbilgisayar.com/UPLOAD/PRODUCT/APPLE/thumb/v2-91830-4_small.JPG"},
@@ -440,6 +444,23 @@
         },
         methods: {
             createcomment(){
+                    if(this.commentuser.trim().length==0){
+                        swal({
+                            title: "Yorum Yapmadan Devam Etmek İstediğinize Emin Misiniz ?",
+                            icon: "warning",
+                            buttons: ['Hayır','Evet'],
+                            dangerMode: true,
+                        })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal("Yorum Başarılı", {
+                                        icon: "success",
+                                    });
+                                } else {
+
+                                }
+                            });
+                    }
 
             },
             bigphotodetail(img){
@@ -450,11 +471,23 @@
                 this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])
             },
             commentandstar(){
-              this.staractive=true
-                this.isactive=false
-                this.footeractive=false
+                console.log(this.selecteduser)
+                if(this.selecteduser==""){
+                    swal({
+                        button: "Tamam ",
+                        title: "Lütfen Bu Ürünü Kime Sattığınızı Seçiniz.",
+                        icon: "error"
+                    })
+                }else{
+                    this.staractive=true
+                    this.isactive=false
+                    this.footeractive=false
+                }
             },
             goback(){
+
+                this.selecteduser=""
+                this.searchpruser=""
                 this.staractive=false
                 this.isactive=true
                 this.starval=1
@@ -498,6 +531,8 @@
                 console.log("sdsad")
             },
             closedialog() {
+                this.selecteduser=""
+                this.commentuser=""
                 this.isactive = false
                 this.footeractive=true
                 this.staractive=false
@@ -505,13 +540,10 @@
                 this.searchpruser=""
             },
             getuser() {
-                debugger
+                if(this.searchpruser.trim()==""){
 
+                }
                     // _.where(listOfPlays, {author: "Shakespeare", year: 1611});
-
-
-
-
             },
             routedetail(route, param) {
 

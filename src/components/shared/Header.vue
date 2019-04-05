@@ -1,6 +1,6 @@
 <template>
        <div class="border-right" id="sidebar-wrapper" >
-            <div   style="background-color:  #02A8FF; height:69px">    <a  href="#" >
+            <div   style="background-color:  #02A8FF;" :style="{'height':pageheight+'px'}">    <a  href="#" >
          <img  :src="avatarimg" @click="routernavbar('Dash')" class="imgcircle" alt="Cinque Terre" style="margin-left:40%" width="40" height="40">
       </a> 
     </div>
@@ -113,7 +113,7 @@
   export default {
     data(){
       return{
-
+        pageheight:document.getElementById('headnav').clientHeight,
           onshow:false,
           avatarimg:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEX///+9vsC6u73k5OXT1NX7+/u+v8G3uLv5+fnP0NHW19jIycv09PXx8fHFxsjp6erd3d5Gnky4AAAEhklEQVR4nO2d2ZLjIAxFxyvx7v//2sGxk3Y6mwNSdO2+57Wrq3JKgACD+PePEEIIIYQQQgghhBBCCCGEEEIIIbcU3ZCNdZ3X9ZgNXWH9c4TpxiZx6RqXNONg/bOEOGWNl0vu8Zr9eLL+edFMeg/srpauz6x/YgxF/TB4v0OZ7zWQRf4yfOtAVrt0HDf6zY619c/9mCHZ7je31Z2NrJX7yO/s2OwoR3YfBnB3YRw/D+DMXnpjFRLAJYyN9Y/fQhMu6BV765//nj5G0CuW6ONNpKAHXDFe0CtaS7wiqg9eQO6LtYSgV6ysRZ4xhObBO8XRWuUxJylBn/pba5mH9GKCoKPNKNMJZ9LcWucewTY64TproTsaUcEkgUsZYuPohRRth6oUFvRYK90ySA4zM2BBlMwUV6yl1nTyIfRBRNrUqBQEoYbTQnognQGau4lOZ35IcTamVMaZBGh2Kjxh+wGmmWY6jRRonRixQfoGlO1TNcEktVabUeuG3hBjDaUwJ70aYsxNlbLh2RAjI+oNNChDjVa+n8DI+YqCibOWO6PYSBMH8ZlGL1n4oQbhGIrS0mkxRJiZKiZ8Gn6J47fS4480fyBbKAqCZPzjz9qOP/PWXD1hfCg9/gq4PfwuhmK6wBhKtb7LTKB8mzn+jrDa3BulGyrmfGuxK8f/uqbUTJFODUkfF5pBGUknVKY1IBOaBYUDQygfnhYUUiJMMlyQDyJWCBV6IloI5bM+xup+jfAaCikXXhC6ijCDeSFBcrBBG2ZmBNspYhudEEuKQFPuXwjtKyLfs5S4uoaYKFaIjDYQ3yqeUcQrYnxuek60Irqgp4y66VziC0ZdJEW+PrqmDq44ADlXe0TgUspBbVu8pghIjGm/hy74Q7ahutCNn4Nb8b6jyD/pja6CTvNPaF8XwVr7NaBribe01QbH1FV79ZsoxvJlh/R/3H/Jtq4un1akK+s9h2/FKcv7pajg2excVrDMM4hDa3K0Qzbm1UQ+ZsPB5AghhBBCyL4o2m4YsjVDt/vVk6ftsrGumjJ1t2XLl1WGS3o/Gd/lOqrwZlWfusu66dVKeCnTvpuAere8mdXebmPcLorTaoSPZjdW06o+eG/f/2sDuzguhrqPkfuxhNzgmO2i5a6SaYIkWWSNROh+S7oSYye8ePMAQpxkbt4lBz29xdF0R/y05X2HaFxv5dht2bWXcWws2mrXa94AvnP8+kW97/olU/b46ifiIuB5h3jHL74P8cn7I5KK3yql2MocXwvhO+9DBD9fIcE3zi1qXt3eoqj9skARdahLBtVV8sneT/dwX4sgmCieQIWI4ITaKWKNG2pBaI2oIu9zyKBzml+x/sXnaNzIUK0HFYC8oc5d32Dk26n40wCxOOmsCBZC+ettiiVaQhGukiV6u1AG4Xu0MMl+hejMRrWwXiiiBc1VnneIRXRrSrHaVTiiKVGtjFAMorXOaGgCDWlIQ3toSEMa2kNDGtLQHhrSkIb20JCGNLSHhjSkoT00pCEN7aEhDWloDw1pSEN7aEhDGtpDQxrS0B4a/h3D/57CWfjL3q1gAAAAAElFTkSuQmCC"
       }

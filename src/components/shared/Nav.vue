@@ -1,5 +1,5 @@
 <template>
-             <nav class="navbar navbar-expand-lg navbar-light border-bottom"   style="background-color:  #02A8FF;">
+             <nav id="headnav" class="navbar navbar-expand-lg navbar-light border-bottom"   style="background-color:  #02A8FF;">
            <ul class="navbar-nav">
                        <li class="nav-item active">
           <a class="nav-link menufont"  style="cursor: pointer;color:white" @click="routernavbar('Dash')">Ana Sayfa </a>

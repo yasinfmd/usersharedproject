@@ -1,5 +1,6 @@
 <template>
      <div class="container-fluid" style="padding-top:3%">
+       <div id="loader" v-if="!pageloading"></div>
     <div class="loading" :style="isloading">
       <div class="lds-ripple">
         <div style="margin-top: -300px"></div>
@@ -9,7 +10,7 @@
         <div style="margin-top: 900px"></div>
       </div>
     </div>
-    <div class="container">
+    <div class="container" v-if="pageloading">
       <div class="container-fluid">
         <h6 class="display-5 text-right" style="  font-family: 'Open Sans', sans-serif;">İndirimdeki Ürünler</h6>
         <hr style="    border: 1.5px solid #92FB63;
@@ -20,13 +21,14 @@
             <div class="carousel-item col-md-4" :key="index" :class="{'active':index===0}" v-for="(item,index) in discountpr" >
               <div class="panel panel-default">
                 <!-- :class="{'carousel-item active':index==0,'carousel-item':index!=0}" v-for="(item, index) in -->
-                <div class="panel-thumbnail" v>
+                <div class="panel-thumbnail">
                   <a href="#"  class="thumb">
                     <img class="img-fluid mx-auto d-block" @click="routeprdetail(item)" style="width: 600px; height: 300px" :src="item.primg" >
                   </a>
                 </div>
               </div>
             </div>
+
           </div>
           <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon"  aria-hidden="true" style="width: 40px; background-color: black;border: 3px solid black;border-radius: 50px"></span>
@@ -86,8 +88,9 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-end">
-        <button class="btn btn-primary btn-sm morepadding" @click="productpagination">Daha Fazla Ürün Göster ...</button>
+      <div class="d-flex justify-content-end btn btn-primary  morepadding ld-ext-right  col-md-3" :class="{'running':loadingmore}" style="float: right" @click="productpagination">
+        Daha Fazla Ürün Göster ...
+        <div class="ld ld-ring ld-spin"></div>
       </div>
 
     </div>
@@ -99,7 +102,9 @@
 
     data(){
       return {
-        dataload:false ,
+        dataload:false,
+        loadingmore:false,
+        pageloading:false,
         product:[
           {backcard:false,id:1,title:"Acil Satılık Telefon",desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas augue sapien, facilisis sit amet posuere at, fringilla at urna. Fusce sit amet dignissim massa. Aenean malesuada, odio in vehicula aliquam, leo ante fringilla libero, non auctor arcu tellus ut justo. Sed vestibulum ligula quis blandit aliquet. Donec ac leo dolor. Aliquam et ultrices magna. Ut ut mollis ligula. Pellentesque in finibus sem, et tincidunt ex. Aliquam sollicitudin interdum felis quis malesuada. Praesent eleifend erat ut tempor congue. Fusce in pharetra turpis. Morbi sit amet purus mattis, pellentesque est non, pellentesque libero.Praesent et maximus sem. Fusce sed arcu ante. Vestibulum risus nisl, eleifend non augue egestas, rutrum cursus nisi. Nullam rhoncus tincidunt arcu, vitae tempus nibh suscipit iaculis. Duis condimentum vulputate erat sit amet fringilla. Aenean in lacus nisl. Fusce a finibus mauris. Nulla faucibus varius quam, nec lacinia lectus condimentum at. Donec placerat augue ac iaculis dignissim",price:"500",date:"27.02.2019",time:"17:22",primg:"https://cdn.vatanbilgisayar.com/UPLOAD/PRODUCT/APPLE/thumb/v2-91830-4_small.JPG"},
           {backcard:false,id:2,title:"Acil Satılık Ütü",desc:"Sorunsuz Ütü Satılık",price:"100",date:"27.02.2019",time:"17:10",primg:"data:image/jpeg;base64,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"},
@@ -154,10 +159,15 @@
       showmoretext(){
       },
       productpagination(){
-        for (var i=0;i<5;i++){
-          this.product.push({id:1,title:"Acil Satılık Telefon",desc:"Sorunsuz Telefon Satılık",price:"500",date:"27.02.2019",time:"17:22",primg:"https://cdn.vatanbilgisayar.com/UPLOAD/PRODUCT/APPLE/thumb/v2-91830-4_small.JPG"})
+        this.loadingmore=true
+        setTimeout(()=>{
+          for (var i=0;i<5;i++){
+            this.product.push({id:1,title:"Acil Satılık Telefon",desc:"Sorunsuz Telefon Satılık",price:"500",date:"27.02.2019",time:"17:22",primg:"https://cdn.vatanbilgisayar.com/UPLOAD/PRODUCT/APPLE/thumb/v2-91830-4_small.JPG"})
 
-        }
+          }
+          this.loadingmore=false
+        },3000)
+
       },
       routeprdetail(param){
         this.$router.push("/ProductDetail/"+param.id);
@@ -214,6 +224,7 @@
     },
 
     mounted() {
+      this.pageloading=true
       this.getLocation();
       $('.carousel').carousel({
         interval: 2000
@@ -413,5 +424,56 @@
     width: 150px;
     height: 150px;
     border-radius: 2%;
+  }
+
+  #loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 }
+    to { bottom:0px; opacity:1 }
+  }
+
+  @keyframes animatebottom {
+    from{ bottom:-100px; opacity:0 }
+    to{ bottom:0; opacity:1 }
+  }
+
+  #myDiv {
+    display: none;
+    text-align: center;
   }
 </style>

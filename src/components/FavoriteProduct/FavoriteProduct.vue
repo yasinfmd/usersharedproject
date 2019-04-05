@@ -81,6 +81,7 @@
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'profile'+i" role="tabpanel" aria-labelledby="profile-tab">
                                                             <p class="lead" style="cursor: pointer"  @click="routeuserprofile(user)"> <img src="../../assets/icons/JD-07-32.png" style="width: 32px;height: 32px"> İlanın Sahibi  : {{item.usname}} {{item.uslname}}</p>
                                                             <p class="lead"> <img src="../../assets/icons/JD-16-32.png" style="width: 32px;height: 32px"> Mail Adresi   :{{item.mail}}</p>
+                                                            <p class="lead" style="cursor: pointer" @click="contactuser(item)"> <img src="../../assets/icons/iconfinder_Speech_bubblesvg_1579792.png" style="width: 32px;height: 32px">İlan Sahibiyle İletişime Geç </p>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
                                                             <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-primary btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
@@ -106,7 +107,7 @@
         </div>
         <Paginate :list="favoritelist"></Paginate>
 
-        <msg-popup :msguser="user"></msg-popup>
+        <msg-popup :msguser="user" :usermsg="usrmsg"></msg-popup>
 
     </div>
 
@@ -121,15 +122,18 @@
     import BigPhotoCard from '../Card/BigPhotoCard'
     export default {
         created(){
-            Json.forEach((x)=>{
+            Json.forEach((x,i)=>{
                     x.desc="Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
                     x.category="Elektronik",
                     x.price="400",
-                    x.usname="Ali",
-                    x.uslname="Uçar",
+
                     x.mail="ali@gmail.com"
-                if(x.desc.length>100){
-                        x.show=false;
+                if(i<5){
+                    x.usname="Ali",
+                        x.uslname="Uçar"
+                }else{
+                    x.usname="Yasin",
+                    x.uslname="Dalkılıç"
                 }
             })
 
@@ -137,6 +141,7 @@
         },
         data(){
             return{
+                usrmsg:"",
                 bigphoto:"",
                 user:{},
                 favoritelist:Json,
@@ -152,17 +157,20 @@
                 BigPhotoCard
             },
         methods:{
+            contactuser(user){
+                debugger
+                if(this.user.usname==user.usname){
+                    this.usrmsg="";
+                }
+            this.user={usname:user.usname,uslname:user.uslname}
+            this.$store.commit("setpopupstyle","block")
+            },
             routeuserprofile(user){
                 this.$router.push("/UserDetail/"+"1")
             },
             setimglist(){
                 //resim listesi
                 this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])
-            },
-            sendmsg(param){
-                debugger
-                this.user=param;
-                this.$store.commit("setpopupstyle","block")
             },
             routedetail(router,param){
                 if(param){

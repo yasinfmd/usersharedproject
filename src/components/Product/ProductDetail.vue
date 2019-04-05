@@ -55,8 +55,8 @@
 
                             </div>
                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                <p class="lead" style="cursor: pointer" >
-                                    <img src="../../assets/icons/JD-07-32.png" @click="routeuserprofile(user)"> Ayşe Yılmaz
+                                <p class="lead" >
+                                    <img style="cursor: pointer"  src="../../assets/icons/JD-07-32.png" @click="routeuserprofile(user)"> Ayşe Yılmaz
                                     <a  role="button" aria-pressed="true" @click="createnewmsg(user)" style="color: #ffffff; float: right" class="btn btn-primary btn-sm"> Ayşe Yılmaz ile İletişime Geç</a>
 
 

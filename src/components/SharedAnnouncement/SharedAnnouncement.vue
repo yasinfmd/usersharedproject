@@ -13,7 +13,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr >
+                    <tr  @click="routedetail(item)" style="cursor: pointer">
                         <th scope="row">1</th>
                         <td>Mark</td>
                         <td>Otto</td>
@@ -45,7 +45,10 @@
           TableHeader
         },
         methods:{
-
+            routedetail(item){
+                //item id
+            this.$router.push("/SharedDetail/"+1);
+            }
         },
         mounted() {
             Component.datatable('sharedtableid');

@@ -127,9 +127,21 @@ const Warning = resolve => {
         resolve(require('./components/Complaint/Complaint'))
     })
 }
+const Nfound = resolve => {
+    require.ensure(['./components/NotFound/404'], () => {
+        resolve(require('./components/NotFound/404'))
+    })
+}
+const SharedDetail = resolve => {
+    require.ensure(['./components/SharedAnnouncement/SharedAnnouncementDetail'], () => {
+        resolve(require('./components/SharedAnnouncement/SharedAnnouncementDetail'))
+    })
+}
+
 import  VueRouter from 'vue-router';
 import store from "./store"
 import Complaint from "./components/Complaint/Complaint";
+import SharedAnnouncementDetail from "./components/SharedAnnouncement/SharedAnnouncementDetail";
 Vue.use(VueRouter)
 export const router = new VueRouter({
     routes: [
@@ -244,6 +256,34 @@ export const router = new VueRouter({
             }
         },
         {
+            path:"/Complaint/:userid",
+            name:"Warn",
+            components:{
+                default:Warning,
+                "appheader":Header,
+                "appnav":AppNav,
+                "appfooter":Footer
+            },
+            beforeEnter(to,from,next) {
+                store.commit("setpopupstyle","none")
+                next()
+            }
+        },
+        {
+            path:"/NotFound",
+            name:"404",
+            components:{
+                default:Nfound,
+                "appheader":Header,
+                "appnav":AppNav,
+                "appfooter":Footer
+            },
+            beforeEnter(to,from,next) {
+                store.commit("setpopupstyle","none")
+                next()
+            }
+        },
+        {
             path:"/ProductDetail/:prid",
             name:"PrDetail",
             components:{
@@ -264,6 +304,28 @@ export const router = new VueRouter({
                 default:CreateNewProduct,
                 "appheader":Header,
               "appnav":AppNav,
+                "appfooter":Footer
+            },
+            beforeEnter(to,from,next){
+                store.commit("setpopupstyle","none")
+                store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        next();
+                    }
+                    else{
+                        next("/Login")
+                    }
+                })
+
+            }
+        },
+        {
+            path:"/SharedDetail/:id",
+            name:"ShDetail",
+            components:{
+                default:SharedDetail,
+                "appheader":Header,
+                "appnav":AppNav,
                 "appfooter":Footer
             },
             beforeEnter(to,from,next){

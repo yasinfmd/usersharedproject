@@ -1,12 +1,11 @@
 <template>
        <div class="container-fluid">
-        <div class="d-flex justify-content-start" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <p class="lead">Yeni Duyuru Oluştur  <img src="../../assets/icons/Asset_85-32.png"></p>
+            </div>
                 <hr class="my-4">
-
                 <div class="container" style="background-color: #f8f9fa">
-                    <table class="table table-striped">
+                    <table class="table">
                         <tbody>
                         <tr>
                             <td colspan="1">
@@ -75,17 +74,15 @@
 
                                         </div>
                                     </fieldset>
-                                    <button type="button" class="btn btn-primary" @click="createnewpr" >Duyuru  Oluştur</button>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+                    <a role="button" aria-pressed="true"  class="btn btn-primary"   @click="createnewpr" style="color: white;text-align: center;float: right">Duyuru  Oluştur</a>
                 </div>
-            </div>
 
         </div>
-    </div>
 </template>
 
 <script>

@@ -9,7 +9,7 @@
                 <div class="card" style="width: 30rem;">
 
                     <div class="card-header">
-                        <span>Kullanıcı Adı Soyadı</span>
+                        <p class="lead">Ayşe Yılmaz</p>
                     </div>
                     <img class="card-img-top" src="https://randomuser.me/api/portraits/women/9.jpg" alt="Card image cap">
                     <div class="card-body">
@@ -34,10 +34,11 @@
 
                             </div>
                         </div>
+
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">Şikayet</label>
                             <div class="col-4">
-                                <a role="button"  data-toggle="modal"   >       <p class="lead" style="cursor: pointer" >Ayşe Yılmaz'ı Şikayet  et <i class="fas fa-exclamation-triangle"></i></p></a>
+                                <a role="button"  @click="routecomplaint(userid)" >       <p class="lead" style="cursor: pointer" >Ayşe Yılmaz'ı Şikayet  et <i class="fas fa-exclamation-triangle"></i></p></a>
 
                             </div>
                         </div>
@@ -45,6 +46,7 @@
                 </div>
             </div>
         </div>
+
         <msg-popup :msguser="user"></msg-popup>
 
     </div>
@@ -61,6 +63,21 @@
             }
         },
         methods:{
+            routecomplaint(user){
+                //uuser id
+                this.$store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        this.$router.push("/Complaint/"+"1")
+                    }else{
+                        swal({
+                            button: "Tamam ",
+                            title: "İlanı Sahibini Şikayet  Etmek İçin Lütfen Giriş Yapın",
+                            icon: "error"
+                        })
+                    }
+                })
+
+            },
             sendmsg(param){
                 this.$store.dispatch("initAuth").then((res)=>{
                     if(res==true){

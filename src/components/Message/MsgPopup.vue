@@ -12,19 +12,34 @@
                         <img @click="closepopup" style="float: right; cursor: pointer" src="https://cdn1.iconfinder.com/data/icons/ui-navigation-1/152/close-32.png">
                     </div>
                 </div>
-            <textarea placeholder="Mesajınız.." name="msg" required></textarea>
+            <textarea placeholder="Mesajınız.."  v-model="usermsg" name="msg" ></textarea>
 
-            <button type="submit" class="btn">Gönder</button>
+            <button type="submit" class="btn" @click="sendmsg">Gönder</button>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['msguser'],
+        data(){
+            return{
+                    usermsg:""
+            }
+        },
+        props:['msguser','usermsg'],
+        created(){
+
+        },
+        beforeMount(){
+            this.usermsg=""
+        },
         methods:{
             closepopup(){
+                this.usermsg=""
                 this.$store.commit("setpopupstyle","none")
+            },
+            sendmsg(){
+                console.log(this.usermsg);
             }
         }
     }

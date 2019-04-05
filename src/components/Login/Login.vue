@@ -2,6 +2,7 @@
   <div class="container h-100" style="padding-top: 6%">
     <div class="row">
       <div class="col">
+        <p>
         <div class="d-flex justify-content-center h-100">
           <div class="user_card">
             <div class="d-flex justify-content-center">
@@ -31,7 +32,7 @@
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                   </div>
-                  <input type="password"  @blur="chechkvalidatepass" :class="{'is-invalid':this.invalidpass}"  class="form-control input_pass" value="" placeholder="Parola..">
+                  <input type="password"  @blur="chechkvalidatepass" :class="{'is-invalid':this.invalidpass}" v-model="logindata.password"  class="form-control input_pass" value="" placeholder="Parola..">
                 </div>
                 <small class="form-text text-danger" v-if="this.logindata.password==''"> Bu Alan Zorunludur.</small>
                 <small class="form-text text-danger" v-if="invalidpass"> Parola Alanı 8 Karakterden Küçük Olamaz .</small>
@@ -66,6 +67,10 @@
 
   export default {
     methods:{
+      aa(){
+
+      //
+      },
       checkvalidateemail(){
         if(this.logindata.username.trim()==""){
             this.invalidmail=true
