@@ -137,11 +137,14 @@ const SharedDetail = resolve => {
         resolve(require('./components/SharedAnnouncement/SharedAnnouncementDetail'))
     })
 }
+const RequestProduct = resolve => {
+    require.ensure(['./components/RequestProduct/RequestProduct'], () => {
+        resolve(require('./components/RequestProduct/RequestProduct'))
+    })
+}
 
 import  VueRouter from 'vue-router';
 import store from "./store"
-import Complaint from "./components/Complaint/Complaint";
-import SharedAnnouncementDetail from "./components/SharedAnnouncement/SharedAnnouncementDetail";
 Vue.use(VueRouter)
 export const router = new VueRouter({
     routes: [
@@ -320,6 +323,28 @@ export const router = new VueRouter({
             }
         },
         {
+            path:"/FollowingProducts",
+            name:"RequestPr",
+            components:{
+                default:RequestProduct,
+                "appheader":Header,
+                "appnav":AppNav,
+                "appfooter":Footer
+            },
+            beforeEnter(to,from,next){
+                store.commit("setpopupstyle","none")
+                store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        next();
+                    }
+                    else{
+                        next("/Login")
+                    }
+                })
+
+            }
+        },
+        {
             path:"/SharedDetail/:id",
             name:"ShDetail",
             components:{
@@ -363,7 +388,8 @@ export const router = new VueRouter({
 
             }
         },
-
+       //
+      //  RequestProduct
         {
             path:"/Products",
             name:"Product",

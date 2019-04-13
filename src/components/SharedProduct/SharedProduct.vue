@@ -85,10 +85,10 @@
 
                                                 </div>
                                                 <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
-                                                    <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-primary btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
-                                                    <a role="button" style="color: white"  data-toggle="modal" data-target="#exampleModalCenter" @click="markuppr" aria-pressed="true"   class="btn btn-success btn-sm">     <i class="fas fa-hand-holding-usd" style="padding-right: 5px"></i>İlanı Satıldı Olarak İşaretle</a>
-                                                    <a  role="button" style="color: white" aria-pressed="true" class="btn btn-danger btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Kaldır</a>
-                                                    <a  role="button" @click="editpr(1)" style="color: white"  aria-pressed="true"  class="btn btn-warning btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
+                                                    <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-info btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
+                                                    <a role="button" style="color: white"  data-toggle="modal" data-target="#exampleModalCenter" @click="markuppr" aria-pressed="true"   class="btn btn-info     btn-sm">     <i class="fas fa-hand-holding-usd" style="padding-right: 5px"></i>İlanı Satıldı Olarak İşaretle</a>
+                                                    <a  role="button" style="color: white" aria-pressed="true" class="btn btn-info btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Kaldır</a>
+                                                    <a  role="button" @click="editpr(1)" style="color: white"  aria-pressed="true"  class="btn btn-info btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
 
 
 
@@ -206,6 +206,8 @@
     import BigPhotoCard from '../Card/BigPhotoCard'
     export default {
         created(){
+            debugger
+            // ilk data verilecek
             this.$store.dispatch("setpaginationcount",this.productlist)
         },
         data() {
@@ -433,7 +435,6 @@
                 x.photo=arr[i]
                 x.active=false
             })
-            console.log(userjson)
         },
         computed:{
             searchlist(){

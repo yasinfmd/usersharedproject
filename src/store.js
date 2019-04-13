@@ -78,6 +78,9 @@ const store = new Vuex.Store({
             state.bigphoto=photo
         },
         setpagination({commit,dispatch,state},list){
+            debugger
+            // liste sayısı verilecek
+            // get isteği atılacak listedeki indexten çekilip
             state.paginationlist=list[0].slice((list[1]*10)-10,(list[1]*10))
             state.islastpaginate=list[1]*10;
             state.isfirstpaginete=(list[1]*10)-10
@@ -85,6 +88,7 @@ const store = new Vuex.Store({
 
         },
         setpaginationcount({commit,dispatch,state},list){
+            debugger
             const pagination=list.length/10;
             if(pagination.toString().includes('.')){
                 state.paginationcount=Math.floor(pagination)+1;
@@ -93,6 +97,7 @@ const store = new Vuex.Store({
                 state.paginationcount=Math.floor(pagination);
 
             }
+            // liste verilecek
             state.paginationlist=list.slice(0,10)
         },
         login({ commit, dispatch, state}, user){

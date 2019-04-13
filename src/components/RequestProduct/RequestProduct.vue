@@ -4,7 +4,7 @@
         <big-photo-card></big-photo-card>
         <div class="d-flex justify-content-center" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
-                <TableHeader :res="favoritelist.length" title="Üzgünüz Gelir Listeniz Boş" cimg="https://cdn2.iconfinder.com/data/icons/business-and-economy/256/business_economic_finance_interprise_company_announcement-32.png" content="Paylaştığınız Duyurular"></TableHeader>
+                <TableHeader :res="favoritelist.length" title=" Üzgünüz Takip Ettiğiniz Bir İlan Bulamadık  " cimg="https://cdn1.iconfinder.com/data/icons/instagram-ui-colored/48/JD-15-32.png" content="Takip Edilen İlanlar"></TableHeader>
                 <div class="container">
                     <div class="row" v-if="favoritelist.length!=0" >
                         <div class="panel panel-default">
@@ -43,16 +43,19 @@
                                             <div class="list-group" v-if="favoritelist.length!=0" style="padding-bottom: 50px;padding-left: 80px" >
                                                 <ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1" id="myTab" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" id="home-tab" data-toggle="tab" :href="'#home'+i" role="tab" aria-controls="home" aria-selected="true"><img src="../../assets/icons/note_info.png">Duyuru Bilgisi </a>
+                                                        <a class="nav-link active" id="home-tab" data-toggle="tab" :href="'#home'+i" role="tab" aria-controls="home" aria-selected="true"><img src="../../assets/icons/note_info.png">İlan Bilgisi </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" id="descraption-tab" data-toggle="tab" :href="'#descraption'+i" role="tab" aria-controls="descraption" aria-selected="false"> <img src="../../assets/icons/constr_news-32.png">Duyuru Açıklaması</a>
+                                                        <a class="nav-link" id="descraption-tab" data-toggle="tab" :href="'#descraption'+i" role="tab" aria-controls="descraption" aria-selected="false"> <img src="../../assets/icons/constr_news-32.png">İlan Açıklaması</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" id="operation-tab" data-toggle="tab" :href="'#operation'+i" role="tab" aria-controls="operation" aria-selected="false"> <img src="../../assets/icons/kservices.png">Duyuruya Ait İşlemler</a>
+                                                        <a class="nav-link" id="profile-tab" data-toggle="tab" :href="'#profile'+i" role="tab" aria-controls="profile" aria-selected="false"> <img src="../../assets/icons/id_card-32.png">İlan Sahibi Bilgileri</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="operation-tab" data-toggle="tab" :href="'#operation'+i" role="tab" aria-controls="operation" aria-selected="false"> <img src="../../assets/icons/kservices.png">İlana Ait İşlemler</a>
                                                     </li>
                                                     <li class="nav-item" @click="setimglist">
-                                                        <a class="nav-link" id="img-tab" data-toggle="tab" :href="'#img'+i" role="tab" aria-controls="img" aria-selected="false"> <img src="../../assets/icons/iconfinder_synfig_icon_24342.png">Duyuruya Ait  Resimler</a>
+                                                        <a class="nav-link" id="img-tab" data-toggle="tab" :href="'#img'+i" role="tab" aria-controls="img" aria-selected="false"> <img src="../../assets/icons/iconfinder_synfig_icon_24342.png">İlana Ait  Resimler</a>
                                                     </li>
 
                                                 </ul>
@@ -75,9 +78,14 @@
                                                             {{item.desc}}
                                                         </small>
                                                     </div>
+                                                    <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'profile'+i" role="tabpanel" aria-labelledby="profile-tab">
+                                                        <p class="lead" style="cursor: pointer"  @click="routeuserprofile(user)"> <img src="../../assets/icons/JD-07-32.png" style="width: 32px;height: 32px"> İlanın Sahibi  : {{item.usname}} {{item.uslname}}</p>
+                                                        <p class="lead"> <img src="../../assets/icons/JD-16-32.png" style="width: 32px;height: 32px"> Mail Adresi   :{{item.mail}}</p>
+                                                        <p class="lead" style="cursor: pointer" @click="contactuser(item)"> <img src="../../assets/icons/iconfinder_Speech_bubblesvg_1579792.png" style="width: 32px;height: 32px">İlan Sahibiyle İletişime Geç </p>
+                                                    </div>
                                                     <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
-                                                        <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-info btn-sm" @click="routedetail('SharedDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>Duyuruya Git</a>
-                                                        <a  role="button" style="color: white" aria-pressed="true" class="btn btn-info btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>Duyuruyu Sil</a>
+                                                        <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-info btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
+                                                        <a  role="button" style="color: white" aria-pressed="true" class="btn btn-info btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Takip Listemden Kaldır</a>
                                                     </div>
                                                     <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'img'+i" role="tabpanel" aria-labelledby="img-tab">
                                                         <div class="container">
@@ -158,11 +166,11 @@
                 this.$store.commit("setpopupstyle","block")
             },
             routeuserprofile(user){
-                this.$router.push("/SharedDetail/"+"1")
+                this.$router.push("/UserDetail/"+"1")
             },
             setimglist(){
                 //resim listesi
-                this.$store.dispatch("setcardimg",[1,2,3])
+                this.$store.dispatch("setcardimg",[1,2,3,4,5,6,7,8,9,10])
             },
             routedetail(router,param){
                 if(param){

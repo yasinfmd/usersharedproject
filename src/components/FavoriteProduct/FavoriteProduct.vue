@@ -84,8 +84,8 @@
                                                             <p class="lead" style="cursor: pointer" @click="contactuser(item)"> <img src="../../assets/icons/iconfinder_Speech_bubblesvg_1579792.png" style="width: 32px;height: 32px">İlan Sahibiyle İletişime Geç </p>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
-                                                            <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-primary btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
-                                                            <a  role="button" style="color: white" aria-pressed="true" class="btn btn-danger btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Favorilerimden Kaldır</a>
+                                                            <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-info btn-sm" @click="routedetail('ProductDetail',1)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
+                                                            <a  role="button" style="color: white" aria-pressed="true" class="btn btn-info btn-sm"  @click="removepr(1)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Favorilerimden Kaldır</a>
                                                         </div>
                                                         <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'img'+i" role="tabpanel" aria-labelledby="img-tab">
                                                             <div class="container">

@@ -92,8 +92,6 @@
                             "http://aykutsevinc.com/wp-content/uploads/2018/04/people-4-1030x937.jpg",
                             "https://cdn2.avansas.com/urun/63391/tahta-karistirici-1000-li-paket-zoom-1.jpg",
                             "http://aykutsevinc.com/wp-content/uploads/2018/04/people-4-1030x937.jpg",
-                            "https://cdn2.avansas.com/urun/63391/tahta-karistirici-1000-li-paket-zoom-1.jpg",
-                            "http://aykutsevinc.com/wp-content/uploads/2018/04/people-4-1030x937.jpg",
                         ]
                     },
                 ],
@@ -103,6 +101,9 @@
             routeuserprofile(param){
                 //param
                 this.$router.push("/UserDetail/"+"1")
+            },
+            imgover(img){
+                this.zoomimg=img;
             },
             createnewmsg(param){
                 this.$store.dispatch("initAuth").then((res)=>{

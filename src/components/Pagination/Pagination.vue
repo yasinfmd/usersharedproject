@@ -11,6 +11,7 @@
         props:['list'],
         methods:{
             setpagination(index){
+                debugger
                 this.$store.dispatch('setpagination',[this.list,index])
             },
         }

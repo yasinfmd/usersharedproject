@@ -1,8 +1,9 @@
 <template>
        <div class="border-right" id="sidebar-wrapper" >
             <div   style="background-color:  #02A8FF;" :style="{'height':pageheight+'px'}">    <a  href="#" >
-         <img  :src="avatarimg" @click="routernavbar('Dash')" class="imgcircle" alt="Cinque Terre" style="margin-left:40%" width="40" height="40">
-      </a> 
+         <img  :src="avatarimg" @click="routernavbar('Dash')" class="imgcircle" alt="Cinque Terre" style="margin-left:4%" width="40" height="40">
+      </a>
+                <small style="color: #ffffff; font-size:18px;padding-left: 3% ">Ayşe Yılmaz</small>
     </div>
             <div class="list-group list-group-flush">
                 <ul class="nav flex-column flex-nowrap">
@@ -49,7 +50,7 @@
                 </a>
               </li>
               <li class="nav-item" v-if="onshow">
-                <a class="list-group-item list-group-item-action bg-light nav-link  navbaritemcls menufont" @click="routernavbar('Revenue')">
+                <a class="list-group-item list-group-item-action bg-light nav-link  navbaritemcls menufont" @click="routernavbar('RequestPr')">
                   <img src="../../assets/icons/Line_ui_icons_Svg-15-32.png">
                  Takip Ettiğim İlanlar
                 </a>
@@ -95,7 +96,7 @@
        Topluluk Kuralları
                 </a>
               </li>
-              <li class="nav-item" >
+              <li class="nav-item " >
                 <a class="nav-link navbaritemcls menufont" @click="routernavbar('Protection')">
                 <img src="../../assets/icons/lock_safe_password_protected-32.png">
                 Kişisel Verilerin Korunması
@@ -240,6 +241,4 @@
   #custom-search-input .fas fa-search{
     font-size: 23px;
   }
-
-
 </style>

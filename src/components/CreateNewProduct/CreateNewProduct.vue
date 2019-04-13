@@ -1,7 +1,7 @@
 <template>
       <div class="container-fluid">
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
-                <p class="lead">Yeni İlan Oluştur <img src="../../assets/icons/Asset_85-32.png"></p>
+                <p class="lead">Yeni İlan Oluştur <img src="../../assets/icons/Asset_85-32.png" style="width: 32px; height: 32px"></p>
                         </div>
                 <hr class="my-4">
                 <div class="container" style="background-color: #f8f9fa">
