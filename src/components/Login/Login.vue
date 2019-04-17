@@ -49,10 +49,10 @@
         <div class="container" >
         <div class="mt-4"  >
           <div class="d-flex justify-content-center links">
-            <a href="/Register" class="ForgetPwd">Bir Hesabın Yok mu ? Hemen Kayıt Olun .</a>
+            <a    @click="route('Register')" style="cursor: pointer;text-decoration: underline; color: #60a3bc;" >Bir Hesabın Yok mu ? Hemen Kayıt Olun .</a>
           </div>
           <div class="d-flex justify-content-center links">
-            <a href="/ForgetPassword" class="ForgetPwd">Parolanızı mı unuttunuz ?</a>
+            <a   @click="route('ForgetPassword')" style="cursor: pointer;text-decoration: underline; color: #60a3bc;" >Parolanızı mı unuttunuz ?</a>
           </div>
 
         </div>
@@ -67,6 +67,9 @@
 
   export default {
     methods:{
+      route(param){
+          this.$router.push("/"+param);
+      },
       aa(){
 
       //
@@ -126,9 +129,7 @@
 
 <style scoped>
 
-.ForgetPwd{
-  color: #60a3bc;
-}
+
 .secondcol{
   position: relative;
   display: flex;

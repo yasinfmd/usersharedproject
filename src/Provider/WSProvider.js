@@ -1,9 +1,9 @@
 var WSProvider = {
-    ajaxPost: function(serviceName, methodName, jsonParams) {
+    ajaxPost: function(serviceName, jsonParams) {
       var deferred = new Promise(function(resolve, reject) {
         return $.ajax({
           type: 'POST',
-          url: "http://localhost/productproject/src/test.php",
+          url: serviceName,
           datatype: 'application/json',
           headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
           data: jsonParams,
@@ -25,12 +25,14 @@ var WSProvider = {
       var deferred = new Promise(function(resolve, reject) {
         return $.ajax({
           type: 'GET',
-          url: serviceUrl,
+          url: serviceName,
           datatype: 'application/json',
           success: function(result) {
+            debugger
             resolve(result)
           },
           error: function(request) {
+            debugger
             resolve(false);
           }
         })
@@ -38,4 +40,4 @@ var WSProvider = {
       return deferred
     },
   }
-  
+  export  default  WSProvider

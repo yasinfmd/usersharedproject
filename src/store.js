@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import { router } from "./router"
-
+import LoginService from './Service/LoginService'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -103,15 +103,14 @@ const store = new Vuex.Store({
         login({ commit, dispatch, state}, user){
             debugger
           return new Promise((resolve, reject) => {
-            WSProvider.ajaxPost("","",user)
-            .then((response)=>{
+              LoginService.getuser(user).then((response)=>{
                 commit("setToken", response.token)
                 StorageControls.setItem("token",response.token,"")
                 StorageControls.setItem("exp",new Date().getTime()+3600000);
                 dispatch("timetologout",3600000)
                 resolve(true)
-            })
-           });
+              })
+          });
         },
         searchdata({ commit, dispatch, state}, search){
                 commit("setsearchbar",search)

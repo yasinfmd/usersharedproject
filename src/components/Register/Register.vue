@@ -15,7 +15,6 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <h3 style="text-align: center;margin-top: 30px">Öğrencinin Aradığı Herşey Burada !</h3>
-
             <h3 class="register-heading">Paylaşmak İçin Kayıt Ol!</h3>
             <div class="row register-form">
               <div class="col-md-6">
@@ -34,11 +33,11 @@
                 <div class="form-group">
                   <div class="maxl">
                     <label class="radio inline">
-                      <input type="radio" v-model="registerdata.rgender" name="gender" value="Kadın" >
+                      <input type="radio" v-model="registerdata.rgender" name="gender" value="1" >
                       <span> Kadın </span>
                     </label>
                     <label class="radio inline">
-                      <input type="radio" v-model="registerdata.rgender" name="gender" value="Erkek">
+                      <input type="radio" v-model="registerdata.rgender" name="gender" value="2">
                       <span>Erkek </span>
                     </label>
                   </div>
@@ -51,8 +50,6 @@
                     </label>
                   </div>
                 </div>
-
-
               </div>
               <div class="col-md-6">
                 <div class="form-group">
@@ -63,18 +60,15 @@
                 </div>
                 <div class="form-group">
                   <select class="form-control" @change="citychange(selectcity)" v-model="selectcity" >
-                    <option  :class="{'hidden':item.cid==0}" :selected="item.cid==0" :disabled="item.cid==0"  v-for="item in city" v-bind:value="{ id: item.cid, text: item.cname }">{{ item.cname }}
+                    <option  :class="{'hidden':item.cityid==0}" :selected="item.cityid==0" :disabled="item.cityid==0"  v-for="item in city" v-bind:value="{ id: item.cityid, text: item.cityname }">{{ item.cityname }}
                     </option>
-
                   </select>
                 </div>
                 <div class="form-group">
                   <select class="form-control" @change="highschoolchange(selectedhighschools)" v-model="selectedhighschools" >
-                    <option  :class="{'hidden':item.id==0}" :selected="item.id==0" :disabled="item.id==0"  v-for="item in highschools" v-bind:value="{ id: item.id, text: item.name }">{{ item.name }}
+                    <option  :class="{'hidden':item.universityid==0}" :selected="item.universityid==0" :disabled="item.universityid==0"  v-for="item in highschools" v-bind:value="{ id: item.universityid, text: item.universityname }">{{ item.universityname }}
                     </option>
-
                   </select>
-
                 </div>
                 <div class="form-group">
                   <div class="maxl">
@@ -92,11 +86,11 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
-
 <script>
+  import  CityService from '../../Service/CityService'
+  import UniversityService from '../../Service/UniversityService'
 export  default{
   data(){
     return{
@@ -109,37 +103,37 @@ export  default{
           rphone:"",
           rgender:null,
           risstudent:null,
-          rgender:null
+          rgender:null,
+          rschool:null,
+          rcity:null,
+
         },
-      city:[
-        {cid:"0",cname:"Şehir Seçiniz"},
-        {cid:"1",cname:"Ankara"},
-        {cid:"2",cname:"İstanbul"},
-        {cid:"3",cname:"Adana"},
-        {cid:"4",cname:"Hatay"},
-        {cid:"5",cname:"Manisa"},
-        {cid:"6",cname:"Sivas"},
-        {cid:"7",cname:"Antalya"},
-        {cid:"8",cname:"İzmir"},
-        {cid:"9",cname:"Kocaeli"},
-        {cid:"10",cname:"Van"},
-        {cid:"11",cname:"Bolu"},
-
-      ],
-      highschools:[
-        {id:"0",name:"Üniversite Seçiniz"},
-
-      ],
+      city:[],
+      highschools:[],
       selectedhighschools:{ id: 0, text: "Üniversite Seçiniz" },
       selectcity:{ id: 0, text: "Şehir Seçiniz" },
       code:"",
       captchacode:""
     }
   },
+      created(){
+       CityService.gettallcity().then((res)=>{
+         if(res.length>0){
+           res.unshift({cityid:"0",cityname:"Şehir Seçiniz"})
+           this.city=res;
+         }else{
+           //hata
+         }
 
+       })
+      },
   methods:{
+    highschoolchange(param){
+      this.registerdata.rschool=param.id
+    },
     registeruser(){
-      if(this.registerdata.rufirstname.trim()=="" || this.registerdata.rufirstname.trim().length<3){
+      debugger
+      if(this.registerdata.rufirstname.trim()==="" || this.registerdata.rufirstname.trim().length<3){
         swal({
           button: "Tamam ",
           title: "İsim Alanı Boş Yada 3 Karakterden Daha Az Olamaz.",
@@ -198,7 +192,8 @@ export  default{
           icon: "error"
         })
       }
-      else if(this.registerdata.risstudent!=true){
+
+      else if(this.registerdata.risstudent!==true){
         if(this.selectedhighschools.id==0 || this.selectedhighschools.id==undefined){
           swal({
             button: "Tamam ",
@@ -206,27 +201,50 @@ export  default{
             icon: "error"
           })
         }
-      }else if(this.captchacode!=this.code){
+      }
+       if(this.captchacode!=this.code || this.code.trim()===""){
+        debugger
         swal({
           button: "Tamam ",
           title: "Güvenlik Kodu Hatalı Girildi Lütfen Tekrar Deneyin",
           icon: "error"
         })
       }else{
-        console.log(this.selectedhighschools)
-        this.createuserregister(this.registerdata)
+         debugger
+         $.ajax({
+           type: 'POST',
+           url: "http://localhost:8000/api/register",
+           datatype: 'application/json',
+           headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+           data: this.registerdata,
+           success: function (result) {
+             if (result) {
+               debugger
+             } else {
+               debugger
+             }
+           },
+           error: function (request) {
+           }
+         })
+        console.log("deneme")
       }
     },
     createuserregister(registerdata){
       //register işlemleri
     },
     citychange(param){
-      for (let i=0;i<10;i++){
-        this.highschools.push(
-                {id:i+1,name:"Odtü"+i},
-        )
-      }
-        //param.id göre üniversiteler gelecek
+      this.selectedhighschools.id=0
+      this.registerdata.rcity=param.id
+      UniversityService.getcityuni(param.id).then((res)=>{
+        if(res.length>0){
+          res.unshift({universityid:"0",universityname:"Üniversite Seçiniz"})
+          this.highschools=res;
+        }else{
+          //hata
+        }
+
+      })
     },
     createCode(){
       document.getElementById('captcha').innerHTML = "";
@@ -235,7 +253,7 @@ export  default{
       var captcha = [];
       for (var i = 0; i < lengthOtp; i++) {
         var index = Math.floor(Math.random() * charsArray.length + 1);
-        if (captcha.indexOf(charsArray[index]) == -1)
+        if (captcha.indexOf(charsArray[index]) === -1)
           captcha.push(charsArray[index]);
         else i--;
       }

@@ -52,18 +52,18 @@ var Component={
     showntf:function(msg){
         if (Notification.permission !== 'denied') {
             Notification.requestPermission(function (permission) {
-                // Kullanıcı onaylamadı ise tekrar soralım
                 if (permission === "granted") {
                     // onaylarsa bilgilendirme bildirimi gönderilecek
                     var notification = new Notification('Öğrenciysen.com', {
                         body:msg,
-                        icon: 'http://localhost/productproject/src/assets/img/icons.ico'
+                        icon: "https://cdn1.iconfinder.com/data/icons/business-487/48/13-64.png"
                     });
                 }
             });
         }
     },
     readFileToBase64: function (file) {
+
         return new Promise(function(resolve, reject) {
             var reader = new FileReader();
             reader.onload = function (e) {
