@@ -33,11 +33,11 @@
                 <div class="form-group">
                   <div class="maxl">
                     <label class="radio inline">
-                      <input type="radio" v-model="registerdata.rgender" name="gender" value="1" >
+                      <input type="radio" v-model="registerdata.rgender" name="gender" value="2" >
                       <span> Kadın </span>
                     </label>
                     <label class="radio inline">
-                      <input type="radio" v-model="registerdata.rgender" name="gender" value="2">
+                      <input type="radio" v-model="registerdata.rgender" name="gender" value="1">
                       <span>Erkek </span>
                     </label>
                   </div>
@@ -91,6 +91,8 @@
 <script>
   import  CityService from '../../Service/CityService'
   import UniversityService from '../../Service/UniversityService'
+  import RegisterService from '../../Service/RegisterService'
+  import md5 from 'md5';
 export  default{
   data(){
     return{
@@ -102,8 +104,7 @@ export  default{
           remail:"",
           rphone:"",
           rgender:null,
-          risstudent:null,
-          rgender:null,
+          risstudent:0,
           rschool:null,
           rcity:null,
 
@@ -210,8 +211,21 @@ export  default{
           icon: "error"
         })
       }else{
+         const user={
+           rufirstname:this.registerdata.rufirstname,
+           rlastname:this.registerdata.rlastname,
+           rpass:md5(this.registerdata.rpass),
+           remail:this.registerdata.remail,
+           rphone:this.registerdata.rphone,
+           rgender:this.registerdata.rgender,
+           risstudent:0,
+           rschool:this.registerdata.rschool,
+           rcity:this.registerdata.rschool,
+
+         }
+         this.createuserregister(user);
          debugger
-         $.ajax({
+     /*    $.ajax({
            type: 'POST',
            url: "http://localhost:8000/api/register",
            datatype: 'application/json',
@@ -226,11 +240,36 @@ export  default{
            },
            error: function (request) {
            }
-         })
-        console.log("deneme")
+         })*/
       }
     },
-    createuserregister(registerdata){
+    createuserregister: function (user) {
+      RegisterService.adduser(user).then((response) => {
+        if (response) {
+          this.selectedhighschools={ id: 0, text: "Üniversite Seçiniz" },
+          this.selectcity={ id: 0, text: "Şehir Seçiniz" },
+          this.code="",
+          this.registerdata=
+          {
+            rufirstname:"",
+            rlastname:"",
+            rpass:"",
+            rcpass:"",
+            remail:"",
+            rphone:"",
+            rgender:null,
+            risstudent:0,
+            rschool:null,
+            rcity:null,
+          }
+          swal({
+            button: "Tamam ",
+            title: "Kaydınız Başarıyla Gerçekleşti Lütfen E-Mail Adresinizi Kontrol Edin Ve Kaydınızı Onaylayın ",
+            icon: "success"
+          })
+        }
+
+      })
       //register işlemleri
     },
     citychange(param){

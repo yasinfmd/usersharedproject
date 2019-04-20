@@ -10,6 +10,7 @@ var Component={
             text += possible.charAt(Math.floor(Math.random() * possible.length));
         return text;
     },
+
     datatable:function(tableid){
         $('#'+tableid).DataTable(
             {
@@ -56,7 +57,7 @@ var Component={
                     // onaylarsa bilgilendirme bildirimi gönderilecek
                     var notification = new Notification('Öğrenciysen.com', {
                         body:msg,
-                        icon: "https://cdn1.iconfinder.com/data/icons/business-487/48/13-64.png"
+                        icon: "https://cdn1.iconfinder.com/data/icons/icons-for-a-site-1/64/advantage_teamwork-64.png"
                     });
                 }
             });

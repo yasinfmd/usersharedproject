@@ -50,12 +50,6 @@
                 </a>
               </li>
               <li class="nav-item" v-if="onshow">
-                <a class="list-group-item list-group-item-action bg-light nav-link  navbaritemcls menufont" @click="routernavbar('RequestPr')">
-                  <img src="../../assets/icons/Line_ui_icons_Svg-15-32.png">
-                 Takip Ettiğim İlanlar
-                </a>
-              </li>
-              <li class="nav-item" v-if="onshow">
                 <a class="list-group-item list-group-item-action bg-light nav-link  navbaritemcls menufont" @click="routernavbar('Revenue')">
             <img src="../../assets/icons/hand-coins-32.png">
                   Kazandıklarım

@@ -7,7 +7,7 @@
           <div class="user_card">
             <div class="d-flex justify-content-center">
               <div class="brand_logo_container">
-                <img src="../../assets/icons/13-256.png" class="brand_logo" alt="Logo">
+                <img src="https://cdn1.iconfinder.com/data/icons/icons-for-a-site-1/64/advantage_teamwork-256.png" class="brand_logo" alt="Logo">
               </div>
               <br><br>
               <h3 style="margin-top: 33%">Öğrencilerin Aradığı Herşey Burada!
