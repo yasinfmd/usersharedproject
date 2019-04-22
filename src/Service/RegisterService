@@ -6,10 +6,24 @@ var RegisterService={
             WSProvider.ajaxPost("http://localhost:8000/api/register",param).then((response)=>{
                 resolve(response)
             })
-
         });
         return deferred
-
+    },
+    deleteuser:(param)=>{
+        var deferred=new Promise(function (resolve,reject) {
+            WSProvider.ajaxPost("http://localhost:8000/api/delregister",param).then((response)=>{
+                resolve(response)
+            })
+        })
+        return deferred
+    },
+    getuser:(param)=>{
+        var deferred=new Promise(function (resolve,reject) {
+            WSProvider.ajaxGet("http://localhost:8000/api/getregister/"+param).then((response)=>{
+                resolve(response)
+            })
+        })
+        return deferred
     }
 }
 

@@ -50,6 +50,13 @@ var Component={
             }
         );
     },
+    base64url:function(source) {
+    encodedSource = CryptoJS.enc.Base64.stringify(source);
+    encodedSource = encodedSource.replace(/=+$/, '');
+    encodedSource = encodedSource.replace(/\+/g, '-');
+    encodedSource = encodedSource.replace(/\//g, '_');
+    return encodedSource;
+    },
     showntf:function(msg){
         if (Notification.permission !== 'denied') {
             Notification.requestPermission(function (permission) {

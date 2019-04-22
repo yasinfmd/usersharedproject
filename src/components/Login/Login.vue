@@ -116,7 +116,7 @@
       }
     },
     mounted() {
-
+      console.log(this.$store.getters.getlocation)
       const buttons = document.getElementsByClassName('liquid-button');
       for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
         const button = buttons[buttonIndex];

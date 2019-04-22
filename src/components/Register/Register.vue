@@ -2,7 +2,7 @@
   <div class="container register">
     <div class="row">
       <div class="col-md-3 register-left">
-        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+        <img src="https://cdn1.iconfinder.com/data/icons/icons-for-a-site-1/64/advantage_teamwork-32.png" alt=""/>
         <h3>Hoşgeldin</h3>
         <p>Eğer Öğrenciysen ve İlan Verip Para Kazanmak  İstediğin Birşeyin Varsa (Örn:Ev Eşyası Satmak,Cep Telefonu Satmak) Yada Bir Duyuru Paylaşmak İstersen (Örn:Eşyalı Ev Arıyorum,Evimize Yeni Birini Arıyoruz,Otobüs Kartım Kayboldu gibi)
         Burası Tam Sana Göre Üstelik İnstagram&Facebook Gibi Öğrenci Gruplarında Admin Onayına İhtiyacın Yok Özgürsün !😉
@@ -107,7 +107,6 @@ export  default{
           risstudent:0,
           rschool:null,
           rcity:null,
-
         },
       city:[],
       highschools:[],
@@ -129,6 +128,14 @@ export  default{
        })
       },
   methods:{
+    makeid: function () {
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (var i = 0; i < 5; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    },
     highschoolchange(param){
       this.registerdata.rschool=param.id
     },
@@ -179,7 +186,7 @@ export  default{
           icon: "error"
         })
       }
-      else if(this.registerdata.rphone.trim().length!="11"){
+      else if(this.registerdata.rphone.trim().length!="11" && isNaN(this.registerdata.rphone.trim()==true)){
         swal({
           button: "Tamam ",
           title: "Lütfen Geçerli Telefon Numarası Giriniz.",
@@ -220,8 +227,8 @@ export  default{
            rgender:this.registerdata.rgender,
            risstudent:0,
            rschool:this.registerdata.rschool,
-           rcity:this.registerdata.rschool,
-
+           rcity:this.registerdata.rcity,
+           code:md5(this.makeid)
          }
          this.createuserregister(user);
          debugger
@@ -245,10 +252,11 @@ export  default{
     },
     createuserregister: function (user) {
       RegisterService.adduser(user).then((response) => {
-        if (response) {
+        debugger
+        if (response[0].status==undefined) {
           this.selectedhighschools={ id: 0, text: "Üniversite Seçiniz" },
           this.selectcity={ id: 0, text: "Şehir Seçiniz" },
-          this.code="",
+          this.captchacode="",
           this.registerdata=
           {
             rufirstname:"",
@@ -266,6 +274,30 @@ export  default{
             button: "Tamam ",
             title: "Kaydınız Başarıyla Gerçekleşti Lütfen E-Mail Adresinizi Kontrol Edin Ve Kaydınızı Onaylayın ",
             icon: "success"
+          })
+        }else if(response[0].status==="Blocked"){
+          swal({
+            button: "Tamam ",
+            title: "Mail Adresi Engellenmiştir.",
+            icon: "error"
+          })
+        }else if(response[0].status==="Using"){
+          swal({
+            button: "Tamam ",
+            title: "Mail Adresi Kullanımda.",
+            icon: "error"
+          })
+        }else if(response[0].status==="MailErr"){
+          swal({
+            button: "Tamam ",
+            title: "Mail Gönderilirken Hata Gerçekleşti.",
+            icon: "error"
+          })
+        }else if(response[0].status==="InsertErr"){
+          swal({
+            button: "Tamam ",
+            title: "Kayıt Eklenirken Hata Gerçekleşti.",
+            icon: "error"
           })
         }
 

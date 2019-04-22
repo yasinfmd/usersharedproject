@@ -203,6 +203,14 @@
           var _this=this;
         const coord = position.coords.longitude + ',' + position.coords.latitude;
         const location= $.getJSON( 'http://geocode-maps.yandex.ru/1.x/?geocode=' + coord + '&lang=tr-TR&format=json&callback=?', function(res) {
+          const userlocation={
+            locationname:res.response.GeoObjectCollection.featureMember[ res.response.GeoObjectCollection.featureMember.length-2].GeoObject.name,
+            coord:res.response.GeoObjectCollection.featureMember[ res.response.GeoObjectCollection.featureMember.length-2].GeoObject.Point.pos
+          }
+          debugger
+          _this.$store.dispatch("setLocation",userlocation)
+          console.log(_this.$store.getters.getlocation)
+          console.log(userlocation)
           console.log(res.response.GeoObjectCollection.featureMember);
           console.log(  res.response.GeoObjectCollection.featureMember[ res.response.GeoObjectCollection.featureMember.length-2].GeoObject.name)
         })

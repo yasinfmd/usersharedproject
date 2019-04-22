@@ -21,6 +21,7 @@ const store = new Vuex.Store({
         islastpaginate:10,
         cardimg:"",
         bigphoto:"",
+        location:"",
     },
     mutations : {
         setToken(state, token){
@@ -48,8 +49,15 @@ const store = new Vuex.Store({
         clearproduct(state){
             state.setpr=""
         },
+        setuserlocation(state,location){
+            debugger
+            state.location=location
+        }
     },
     actions : {
+        setLocation({commit},location){
+            commit("setuserlocation",location)
+        },
         initAuth({commit,dispatch}){
             return new Promise((resolve,reject)=>{
             let token=StorageControls.getItem("token");
@@ -136,9 +144,6 @@ const store = new Vuex.Store({
                 dispatch("logout");
             },time)
         },
-        register({ commit, dispatch, state}, user){
-
-        },
         userisempty({commit,dispatch},time){
             $(window).on("blur focus", function(e) {
                 var prevType = $(this).data("prevType");
@@ -197,6 +202,10 @@ const store = new Vuex.Store({
         },
         getbigphoto(state){
             return state.bigphoto
+        },
+        getlocation(state){
+            debugger
+            return state.location
         }
     }
 })

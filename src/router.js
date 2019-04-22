@@ -137,6 +137,11 @@ const SharedDetail = resolve => {
         resolve(require('./components/SharedAnnouncement/SharedAnnouncementDetail'))
     })
 }
+const ActiveVerify = resolve => {
+    require.ensure(['./components/ActivationVerify/ActivationVerify'], () => {
+        resolve(require('./components/ActivationVerify/ActivationVerify'))
+    })
+}
 import  VueRouter from 'vue-router';
 import store from "./store"
 Vue.use(VueRouter)
@@ -178,6 +183,17 @@ export const router = new VueRouter({
                         next("/Login")
                     }
                 })
+            }
+        },
+        {
+            path:"/AccountVerify/:code",
+            name:"Verify",
+            components:{
+                default:ActiveVerify
+            },
+            beforeEnter(to,from,next){
+                store.commit("setpopupstyle","none")
+               next();
             }
         },
         {
