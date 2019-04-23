@@ -56,7 +56,9 @@ const store = new Vuex.Store({
     },
     actions : {
         setLocation({commit},location){
+            debugger
             commit("setuserlocation",location)
+            StorageControls.setItem("location",JSON.stringify(location));
         },
         initAuth({commit,dispatch}){
             return new Promise((resolve,reject)=>{
@@ -112,11 +114,18 @@ const store = new Vuex.Store({
             debugger
           return new Promise((resolve, reject) => {
               LoginService.getuser(user).then((response)=>{
+                  debugger
+                  if(response[0].status==="NotDefine"){
+                      resolve(false)
+                  }else if(response[0].status==="Blocked"){
+                        resolve(false)
+                  }else{
                 commit("setToken", response.token)
                 StorageControls.setItem("token",response.token,"")
                 StorageControls.setItem("exp",new Date().getTime()+3600000);
                 dispatch("timetologout",3600000)
                 resolve(true)
+                  }
               })
           });
         },

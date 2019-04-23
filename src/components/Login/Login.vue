@@ -64,7 +64,7 @@
 </template>
 <script>
 
-
+    import md5 from 'md5';
   export default {
     methods:{
       route(param){
@@ -94,29 +94,82 @@
           this.invalidpass=false
         }
       },
+
       onLogin(){
+    this.logindata.password=md5(this.logindata.password);
     this.$store.dispatch("login",this.logindata)
       .then((response)=>{
-        this.$store.commit("setappicontxt",{icon:"fas fa-sign-out-alt",
-        txt:"Çıkış Yap",
-        })
-        this.$router.push("/Dashboard");
+          if(response!=false){
+              this.$store.commit("setappicontxt",{icon:"fas fa-sign-out-alt",
+                  txt:"Çıkış Yap",
+              })
+              this.$router.push("/Dashboard");
+          }else{
+              alert(response);
+          }
+
 
       })
       },
+      getLocation(){
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(this.showPosition,this.positionerr);
+        } else {
+          console.log("Tarayıcınız Konum Bilgisini Desteklememektedir.");
+        }
+      },
+      positionerr(error){
+        var mesaj="";
+        switch(error.code){
+          case error.UNKNOWN_ERROR:
+            mesaj="Bilinmeyen bir hata olustu hata kodu="+error.UNKNOWN_ERROR;
+            break;
+          case error.PERMISSION_DENIED:
+            //konumsuz data çek
+            break;
+          case error.POSITION_UNAVAILABLE:
+            mesaj="Konum tespit edilemedi hata kodu="+error.POSITION_UNAVAILABLE;
+            break;
+          case hata.TIMEOUT:
+            mesaj="Zaman Asimi hata kodu="+hata.TIMEOUT;
+            break;
+        }
+
+        alert(mesaj);
+      },
+      showPosition(position){
+        //konumlu data çek
+        var _this=this;
+        const coord = position.coords.longitude + ',' + position.coords.latitude;
+        const location= $.getJSON( 'http://geocode-maps.yandex.ru/1.x/?geocode=' + coord + '&lang=tr-TR&format=json&callback=?', function(res) {
+          const userlocation={
+            locationname: res.response.GeoObjectCollection.featureMember[0].GeoObject.description+ " "+   res.response.GeoObjectCollection.featureMember[0].GeoObject.name,
+            coord:res.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos
+          }
+          _this.$store.dispatch("setLocation",userlocation)
+
+        })
+      }
     },
     data(){
       return {
         logindata:{
           username:'',
-          password:''
+          password:'',
+        locationname:this.$store.getters.getlocation.locationname,
+        coord:this.$store.getters.getlocation.coord
         },
         invalidmail:false,
         invalidpass:false
       }
     },
     mounted() {
-      console.log(this.$store.getters.getlocation)
+      const location=StorageControls.getItem("location");
+      if(location===undefined){
+        this.getLocation();
+      }else{
+        this.$store.dispatch("setLocation",JSON.parse(location))
+      }
       const buttons = document.getElementsByClassName('liquid-button');
       for (let buttonIndex = 0; buttonIndex < buttons.length; buttonIndex++) {
         const button = buttons[buttonIndex];

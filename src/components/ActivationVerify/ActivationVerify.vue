@@ -49,23 +49,6 @@
                 if(param==="add"){
                     RegisterService.getuser(this.$route.params.code).then((response)=>{
                         if(response[0].status==undefined){
-                            const header = {
-                                "alg": "HS256",
-                                "typ": "JWT"
-                            };
-                            const data = {
-                                "name":response[0].rname,
-                                "lastname":response[0].rlname,
-                                "username": response[0].rusername
-                            };
-                            const stringifiedHeader = CryptoJS.enc.Utf8.parse(JSON.stringify(header));
-                            const encodedHeader =Component.base64url(stringifiedHeader);
-                            const stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
-                            const encodedData = Component.base64url(stringifiedData);
-                            var signature = encodedHeader + "." + encodedData;
-                            signature = CryptoJS.HmacSHA256(signature, "username");
-                            signature = Component.base64url(signature);
-                            const token=encodedHeader+"."+encodedData+"."+signature;
                             const user={
                                 username:response[0].rname,
                                 usname:response[0].rusername,
@@ -79,8 +62,6 @@
                                 isstudent:response[0].isstudent,
                                 universityid:response[0].runiversity,
                                 createddate:new Date().toLocaleDateString(),
-                                token:token
-
                             }
                               UserService.adduser(user).then((response)=>{
                                   if(response[0].status==="NotInsert"){
