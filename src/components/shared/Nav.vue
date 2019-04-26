@@ -47,6 +47,7 @@ export default {
         this.searchdata=this.$store.getters.searchbardata;
       }
     },
+
     methods:{
         routernavbar(route){
         this.$router.push({name:route})

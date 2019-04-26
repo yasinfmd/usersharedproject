@@ -43,12 +43,11 @@
                                             <div class="col-md-8 inputGroupContainer">
                                                 <div class="input-group">
 
-                                                    <select class="selectpicker form-control">
-                                                        <option>Kategori 1</option>
-                                                        <option>Kategori 2</option>
-                                                        <option>Kategori 3</option>
-                                                        <option>Kategori 4</option>
-                                                        <option>Kategori 5</option>
+                                                    <select  class="selectpicker form-control" v-model="selectedcategory">
+                                                        <option  :class="{'hidden':item.id==0}" :selected="item.id==0" :disabled="item.id==0"
+                                                                 v-for="item in category"  v-bind:value="item.id">
+                                                            {{ item.categorytxt }}
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -136,11 +135,13 @@
 </template>
 
 <script>
+    import  CategoryService from '../../Service/CategoryService'
     export  default {
         data(){
             return{
-                alertcontent:"",
                 imagelist:[],
+                category:"",
+                selectedcategory:0,
                 newproduct:{
                     title:"",
                     description:"",
@@ -148,6 +149,12 @@
                 },
                 headimg:"http://kumova.com/userFiles/no-image.png",
             }
+        },
+        created(){
+          CategoryService.getallcategory().then((res)=>{
+              res.unshift({id:0,categorytxt:"Lütfen Kategori Seçiniz"})
+              this.category=res;
+          })
         },
         methods:{
             createnewpr(){
@@ -171,8 +178,13 @@
                         title: "İlana Ait Ücret Girin",
                         icon: "error"
                     })
+                }else if(this.selectedcategory===0){
+                    swal({
+                        button: "Tamam ",
+                        title: "İlana Ait Kategori Belirtin",
+                        icon: "error"
+                    })
                 }
-                ///kategori kontrolü
                 else if(this.imagelist.length==0){
                     swal({
                         button: "Tamam ",
@@ -187,6 +199,7 @@
                     })
                 }
                 else{
+
                     ///create product
                 }
             },

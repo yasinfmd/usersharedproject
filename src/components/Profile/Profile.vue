@@ -4,39 +4,33 @@
             <div class="col-md-12">
                 <div class="card" style="width: 30rem;">
                     <div class="card-header">
-                        Kullanıcı Adı Soyadı
+                        {{$store.getters.getuser.userfirstname.toUpperCase()}}  {{$store.getters.getuser.userlastname.toUpperCase()}}
                     </div>
-                    <img class="card-img-top" src="https://randomuser.me/api/portraits/women/6.jpg" alt="Card image cap">
+                    <img class="card-img-top" :src="$store.getters.getuser.avatar" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Genel Bilgiler</h5>
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">Telefon</label>
                             <div class="col-4">
-                            <p>1231232132</p>
+                            <p>{{$store.getters.getuser.phone}} </p>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">Üniversite</label>
                             <div class="col-4">
-                                <p>1231232132</p>
+                                <p>{{$store.getters.getuser.university}}</p>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">Şehir</label>
                             <div class="col-4">
-                                <p>1231232132</p>
+                                <p>{{$store.getters.getuser.city}}</p>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label  class="col-4 col-form-label">Email</label>
                             <div class="col-4">
-                                <p>1231232132</p>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label  class="col-4 col-form-label">Telefon</label>
-                            <div class="col-4">
-                                <p>1231232132</p>
+                                <p>{{$store.getters.getuser.username}}</p>
                             </div>
                         </div>
                     </div>
@@ -50,11 +44,22 @@
     export default {
         data(){
             return{
-                productlist:[]
+                user:""
             }
         },
         methods:{
-
+            getuser(){
+                this.$store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        this.user=this.$store.getters.getuser;
+                    }else{
+                    }
+                })
+            }
+        },
+        created(){
+            debugger
+            this.getuser();
         },
         mounted() {
 

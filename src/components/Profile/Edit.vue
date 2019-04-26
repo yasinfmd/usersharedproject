@@ -1,84 +1,110 @@
 <template>
     <div class="tab-pane in active animated flipInX custon-tab-style1 container" style="margin-top: 20px">
         <div class="row">
-            <div class="col-md-12">
-                <form>
-                    <div class="form-group row">
-                        <label for="username" class="col-4 col-form-label">User Name*</label>
-                        <div class="col-8">
-                            <input id="username" name="username" placeholder="Username" class="form-control here" required="required" type="text">
-                        </div>
+            <div class="col md-4">
+                <div class="card offset-0 col-md-4">
+                    <div class="card-body tex-center d-flex align-items-center flex-column">
+                        <img height="128" class="img-responsive text-center mb-3" style="padding-top: 10px">
+                        <input ref="file" type="file" style="display: none;" @change="onChange($event)" class="form-control">
+                        <a role="button" aria-pressed="true" class="btn btn-outline-secondary "    @click="$refs.file.click()">Resim Seç</a>
                     </div>
-                    <div class="form-group row">
-                        <label for="name" class="col-4 col-form-label">First Name</label>
-                        <div class="col-8">
-                            <input id="name" name="name" placeholder="First Name" class="form-control here" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="lastname" class="col-4 col-form-label">Last Name</label>
-                        <div class="col-8">
-                            <input id="lastname" name="lastname" placeholder="Last Name" class="form-control here" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="text" class="col-4 col-form-label">Nick Name*</label>
-                        <div class="col-8">
-                            <input id="text" name="text" placeholder="Nick Name" class="form-control here" required="required" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="select" class="col-4 col-form-label">Display Name public as</label>
-                        <div class="col-8">
-                            <select id="select" name="select" class="custom-select">
-                                <option value="admin">Admin</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-4 col-form-label">Email*</label>
-                        <div class="col-8">
-                            <input id="email" name="email" placeholder="Email" class="form-control here" required="required" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="website" class="col-4 col-form-label">Website</label>
-                        <div class="col-8">
-                            <input id="website" name="website" placeholder="website" class="form-control here" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="publicinfo" class="col-4 col-form-label">Public Info</label>
-                        <div class="col-8">
-                            <textarea id="publicinfo" name="publicinfo" cols="40" rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="newpass" class="col-4 col-form-label">New Password</label>
-                        <div class="col-8">
-                            <input id="newpass" name="newpass" placeholder="New Password" class="form-control here" type="text">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="offset-4 col-8">
-                            <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
-                        </div>
-                    </div>
-                </form>
+
+                </div>
+            </div>
+            <div class="col md-8">
+                <img :src="newimg" style=" width: 50%; height: 100%">
             </div>
         </div>
+        <button class="btn btn-primary" @click="updateprofimg">Profil Resmini Güncelle</button>
+
     </div>
 </template>
 
 <script>
+    import UserAvatarService from '../../Service/UserAvatarService'
+    import UserService from '../../Service/UserService'
     export default {
         data(){
             return{
-                productlist:[]
+                user:"",
+                newimg:"",
+                file:""
             }
         },
         methods:{
+            onChange(e) {
+                const file = e.target.files[0];
+                if(file.type!=undefined && file.type.includes("image")){
+                        Component.readFileToBase64(file).then((res)=>{
+                            this.file=res;
+                            this.newimg='data:image/jpeg:image/png;base64,'+res.base64;
+                        })
+                }else{
+                    swal({
+                        title:"Lütfen Resim Dosyası Seçiniz",
+                        button:"Tamam",
+                        icon:"error"
+                    })
+                }
 
+            },
+            getuser(){
+                this.$store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        this.newimg=this.$store.getters.getuser.avatar
+                    }else{
+                    }
+                })
+            },
+            updateprofimg(){
+                var _this=this;
+                if(this.newimg==this.$store.getters.getuser.avatar){
+                    swal({
+                        title:"Lütfen Resim Seçiniz",
+                        button:"Tamam",
+                        icon:"error"
+                    })
+                }else{
+                    debugger
+                    UserAvatarService.addavatar(
+                        {
+                            base64:this.file.base64,
+                            size:this.file.size,
+                            type:this.file.type,
+                            date:new Date().toLocaleDateString(),
+                            time:new Date().getHours()+"."+new Date().getMinutes()+"."+new Date().getSeconds(),
+                            userid:_this.$store.getters.getuser.userid
+                        }
+                    ).then((res)=>{
+                        if(res[0].status==="Updated"){
+                            debugger
+                            UserService.getuser({userid:_this.$store.getters.getuser.userid}).then((res)=>{
+                                    if(res[0].status==undefined){
+                                        _this.$store.commit("setUs",res);
+                                        this.getuser()
+                                        swal({
+                                            title:"Profil Resmi Başarıyla Güncellendi",
+                                            icon:"success",
+                                            button:"Tamam"
+                                        })
+                                    }else{
+                                        alert("hata");
+                                    }
+                            })
+                        }else{
+                            swal({
+                                title:"Profil Resmi Değiştirilemedi Lütfen Daha Sonra Tekrar Dene",
+                                icon:"error",
+                                button:"Tamam"
+                            })
+                        }
+                    })
+                }
+            }
+        },
+
+        created(){
+            this.getuser();
         },
         mounted() {
 

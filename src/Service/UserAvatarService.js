@@ -1,27 +1,23 @@
 import WSProvider from "../Provider/WSProvider";
 
-var LoginService={
-    getuser:(param)=>{
-        debugger
+var UserAvatarService={
+    addavatar:(param)=>{
         var deferred = new Promise(function(resolve, reject) {
-            WSProvider.ajaxPost("http://localhost:8000/api/Signin",param).then((response)=>{
+            WSProvider.ajaxPost("http://localhost:8000/api/setnewavatar",param).then((response)=>{
                 resolve(response)
             })
-
         });
         return deferred
     },
-
-    logout:(param)=>{
+    updateuser:(param)=>{
         var deferred = new Promise(function(resolve, reject) {
-            WSProvider.ajaxPost("http://localhost:8000/api/Signout",param).then((response)=>{
+            WSProvider.ajaxPost("http://localhost:8000/api/updateuseravatar",param).then((response)=>{
                 resolve(response)
             })
         });
         return deferred
-    }
-
+    },
 }
 
 
-export  default  LoginService
+export  default  UserAvatarService

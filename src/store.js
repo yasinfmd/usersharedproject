@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state : {
+        user:"",
         token : "",
         headersearch:"",
         setpr:"",
@@ -27,6 +28,11 @@ const store = new Vuex.Store({
         setToken(state, token){
             state.token = token
         },
+        setUs(state,user){
+            debugger
+            state.user=user;
+            StorageControls.setItem("us",user)
+        },
         setpopupstyle(state,popupstyle){
           state.chatpopupstyle=  popupstyle
         },
@@ -42,6 +48,12 @@ const store = new Vuex.Store({
         },
         clearToken(state){
             state.token = ""
+        },
+        clearUs(state){
+          state.token=""
+        },
+        clearlocation(state){
+            state.location=""
         },
         setproduct(state,product){
             state.setpr=product
@@ -61,23 +73,25 @@ const store = new Vuex.Store({
             StorageControls.setItem("location",JSON.stringify(location));
         },
         initAuth({commit,dispatch}){
+            debugger
             return new Promise((resolve,reject)=>{
             let token=StorageControls.getItem("token");
-            if(token){
+            let user=StorageControls.getItem("us");
+            if(token && user){
                 let time=new Date().getTime();
                 let expirationdate=StorageControls.getItem("exp")
                 if(time>expirationdate){
                     dispatch("logout");
                 }else{
                     commit("setToken",token);
+                    commit("setUs",user);
                     let newsecond=expirationdate-time;
                     console.log(newsecond)
                     dispatch("timetologout",newsecond);
                         resolve(true)
                 }
-
             }else{
-                        resolve(false)
+                resolve(false)
             }
             })
         },
@@ -114,14 +128,16 @@ const store = new Vuex.Store({
             debugger
           return new Promise((resolve, reject) => {
               LoginService.getuser(user).then((response)=>{
-                  debugger
                   if(response[0].status==="NotDefine"){
-                      resolve(false)
+                      resolve("NotDefine")
                   }else if(response[0].status==="Blocked"){
-                        resolve(false)
+                        resolve("Blocked")
                   }else{
                 commit("setToken", response.token)
-                StorageControls.setItem("token",response.token,"")
+               commit("setUs",response)
+                      debugger
+
+                StorageControls.setItem("token",{token:response[0].token},"")
                 StorageControls.setItem("exp",new Date().getTime()+3600000);
                 dispatch("timetologout",3600000)
                 resolve(true)
@@ -144,7 +160,13 @@ const store = new Vuex.Store({
             }
         },
         logout({ commit}){
+            debugger
             commit("clearToken")
+            commit ("clearUs");
+            commit ("clearlocation");
+            LoginService.logout({timeid:StorageControls.getItem("us")[0].logintime[Object.keys(StorageControls.getItem("us")[0].logintime)[0]].id}).then((res)=>{
+                console.log(res)
+            })
             localStorage.clear()
             router.replace("/Login");
         },
@@ -215,6 +237,9 @@ const store = new Vuex.Store({
         getlocation(state){
             debugger
             return state.location
+        },
+        getuser(state){
+            return state.user[0]
         }
     }
 })

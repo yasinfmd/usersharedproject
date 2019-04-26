@@ -164,7 +164,6 @@ export const router = new VueRouter({
                 store.commit("setpopupstyle","none")
                 next()
             }
-
         },
 
         {

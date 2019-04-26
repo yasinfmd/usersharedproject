@@ -217,6 +217,17 @@
         })
       }
     },
+    created(){
+      debugger
+      this.$store.dispatch("initAuth").then((res)=>{
+        if(res==true){
+          debugger
+        }
+        else{
+          debugger
+        }
+      })
+    },
     computed:{
       isloading(){
         if(!this.dataload){

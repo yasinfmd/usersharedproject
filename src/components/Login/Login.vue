@@ -36,7 +36,7 @@
                 </div>
                 <small class="form-text text-danger" v-if="this.logindata.password==''"> Bu Alan Zorunludur.</small>
                 <small class="form-text text-danger" v-if="invalidpass"> Parola Alanı 8 Karakterden Küçük Olamaz .</small>
-                <div class="form-group">
+                <div class="form-group" >
                   <svg class="liquid-button" style="cursor: pointer" data-text="Giriş Yap" @click="onLogin"></svg>
                 </div>
               </form>
@@ -96,16 +96,36 @@
       },
 
       onLogin(){
-    this.logindata.password=md5(this.logindata.password);
-    this.$store.dispatch("login",this.logindata)
+        console.log(this.$store.getters.getlocation.locationname)
+        console.log(this.$store.getters.getlocation.coord)
+    const user={
+      username:this.logindata.username,
+      password: md5(this.logindata.password),
+      locationname:this.$store.getters.getlocation.locationname,
+      coord:this.$store.getters.getlocation.coord
+    }
+    this.$store.dispatch("login",user)
       .then((response)=>{
-          if(response!=false){
-              this.$store.commit("setappicontxt",{icon:"fas fa-sign-out-alt",
-                  txt:"Çıkış Yap",
-              })
-              this.$router.push("/Dashboard");
-          }else{
+          if(response==="NotDefine"){
+
+            swal({
+              button: "Tamam ",
+              title: "Kullanıcı Adı Veya Parola Geçersiz",
+              icon: "error"
+            })
+
+          }else if(response==="Blocked") {
+            swal({
+              button: "Tamam ",
+              title: "Bu Hesap Engellenmiştir. Lütfen Web Sitesi İle İletişime Geçiniz",
+              icon: "error"
+            })
               alert(response);
+          }else{
+            this.$store.commit("setappicontxt",{icon:"fas fa-sign-out-alt",
+              txt:"Çıkış Yap",
+            })
+            this.$router.push("/Dashboard");
           }
 
 
@@ -175,6 +195,7 @@
         const button = buttons[buttonIndex];
         button.liquidButton = new LiquidButton(button);
       }
+
     }
 
   }

@@ -1,27 +1,24 @@
 import WSProvider from "../Provider/WSProvider";
 
-var LoginService={
-    getuser:(param)=>{
-        debugger
+var PasswordService={
+    updatepassword:(param)=>{
         var deferred = new Promise(function(resolve, reject) {
-            WSProvider.ajaxPost("http://localhost:8000/api/Signin",param).then((response)=>{
+            WSProvider.ajaxPost("http://localhost:8000/api/SetPassword",param).then((response)=>{
                 resolve(response)
             })
-
+        });
+        return deferred
+    },
+    getpassword:(param)=>{
+        var deferred = new Promise(function(resolve, reject) {
+            WSProvider.ajaxPost("http://localhost:8000/api/GetPassword",param).then((response)=>{
+                resolve(response)
+            })
         });
         return deferred
     },
 
-    logout:(param)=>{
-        var deferred = new Promise(function(resolve, reject) {
-            WSProvider.ajaxPost("http://localhost:8000/api/Signout",param).then((response)=>{
-                resolve(response)
-            })
-        });
-        return deferred
-    }
-
 }
 
 
-export  default  LoginService
+export  default  PasswordService

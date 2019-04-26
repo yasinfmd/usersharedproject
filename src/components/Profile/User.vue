@@ -13,7 +13,7 @@
                                 <a :class="{'nav-link active':selectedComponent=='password','nav-link':selectedComponent!='password'}" @click="selectedComponent='password'"><img src="https://cdn0.iconfinder.com/data/icons/simpline-mix/64/simpline_24-32.png" style="padding-right: 10px">Parola Değiştir</a>
                             </li>
                             <li class="nav-item cursorstyle">
-                                <a :class="{'nav-link active':selectedComponent=='edit','nav-link':selectedComponent!='edit'}" @click="selectedComponent='edit'"><img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/edit-paste-32.png" style="padding-right: 10px"> Düzenle</a>
+                                <a :class="{'nav-link active':selectedComponent=='edit','nav-link':selectedComponent!='edit'}" @click="selectedComponent='edit'"><img src="https://cdn3.iconfinder.com/data/icons/tango-icon-library/48/edit-paste-32.png" style="padding-right: 10px"> Profil Resmini Değiştir</a>
                             </li>
                         </ul>
                         <div class="tab-content">
