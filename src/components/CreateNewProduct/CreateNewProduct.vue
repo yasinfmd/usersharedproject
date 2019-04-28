@@ -92,7 +92,7 @@
                                                         <div class="card-header">
                                                                    <p class="text-right"  >    <i class="fas fa-times"  data-toggle="tooltip" data-placement="left" title="Ürünü Sil" style="padding-left:60px; color:red;cursor:  pointer" @click="removeimgitem(index)"></i></p>
                                                         </div>
-                                                        <img id="index" class="card-img-top"  :src="item.base64" alt="Card image cap">
+                                                        <img id="index" class="card-img-top"  :src="'data:image/jpeg:image/png;base64,'+item.base64" alt="Card image cap">
                                                         <div class="card-footer text-muted">
                                                         <p class="lead" style="cursor: pointer" @click="setheaderimg(index)">Kapak Resmi Olarak Belirle</p>
                                                         </div>
@@ -110,7 +110,7 @@
                                                 <div class="row">
                                                     <div class="col-sm" >
                                                         <div class="card" style="width: 400px; margin-top: 20px; height: 300px; background-color: white; border: 2px dotted black">
-                                                            <img :src="headimg" style="width: 400px; height: 300px">
+                                                            <img :src="'data:image/jpeg:image/png;base64,'+headimg" style="width: 400px; height: 300px">
 
                                                              </div>
                                                     </div>
@@ -136,6 +136,8 @@
 
 <script>
     import  CategoryService from '../../Service/CategoryService'
+    import ProductService from '../../Service/ProductService'
+    import ProductPhotoService from '../../Service/ProductPhotoService'
     export  default {
         data(){
             return{
@@ -199,12 +201,111 @@
                     })
                 }
                 else{
-
+                this.addnewproduct();
                     ///create product
                 }
             },
+            addnewproduct(){
+                debugger
+                var _this=this
+               ProductService.addnewproduct(
+                    {
+                         token:_this.$store.getters.getuser.token,
+                         email:_this.$store.getters.getuser.username,
+                         userid:_this.$store.getters.getuser.userid,
+                         title:_this.newproduct.title,
+                         descraption:_this.newproduct.description,
+                         price:_this.newproduct.price,
+                         oldprice:_this.newproduct.price,
+                         category:_this.selectedcategory,
+                         status:1, //daha sonra 2 olacak
+                         city:_this.$store.getters.getuser.cityid,
+                         date:new Date().toLocaleDateString(),
+                         time:new Date().getHours()+ "."+new Date().getMinutes()+"."+new Date().getSeconds(),
+                         university:_this.$store.getters.getuser.universityid
+                     }
+                 ).then((res)=>{
+                     debugger
+                         if(res[0].status=="InsertedProduct"){
+                             debugger
+                             this.adduserproduct(res[0].id);
+                         }else{
+
+                         }
+                 })
+            },
+            adduserproduct(param){
+                debugger
+                var _this=this;
+                const prid=param
+                ProductService.addproductuesr({
+                    userid:_this.$store.getters.getuser.userid,
+                    productid:prid
+                }).then((res)=>{
+                    if(res[0].status==="Inserted"){
+                    this.addproductphotos(prid);
+                    }else{
+                        swal({
+                            title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
+                            button:"Tamam",
+                            icon:"error"
+                        })
+                    }
+                })
+            },
+            addproductphotos(param){
+                debugger
+                const prid=param;
+                const photos=[]
+                const productphotos=[]
+                this.imagelist.forEach((x)=>{
+                    photos.push({
+                        date:new Date().toLocaleDateString(),
+                        time:new Date().getHours()+ "."+new Date().getMinutes()+"."+new Date().getSeconds(),
+                        seqnumber:x.seqnumber==undefined?"1":x.seqnumber,
+                        size:x.size,
+                        type:x.type,
+                        base64:x.base64
+                    })
+                })
+                ProductPhotoService.addphoto({imglist:photos}).then((res)=>{
+                    debugger
+                    if(res[0].status===undefined){
+                    res.forEach((x)=>{
+                        productphotos.push({
+                            productid:param,
+                            photoid:x.imgid
+                        })
+                    })
+                        ProductService.addprphotos({data:productphotos}).then((res)=>{
+                            debugger
+                            if(res[0].status==="Inserted"){
+                                swal({
+                                    title:"İlan Başarıyla Oluşturuldu",
+                                    button:"Tamam",
+                                    icon:"success"
+                                })
+                            }else{
+                                swal({
+                                    title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
+                                    button:"Tamam",
+                                    icon:"error"
+                                })
+                            }
+                        })
+                    }else{
+                        swal({
+                            title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
+                            button:"Tamam",
+                            icon:"error"
+                        })
+                            debugger
+                    }
+                })
+            },
             setheaderimg(index){
                 debugger
+                this.imagelist[index].seqnumber=0
               this.headimg = this.imagelist[index].base64
             },
             removeimgitem(index){
@@ -220,9 +321,9 @@
                 if(file.type!=undefined && file.type.includes("image")){
                 if(this.imagelist.length<=9){
                     Component.readFileToBase64(file).then((res)=>{
-                        res.base64='data:image/jpeg:image/png;base64,'+res.base64;
+                        res.date=new Date().toLocaleDateString()
+                        res.time=new Date().getHours()+"."+new Date().getMinutes()+"."+new Date().getSeconds()
                         this.imagelist.push(res);
-
                     })
                 }
                 else{
