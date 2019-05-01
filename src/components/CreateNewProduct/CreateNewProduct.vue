@@ -202,7 +202,6 @@
                 }
                 else{
                 this.addnewproduct();
-                    ///create product
                 }
             },
             addnewproduct(){
@@ -221,16 +220,19 @@
                          status:1, //daha sonra 2 olacak
                          city:_this.$store.getters.getuser.cityid,
                          date:new Date().toLocaleDateString(),
-                         time:new Date().getHours()+ "."+new Date().getMinutes()+"."+new Date().getSeconds(),
+                         time:new Date().getHours()+ ":"+new Date().getMinutes()+":"+new Date().getSeconds(),
                          university:_this.$store.getters.getuser.universityid
                      }
                  ).then((res)=>{
-                     debugger
                          if(res[0].status=="InsertedProduct"){
                              debugger
                              this.adduserproduct(res[0].id);
                          }else{
-
+                             swal({
+                                 title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
+                                 button:"Tamam",
+                                 icon:"error"
+                             })
                          }
                  })
             },
@@ -277,22 +279,8 @@
                             photoid:x.imgid
                         })
                     })
-                        ProductService.addprphotos({data:productphotos}).then((res)=>{
-                            debugger
-                            if(res[0].status==="Inserted"){
-                                swal({
-                                    title:"İlan Başarıyla Oluşturuldu",
-                                    button:"Tamam",
-                                    icon:"success"
-                                })
-                            }else{
-                                swal({
-                                    title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
-                                    button:"Tamam",
-                                    icon:"error"
-                                })
-                            }
-                        })
+                        debugger
+                        this.addprphoto(productphotos);
                     }else{
                         swal({
                             title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
@@ -300,6 +288,32 @@
                             icon:"error"
                         })
                             debugger
+                    }
+                })
+            },
+            addprphoto(param){
+                debugger
+                ProductService.addprphotos({data:param}).then((res)=>{
+                    debugger
+                    if(res[0].status==="Inserted"){
+                        swal({
+                            title:"İlan Başarıyla Oluşturuldu",
+                            button:"Tamam",
+                            icon:"success"
+                        })
+                        this.newproduct={
+                            title:"",
+                            description:"",
+                            price:"",
+                        }
+                        this.imagelist=[]
+                        this.headimg="http://kumova.com/userFiles/no-image.png"
+                    }else{
+                        swal({
+                            title:"İlan Oluşturulurken Hata Gerçekleşti Lütfen Daha Sonra Tekrar Deneyiniz",
+                            button:"Tamam",
+                            icon:"error"
+                        })
                     }
                 })
             },

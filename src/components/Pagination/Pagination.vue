@@ -12,7 +12,7 @@
         methods:{
             setpagination(index){
                 debugger
-                this.$store.dispatch('setpagination',[this.list,index])
+                this.$store.dispatch('setpagination',[this.list[0],index])
             },
         }
     }

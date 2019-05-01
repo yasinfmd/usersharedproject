@@ -2,6 +2,7 @@ import Vue from "vue"
 import Vuex from "vuex"
 import { router } from "./router"
 import LoginService from './Service/LoginService'
+import ProductService from './Service/ProductService'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -27,6 +28,10 @@ const store = new Vuex.Store({
     mutations : {
         setToken(state, token){
             state.token = token
+        },
+        setactivepagination(state,number){
+            debugger
+            state.isactivepaginate=number
         },
         setUs(state,user){
             debugger
@@ -96,6 +101,7 @@ const store = new Vuex.Store({
             })
         },
         setcardimg({commit,dispatch,state},list){
+            debugger
             state.cardimg=list;
         },
         setbigphoto({commit,dispatch,state},photo){
@@ -105,15 +111,31 @@ const store = new Vuex.Store({
             debugger
             // liste sayısı verilecek
             // get isteği atılacak listedeki indexten çekilip
-            state.paginationlist=list[0].slice((list[1]*10)-10,(list[1]*10))
+            ProductService.getproduct({urlparse:
+                    Component.urlParse("photo.seqnumber=0 & userproduct.userid="+this.getters.getuser.userid+"& product.productstatus=1"),
+                token:this.getters.getuser.token,
+                email:this.getters.getuser.username,
+                userid:this.getters.getuser.userid,
+                pagination:list[1]
+            }).then((res)=>{
+                debugger
+                res.data.forEach((x)=>{
+                    var startdate=x.date
+                    var new_date = moment(startdate, "DD-MM-YYYY").add('days', 30);
+                    var day = new_date.format('DD');
+                    var month = new_date.format('MM');
+                    var year = new_date.format('YYYY');
+                    x.newdate=day + '.' + month + '.' + year
+                })
+               dispatch("setpaginationcount",{data:res.data,count:res.count})
+            })
+            state.isactivepaginate=list[1]-1
             state.islastpaginate=list[1]*10;
             state.isfirstpaginete=(list[1]*10)-10
-            state.isactivepaginate=list[1]-1
-
         },
         setpaginationcount({commit,dispatch,state},list){
             debugger
-            const pagination=list.length/10;
+            const pagination=list.count/10;
             if(pagination.toString().includes('.')){
                 state.paginationcount=Math.floor(pagination)+1;
 
@@ -122,7 +144,7 @@ const store = new Vuex.Store({
 
             }
             // liste verilecek
-            state.paginationlist=list.slice(0,10)
+            state.paginationlist=list.data.slice(0,10)
         },
         login({ commit, dispatch, state}, user){
             debugger
@@ -164,8 +186,9 @@ const store = new Vuex.Store({
             commit("clearToken")
             commit ("clearUs");
             commit ("clearlocation");
-            LoginService.logout({timeid:StorageControls.getItem("us")[0].logintime[Object.keys(StorageControls.getItem("us")[0].logintime)[0]].id}).then((res)=>{
-                console.log(res)
+            LoginService.logout({urlparse:
+                    Component.urlParse("id="+StorageControls.getItem("us")[0].logintime[Object.keys(StorageControls.getItem("us")[0].logintime)[0]].id)
+            }).then((res)=>{
             })
             localStorage.clear()
             router.replace("/Login");

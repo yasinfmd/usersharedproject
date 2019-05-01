@@ -37,7 +37,7 @@
                 <small class="form-text text-danger" v-if="this.logindata.password==''"> Bu Alan Zorunludur.</small>
                 <small class="form-text text-danger" v-if="invalidpass"> Parola Alanı 8 Karakterden Küçük Olamaz .</small>
                 <div class="form-group" >
-                  <svg class="liquid-button" style="cursor: pointer" data-text="Giriş Yap" @click="onLogin"></svg>
+                  <svg class="liquid-button" style="cursor: pointer" data-text="Giriş Yap" @mouseup="onLogin"></svg>
                 </div>
               </form>
             </div>

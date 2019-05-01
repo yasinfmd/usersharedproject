@@ -3,7 +3,7 @@
         <div class="form-container">
                 <div class="row">
                     <div class="col-sm">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(20).jpg" alt="Avatar" class="avatar">
+                        <img :src="avatar.img" alt="Avatar" class="avatar">
                     </div>
                     <div class="col-sm">
                 <p class="lead text-center">{{msguser.usname}} {{msguser.uslname}}</p>
@@ -26,7 +26,7 @@
                     usermsg:""
             }
         },
-        props:['msguser','usermsg'],
+        props:['msguser','usermsg','avatar'],
         created(){
 
         },
