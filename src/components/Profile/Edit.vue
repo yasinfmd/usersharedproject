@@ -33,6 +33,7 @@
         },
         methods:{
             onChange(e) {
+                debugger
                 const file = e.target.files[0];
                 if(file.type!=undefined && file.type.includes("image")){
                         Component.readFileToBase64(file).then((res)=>{
@@ -49,6 +50,7 @@
 
             },
             getuser(){
+                debugger
                 this.$store.dispatch("initAuth").then((res)=>{
                     if(res==true){
                         this.newimg=this.$store.getters.getuser.avatar
@@ -72,13 +74,17 @@
                             size:this.file.size,
                             type:this.file.type,
                             date:new Date().toLocaleDateString(),
-                            time:new Date().getHours()+"."+new Date().getMinutes()+"."+new Date().getSeconds(),
+                            time:new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds(),
                             userid:_this.$store.getters.getuser.userid
                         }
                     ).then((res)=>{
                         if(res[0].status==="Updated"){
                             debugger
-                            UserService.getuser({userid:_this.$store.getters.getuser.userid}).then((res)=>{
+                            UserService.getuser({urlparse:
+                            Component.urlParse(
+                                "user.userid="+_this.$store.getters.getuser.userid
+                            )
+                            }).then((res)=>{
                                     if(res[0].status==undefined){
                                         _this.$store.commit("setUs",res);
                                         this.getuser()

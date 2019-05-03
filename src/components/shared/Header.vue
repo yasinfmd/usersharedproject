@@ -1,7 +1,7 @@
 <template>
        <div class="border-right" id="sidebar-wrapper" >
             <div   style="background-color:  #02A8FF;" :style="{'height':pageheight+'px'}">    <a  href="#" >
-         <img  :src="avatarimg" @click="routernavbar('Dash')" class="imgcircle" alt="Cinque Terre" style="margin-left:4%" width="40" height="40">
+         <img  :src="$store.getters.getuser!=null?$store.getters.getuser.avatar:avatarimg" @click="routernavbar('Dash')" class="imgcircle" alt="Cinque Terre" style="margin-left:4%" width="40" height="40">
       </a>
                 <small style="color: #ffffff; font-size:18px;padding-left: 3% ">{{username}}  {{userlastname}}</small>
     </div>
@@ -126,6 +126,7 @@
 
     },
     created(){
+        debugger
       this.$store.dispatch("initAuth").then((res)=>{
         if(res==true){
             this.avatarimg=this.$store.getters.getuser.avatar

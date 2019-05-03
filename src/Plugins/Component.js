@@ -44,7 +44,19 @@ var Component={
                     Operation: "CT",
                     PropertyValue: value[1]
                 })
-            } else if (row.indexOf("!") > 0) {
+
+            }
+            else if (row.indexOf("-") > 0) {
+                var value = row.split('-');
+                dizi.push({
+                    PropertyName: value[0],
+                    Operation: "NE",
+                    PropertyValue: value[1]
+                })
+
+            }
+
+            else if (row.indexOf("!") > 0) {
                 var value = row.split('!');
                 if (type == "N") {
                     value[1] = parseFloat(value[1])

@@ -69,7 +69,7 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="profile-tab" data-toggle="tab" :href="'#profile'+i" role="tab" aria-controls="profile" aria-selected="false"> <img src="../../assets/icons/statics.png">İlan İstatistikleri</a>
                                                 </li>
-                                                <li class="nav-item" @mouseup="setactiveproduct(item.productid)">
+                                                <li class="nav-item" >
                                                     <a class="nav-link" id="operation-tab" data-toggle="tab" :href="'#operation'+i" role="tab" aria-controls="operation" aria-selected="false"> <img src="../../assets/icons/kservices.png">İlana Ait İşlemler</a>
                                                 </li>
                                                 <li class="nav-item">
@@ -104,9 +104,9 @@
                                                 </div>
                                                 <div class="container tab-pane in  animated flipInX custon-tab-style1" :id="'operation'+i" role="tabpanel" aria-labelledby="operation-tab">
                                                     <a  role="button" style="color: white"  aria-pressed="true" class="btn btn-info btn-sm" @mouseup="routedetail('ProductDetail',item.productid)">  <i class="fas fa-arrow-right" style="padding-right: 5px"></i>İlana Git</a>
-                                                    <a role="button" style="color: white"  data-toggle="modal" data-target="#exampleModalCenter" @mouseup="markuppr" aria-pressed="true"   class="btn btn-info     btn-sm">     <i class="fas fa-hand-holding-usd" style="padding-right: 5px"></i>İlanı Satıldı Olarak İşaretle</a>
+                                                    <a role="button" style="color: white"  data-toggle="modal" data-target="#exampleModalCenter" @mouseup="setactiveproduct(item.productid)" aria-pressed="true"   class="btn btn-info     btn-sm">     <i class="fas fa-hand-holding-usd" style="padding-right: 5px"></i>İlanı Satıldı Olarak İşaretle</a>
                                                     <a  role="button" style="color: white" aria-pressed="true" class="btn btn-info btn-sm"  @mouseup="removepr(item.productid)">  <i class="fas fa-trash-alt" style="padding-right: 5px"></i>İlanı Kaldır</a>
-                                                    <a  role="button" @mouseup="editpr(1)" style="color: white"  aria-pressed="true"  class="btn btn-info btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
+                                                    <a  role="button" @mouseup="editpr(item.productid)" style="color: white"  aria-pressed="true"  class="btn btn-info btn-sm"> <i class="fas fa-edit" style="padding-right: 5px"></i>İlanı Düzenle</a>
 
 
 
@@ -158,11 +158,11 @@
 
             </div>
         </div>
-        <Paginate  v-show="dataload" :list="$store.getters.getpaginationlist"></Paginate>
+        <Paginate  v-show="dataload" :list="$store.getters.getpaginationlist" :status="1"></Paginate>
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" v-if="dialog" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -172,7 +172,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div>{{selecteduser}}  </div>
                         <div class="star-rating" v-if="staractive">
                             <span :class="item.class" @mouseup="changestar(index)"  v-for="(item,index) in stardata"></span>
                             <div class="form-group" v-if="staractive">
@@ -198,9 +197,9 @@
                                     <ul class="list-group">
                                         <!--active class selected olana verilecek -->
                                         <li style="{cursor: pointer}" class="list-group-item"  :class="{'active':item.active}" v-for="(item,i) in searchlist">
-                                            <img :src="item.photo" style=" width: 40px; height: 40px" alt="Avatar"  class="md-avatar rounded-circle">
-                                          {{item.name}}
-                                            <input type="radio" style="padding-left: auto" v-model="selecteduser"  name="gender" :value="item.id">
+                                            <img :src="item.avatar" style=" width: 40px; height: 40px" alt="Avatar"  class="md-avatar rounded-circle">
+                                          {{item.userfirstname}} {{item.userlastname}}
+                                            <input type="radio" style="padding-left: auto" v-model="selecteduser"  name="gender" :value="item.userid">
                                         </li>
                                     </ul>
                                 </div>
@@ -223,18 +222,20 @@
 </template>
 
 <script>
-    import userjson from  '../../user'
     import TableHeader from '../TableHeaderComponent/TableHeader'
     import Paginate from '../Pagination/Pagination'
     import ImgCard from '../Card/Card'
     import BigPhotoCard from '../Card/BigPhotoCard'
     import ProductService from '../../Service/ProductService'
+    import UserService from '../../Service/UserService'
+    import CommentService from '../../Service/CommentService'
     export default {
         created(){
                 this.getproduct()
         },
         data() {
             return {
+                dialog:false,
                 dataload:false,
                 allcount:"",
                 commentuser:"",
@@ -244,6 +245,7 @@
                 show:false,
                 activeproduct:"",
                 searchpruser: "",
+                searchlist:[],
                 userlist: [],
                 isactive: false,
                 staractive:false,
@@ -280,39 +282,6 @@
             BigPhotoCard
         },
         mounted(){
-            var arr = [
-                "https://randomuser.me/api/portraits/women/9.jpg",
-                "https://randomuser.me/api/portraits/women/13.jpg",
-                "https://randomuser.me/api/portraits/women/18.jpg"
-                ,
-                "https://randomuser.me/api/portraits/men/9.jpg"
-                ,
-
-                "https://randomuser.me/api/portraits/men/13.jpg"
-                ,
-
-                "https://randomuser.me/api/portraits/men/31.jpg"
-                ,
-
-                "https://randomuser.me/api/portraits/women/62.jpg"
-                ,
-
-                "https://randomuser.me/api/portraits/women/18.jpg",
-                "https://randomuser.me/api/portraits/women/22.jpg",
-                "https://randomuser.me/api/portraits/women/23.jpg",
-
-            ]
-            userjson.forEach((x,i)=>{
-                x.photo=arr[i]
-                x.active=false
-            })
-        },
-        computed:{
-            searchlist(){
-                return userjson.filter((element)=>{
-                    return element.name.match(this.searchpruser);
-                })
-            }
         },
         methods: {
             bigphotodetail(image){
@@ -337,6 +306,7 @@
                                 }
                             ).then((res)=>{
                                 if(res[0].status=="Deleted"){
+                                    this.dataload=false
                                     _this.getproduct();
                                     swal({
                                         title:"İlan Başarıyla Kaldırıldı",
@@ -358,6 +328,8 @@
             },
             setactiveproduct(prid){
                 this.activeproduct=prid;
+                this.dialog=true
+                console.log(this.activeproduct);
             },
             getproduct(){
                 debugger
@@ -374,35 +346,45 @@
                     pagination:_this.$store.getters.getactivepaginate+1
                 }).then((res)=>{
                     debugger
-                        debugger
-                            if(res.data.length>0){
-                            res.data.forEach((x)=>{
-                               var startdate=x.date
+                    if(res.status===undefined){
+debugger
+                        if (res.data.length > 0) {
+                            res.data.forEach((x) => {
+                                var startdate = x.date
                                 var new_date = moment(startdate, "DD-MM-YYYY").add('days', 30);
                                 var day = new_date.format('DD');
                                 var month = new_date.format('MM');
                                 var year = new_date.format('YYYY');
-                                x.newdate=day + '.' + month + '.' + year
+                                x.newdate = day + '.' + month + '.' + year
                                 var a = moment([x.newdate.split(".")[2], x.newdate.split(".")[1], x.newdate.split(".")[0]]);
                                 var b = moment([dateremain.split(".")[2], dateremain.split(".")[1], dateremain.split(".")[0]]);
-                               var c= a.diff(b, 'days')
-                                    x.dateremaing=c;
+                                var c = a.diff(b, 'days')
+                                x.dateremaing = c;
                             })
-                        this.allcount=res.count
-                                debugger
-                        this.$store.dispatch("setpaginationcount",{data:res.data,count:res.count})
+                            this.allcount = res.count
+                            debugger
+                            this.$store.dispatch("setpaginationcount", {data: res.data, count: res.count})
+                            this.dataload = true;
+                        } else {
+                            debugger
+                            _this.$store.commit("setactivepagination", _this.$store.getters.getactivepaginate - 1)
+                            this.getproduct();
+                        }
+
+
+                    }
+                    else
+                    {
                         this.dataload=true;
-                            }else{
-                                debugger
-                                _this.$store.commit("setactivepagination",_this.$store.getters.getactivepaginate-1)
-                                this.getproduct();
-                            }
+                        this.$store.dispatch("setpaginationcount", {data: [], count: 0})
 
-                    //   this.productlist=this.$store.getters.getpaginationlist
-
+                        //   this.productlist=this.$store.getters.getpaginationlist
+                    }
                 })
+
             },
             createcomment(){
+                debugger
                     if(this.commentuser.trim().length==0){
                         swal({
                             title: "Yorum Yapmadan Devam Etmek İstediğinize Emin Misiniz ?",
@@ -410,21 +392,57 @@
                             buttons: ['Hayır','Evet'],
                             dangerMode: true,
                         })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Yorum Başarılı", {
-                                        icon: "success",
-                                    });
+                            .then((success) => {
+                                if (success) {
+                                    debugger
+                                   this.addcomment()
                                 } else {
+                                    console.log(this.starval)
                                 }
                             });
+                    }else{
+                        this.addcomment()
                     }
+            },
+
+            addcomment(){
+                debugger
+                const _this=this;
+                const datetime=new Date()
+                CommentService.addcomment(
+                    {
+                        token:_this.$store.getters.getuser.token,
+                        email:_this.$store.getters.getuser.username,
+                        userid:_this.$store.getters.getuser.userid,
+                        touser:_this.$store.getters.getuser.userid,
+                        fromuser:_this.selecteduser,
+                        comment:_this.commentuser,
+                        commentdate:datetime.toLocaleDateString(),
+                        commenttime:datetime.getHours()+":"+datetime.getMinutes()+":"+datetime.getSeconds(),
+                        star:_this.starval+1
+                    }
+                ).then((res)=>{
+                        if(res[0].status==="Success"){
+                            swal("Yorum Başarılı", {
+                                icon: "success",
+                            });
+                            this.selecteduser=""
+                            this.commentuser=""
+                            this.isactive = false
+                            this.footeractive=true
+                            this.staractive=false
+                            this.userlist = []
+                            this.searchpruser=""
+                            this.updateproduct()
+                        }else{
+                            swal("Yorum Başarısız", {
+                                icon: "error",
+                            });
+                        }
+                })
             },
             setimglist(prid,i){
             var _this=this;
-            debugger
-               console.log(_this.$store.getters.getactivepaginate)
-                //buraya bak unutma
                 ProductService.getallproductphotos(
                     {
                         urlparse:Component.urlParse("productid="+prid)
@@ -433,13 +451,10 @@
                 ).then((res)=>{
                     debugger
                     _this.$store.getters.getpaginationlist[i].allimg=res;
-                           //_this.productlist[i].allimg=res;
                             this.$store.dispatch("setpaginationcount",{data:_this.$store.getters.getpaginationlist})
                 })
-                //resim listesi
             },
             commentandstar(){
-                console.log(this.selecteduser)
                 if(this.selecteduser==""){
                     swal({
                         button: "Tamam ",
@@ -453,7 +468,6 @@
                 }
             },
             goback(){
-
                 this.selecteduser=""
                 this.searchpruser=""
                 this.staractive=false
@@ -496,12 +510,9 @@
                 }
             },
             updateproduct() {
-               /* "updatedata":{
-                    "descraption":"Askılık Sorunsuz",
-                        "university":10
-                }
- */
-               const _this=this;
+                debugger
+                this.dialog=true
+                const _this=this;
                 ProductService.updatesell(
                     {
                         urlparse: Component.urlParse("productid="+_this.activeproduct),
@@ -514,12 +525,16 @@
                     }
                 ).then((res)=>{
                     if(res[0].status==="Updated"){
+                        this.dataload=false
+                        this.getproduct();
+                        this.dialog=false
                             swal({
                                 title:"İlan Başarıyla Güncellendi",
                                 button:"Tamam",
                                 icon:"success"
                             })
                     }else{
+                        this.dialog=false
                         swal({
                             title:"İlan Güncellenirken Hata Gerçekleşti",
                             button:"Tamam",
@@ -538,26 +553,35 @@
                 this.searchpruser=""
             },
             getuser() {
+                var _this=this;
                 if(this.searchpruser.trim()==""){
-
+                }else{
+                    UserService.getuser(
+                        {
+                            urlparse:Component.urlParse("user.username%"+this.searchpruser+"& user.userid-"+_this.$store.getters.getuser.userid)
+                        }
+                    ).then((res)=>{
+                        if(res[0].status==undefined){
+                            this.searchlist=res;
+                        }else{
+                            this.searchlist=[]
+                        }
+                    })
                 }
-                    // _.where(listOfPlays, {author: "Shakespeare", year: 1611});
             },
             routedetail(route, param) {
 
                 this.$router.push(route + "/" + param)
 
             },
-            markuppr(product) {
-                //güncelleme
-            },
             evaluationuser() {
+                this.dialog=true
                 this.isactive = true
                 this.footeractive=false
             },
             editpr(param) {
                 this.$store.dispatch("setprdata", {id: 1, name: "telefon"})
-                this.$router.push("/EditProduct/1");
+                this.$router.push("/EditProduct/"+param);
                 //  setprdata
             },
         }
@@ -589,127 +613,5 @@
 .fade-leave-active{
     transition: opacity .3s ease-out;
     opacity: 0;
-}
-
-.sk-circle {
-    margin: 100px auto;
-    width: 40px;
-    height: 40px;
-    position: relative;
-}
-.sk-circle .sk-child {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-.sk-circle .sk-child:before {
-    content: '';
-    display: block;
-    margin: 0 auto;
-    width: 15%;
-    height: 15%;
-    background-color: #333;
-    border-radius: 100%;
-    -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
-    animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
-}
-.sk-circle .sk-circle2 {
-    -webkit-transform: rotate(30deg);
-    -ms-transform: rotate(30deg);
-    transform: rotate(30deg); }
-.sk-circle .sk-circle3 {
-    -webkit-transform: rotate(60deg);
-    -ms-transform: rotate(60deg);
-    transform: rotate(60deg); }
-.sk-circle .sk-circle4 {
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg); }
-.sk-circle .sk-circle5 {
-    -webkit-transform: rotate(120deg);
-    -ms-transform: rotate(120deg);
-    transform: rotate(120deg); }
-.sk-circle .sk-circle6 {
-    -webkit-transform: rotate(150deg);
-    -ms-transform: rotate(150deg);
-    transform: rotate(150deg); }
-.sk-circle .sk-circle7 {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg); }
-.sk-circle .sk-circle8 {
-    -webkit-transform: rotate(210deg);
-    -ms-transform: rotate(210deg);
-    transform: rotate(210deg); }
-.sk-circle .sk-circle9 {
-    -webkit-transform: rotate(240deg);
-    -ms-transform: rotate(240deg);
-    transform: rotate(240deg); }
-.sk-circle .sk-circle10 {
-    -webkit-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    transform: rotate(270deg); }
-.sk-circle .sk-circle11 {
-    -webkit-transform: rotate(300deg);
-    -ms-transform: rotate(300deg);
-    transform: rotate(300deg); }
-.sk-circle .sk-circle12 {
-    -webkit-transform: rotate(330deg);
-    -ms-transform: rotate(330deg);
-    transform: rotate(330deg); }
-.sk-circle .sk-circle2:before {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s; }
-.sk-circle .sk-circle3:before {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s; }
-.sk-circle .sk-circle4:before {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s; }
-.sk-circle .sk-circle5:before {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s; }
-.sk-circle .sk-circle6:before {
-    -webkit-animation-delay: -0.7s;
-    animation-delay: -0.7s; }
-.sk-circle .sk-circle7:before {
-    -webkit-animation-delay: -0.6s;
-    animation-delay: -0.6s; }
-.sk-circle .sk-circle8:before {
-    -webkit-animation-delay: -0.5s;
-    animation-delay: -0.5s; }
-.sk-circle .sk-circle9:before {
-    -webkit-animation-delay: -0.4s;
-    animation-delay: -0.4s; }
-.sk-circle .sk-circle10:before {
-    -webkit-animation-delay: -0.3s;
-    animation-delay: -0.3s; }
-.sk-circle .sk-circle11:before {
-    -webkit-animation-delay: -0.2s;
-    animation-delay: -0.2s; }
-.sk-circle .sk-circle12:before {
-    -webkit-animation-delay: -0.1s;
-    animation-delay: -0.1s; }
-
-@-webkit-keyframes sk-circleBounceDelay {
-    0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    } 40% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-      }
-}
-
-@keyframes sk-circleBounceDelay {
-    0%, 80%, 100% {
-        -webkit-transform: scale(0);
-        transform: scale(0);
-    } 40% {
-          -webkit-transform: scale(1);
-          transform: scale(1);
-      }
 }
 </style>

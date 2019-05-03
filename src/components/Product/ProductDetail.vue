@@ -123,6 +123,7 @@
         },
         methods:{
             isuserproduct(){
+                debugger
                 var _this=this;
                 UserProductService.isuserproduct(
                     {
@@ -143,17 +144,19 @@
                 })
             },
             getproductdetail(){
+                debugger
                 var _this=this;
                 ProductService.getproductdetail(
                     {
                         urlparse:Component.urlParse(
-                            "product.productid="+_this.$route.params.prid
+                            "product.productid="+_this.$route.params.prid+"& productstatus=1"
                         ),
                         token:_this.$store.getters.getuser.token,
                         email:_this.$store.getters.getuser.username,
                         userid:_this.$store.getters.getuser.userid,
                     }
                 ).then((res)=>{
+                    debugger
                     if(res.data){
                         this.prlist=res.data
                         this.zoomimg=res.data[0].img[0][0]
@@ -162,6 +165,8 @@
                         this.useravatar=res.data[0].avatar
                         this.dataload=true
                     }else{
+                      this.$router.push("/NotFound");
+                        debugger
                     }
                 })
             },

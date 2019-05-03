@@ -111,8 +111,11 @@ const store = new Vuex.Store({
             debugger
             // liste sayısı verilecek
             // get isteği atılacak listedeki indexten çekilip
+
+            //statusa bak
+
             ProductService.getproduct({urlparse:
-                    Component.urlParse("photo.seqnumber=0 & userproduct.userid="+this.getters.getuser.userid+"& product.productstatus=1"),
+                    Component.urlParse("photo.seqnumber=0 & userproduct.userid="+this.getters.getuser.userid+"& product.productstatus="+list[0]),
                 token:this.getters.getuser.token,
                 email:this.getters.getuser.username,
                 userid:this.getters.getuser.userid,

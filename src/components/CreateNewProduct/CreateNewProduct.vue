@@ -154,6 +154,9 @@
         },
         created(){
           CategoryService.getallcategory().then((res)=>{
+              res.forEach((x,i)=>{
+                  x.id===8?res.splice(i, 1):"";
+              })
               res.unshift({id:0,categorytxt:"Lütfen Kategori Seçiniz"})
               this.category=res;
           })
@@ -301,6 +304,7 @@
                             button:"Tamam",
                             icon:"success"
                         })
+                        this.selectedcategory=0,
                         this.newproduct={
                             title:"",
                             description:"",

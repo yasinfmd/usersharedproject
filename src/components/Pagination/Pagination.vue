@@ -8,11 +8,11 @@
 
 <script>
     export default {
-        props:['list'],
+        props:['list','status'],
         methods:{
             setpagination(index){
                 debugger
-                this.$store.dispatch('setpagination',[this.list[0],index])
+                this.$store.dispatch('setpagination',[this.status,index])
             },
         }
     }
