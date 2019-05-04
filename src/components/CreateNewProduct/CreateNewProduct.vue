@@ -218,12 +218,12 @@
                          title:_this.newproduct.title,
                          descraption:_this.newproduct.description,
                          price:_this.newproduct.price,
-                         oldprice:_this.newproduct.price,
+                         oldprice:0,
                          category:_this.selectedcategory,
                          status:1, //daha sonra 2 olacak
                          city:_this.$store.getters.getuser.cityid,
                          date:new Date().toLocaleDateString(),
-                         time:new Date().getHours()+ ":"+new Date().getMinutes()+":"+new Date().getSeconds(),
+                        time:new Date().getHours()+ ":"+new Date().getMinutes()+":"+new Date().getSeconds(),
                          university:_this.$store.getters.getuser.universityid
                      }
                  ).then((res)=>{

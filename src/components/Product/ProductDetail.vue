@@ -27,7 +27,7 @@
 
                 </div>
                 <div class="col-4 ">
-                    <img  @click="imgover(data)" style="width:33%; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; cursor: pointer" :src="data" alt="Card image cap" v-for="data in item.img">
+                    <img  @click="imgover(data)" style="width:33%; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; cursor: pointer" :src="data.img" alt="Card image cap" v-for="data in item.img">
                 </div>
             </div>
         </div>
@@ -158,8 +158,43 @@
                 ).then((res)=>{
                     debugger
                     if(res.data){
-                        this.prlist=res.data
-                        this.zoomimg=res.data[0].img[0][0]
+                        var product;
+                        var imgobj=[]
+                        res.data.forEach((x)=>{
+                            if(x.seqnumber==0){
+                                this.zoomimg=x.img
+                            }
+                            imgobj.push({
+                                imgid:x.imagesid,
+                                img:x.img,
+                                number:x.seqnumber
+                            })
+                        })
+                        product=[{
+                            categoryid: res.data[0].categoryid,
+                            categorytxt: res.data[0].categorytxt,
+                            cityid:res.data[0].cityid,
+                            cityname: res.data[0].cityname,
+                            date: res.data[0].date,
+                            descraption: res.data[0].descraption,
+                            favcount: res.data[0].favcount,
+                            oldprice: res.data[0].oldprice,
+                            price: res.data[0].price,
+                            productid: res.data[0].productid,
+                            productstatus: res.data[0].productstatus,
+                            seencount: res.data[0].seencount,
+                            status:res.data[0].status,
+                            time: res.data[0].time,
+                            title: res.data[0].title,
+                            university:res.data[0].university,
+                            universityname: res.data[0].universityname,
+                            userid: res.data[0].userid,
+                            username:res.data[0].username,
+                            uslname: res.data[0].uslname,
+                            usname: res.data[0].usname,
+                            img:imgobj
+                        }]
+                        this.prlist=product
                         this.username=res.data[0].username
                         this.userlname=res.data[0].uslname
                         this.useravatar=res.data[0].avatar
@@ -178,8 +213,7 @@
                 //notificationswitch
             },
             imgover(img){
-                this.zoomimg=img;
-              console.log(img);
+                this.zoomimg=img.img;
             },
             routeuserprofile(param){
                 //param
