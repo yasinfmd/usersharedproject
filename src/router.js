@@ -22,11 +22,6 @@ const ForgetPass = resolve => {
         resolve(require('./components/ForgetPassword/ForgetPassword'))
     })
 }
-const RegisterCheck = resolve => {
-    require.ensure(['./components/RegisterCheck/RegisterCheck'], () => {
-        resolve(require('./components/RegisterCheck/RegisterCheck'))
-    })
-}
 const CreateNewPass = resolve => {
     require.ensure(['./components/CreateNewPassword/CreateNewPassword'], () => {
         resolve(require('./components/CreateNewPassword/CreateNewPassword'))
@@ -206,17 +201,7 @@ export const router = new VueRouter({
                 next()
             }
           },
-        {
-            path:"/RegisterCheck/:tempcode",
-            name:"RegisterCheck",
-            components:{
-                default:RegisterCheck,
-            },
-            beforeEnter(to,from,next) {
-                store.commit("setpopupstyle","none")
-                next()
-            }
-        },
+
         {
             path:"/ForgetPassword",
             name:"Forget",

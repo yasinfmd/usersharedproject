@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <p class="text-right" @click="deneme" v-show="dataload" v-if="!isuserpr">İlanı Takip Et
+        <p class="text-right" @click="deneme" v-show="dataload" v-if="dataload">İlanı Takip Et
             <label class="custom-control custom-checkbox">
                 <input type="checkbox" v-model="select" class="custom-control-input">
                 <span class="custom-control-indicator"></span>
@@ -90,6 +90,7 @@
     import MsgPopup from  '../Message/MsgPopup'
     import ProductService from '../../Service/ProductService'
     import UserProductService from '../../Service/UserProductService'
+    import ProductSeenService from '../../Service/ProductSeenService'
     export  default {
         created(){
             this.isuserproduct();
@@ -125,23 +126,48 @@
             isuserproduct(){
                 debugger
                 var _this=this;
-                UserProductService.isuserproduct(
-                    {
-                        urlparse:Component.urlParse(
-                            "productid="+_this.$route.params.prid +"&"+ "userid="+_this.$store.getters.getuser.userid,
-                        ),
-                        token:_this.$store.getters.getuser.token,
-                        email:_this.$store.getters.getuser.username,
-                        userid:_this.$store.getters.getuser.userid,
-                    }
-                ).then((res)=>{
+                if(this.$store.getters.getuser!=undefined){
+                    UserProductService.isuserproduct(
+                        {
+                            urlparse:Component.urlParse(
+                                "productid="+_this.$route.params.prid +"&"+ "userid="+_this.$store.getters.getuser.userid,
+                            ),
+                            token:_this.$store.getters.getuser.token,
+                            email:_this.$store.getters.getuser.username,
+                            userid:_this.$store.getters.getuser.userid,
+                        }
+                    ).then((res)=>{
+                        this.getproductdetail();
+                        if(res[0].status===true){
+                            this.isuserpr=true
+                        }else{
+                            debugger
+                           // this.seenproduct();
+                            this.isuserpr=false
+                        }
+                    })
+                }else{
+                    this.isuserpr=false
                     this.getproductdetail();
-                    if(res[0].status===true){
-                        this.isuserpr=true
-                    }else{
-                        this.isuserpr=false
-                    }
-                })
+                }
+
+            },
+            seenproduct(userid,prid){
+                debugger
+                const _this=this;
+                debugger
+                        ProductSeenService.add(
+                            {
+                                touserid:_this.$store.getters.getuser.userid,
+                                fromuserid:userid,
+                                productid:prid,
+                                token:_this.$store.getters.getuser.token,
+                                email:_this.$store.getters.getuser.username,
+                                userid:_this.$store.getters.getuser.userid,
+                            }
+                        ).then((res)=>{
+                            //görüntülenme
+                        })
             },
             getproductdetail(){
                 debugger
@@ -151,9 +177,6 @@
                         urlparse:Component.urlParse(
                             "product.productid="+_this.$route.params.prid+"& productstatus=1"
                         ),
-                        token:_this.$store.getters.getuser.token,
-                        email:_this.$store.getters.getuser.username,
-                        userid:_this.$store.getters.getuser.userid,
                     }
                 ).then((res)=>{
                     debugger
@@ -161,6 +184,7 @@
                         var product;
                         var imgobj=[]
                         res.data.forEach((x)=>{
+                            console.log(res.data);
                             if(x.seqnumber==0){
                                 this.zoomimg=x.img
                             }
@@ -170,6 +194,10 @@
                                 number:x.seqnumber
                             })
                         })
+                        debugger
+                        if(this.$store.getters.getuser!=undefined && this.isuserpr==false){
+                                this.seenproduct(res.data[0].userid,res.data[0].productid)
+                        }
                         product=[{
                             categoryid: res.data[0].categoryid,
                             categorytxt: res.data[0].categorytxt,

@@ -71,6 +71,7 @@
                 <a class="list-group-item list-group-item-action bg-light nav-link  navbaritemcls menufont" @click="routernavbar('Notification')">
          <img src="../../assets/icons/Alert_bell_notification_education_Christmas_bell_church_bell_ring-32.png">
                   Bildirimler
+                    <span class="badge badge-danger badge-counter"> {{$store.getters.getnotification>0?$store.getters.getnotification:"Bildirim Yok"}}</span>
                 </a>
               </li> 
               <li>

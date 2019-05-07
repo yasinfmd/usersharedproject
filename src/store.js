@@ -8,6 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state : {
         user:"",
+        ntf:0,
         token : "",
         headersearch:"",
         setpr:"",
@@ -37,6 +38,9 @@ const store = new Vuex.Store({
             debugger
             state.user=user;
             StorageControls.setItem("us",user)
+        },
+        setntfcount(state,count){
+          state.ntf=count
         },
         setpopupstyle(state,popupstyle){
           state.chatpopupstyle=  popupstyle
@@ -232,6 +236,9 @@ const store = new Vuex.Store({
         },
         getappicon(state){
             return state.appicon
+        },
+        getnotification(state){
+            return state.ntf
         },
         getapptxt(state){
             return state.apptxt

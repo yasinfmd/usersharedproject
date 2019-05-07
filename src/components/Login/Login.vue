@@ -96,8 +96,7 @@
       },
 
       onLogin(){
-        console.log(this.$store.getters.getlocation.locationname)
-        console.log(this.$store.getters.getlocation.coord)
+        debugger
     const user={
       username:this.logindata.username,
       password: md5(this.logindata.password),

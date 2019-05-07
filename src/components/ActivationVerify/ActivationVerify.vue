@@ -64,27 +64,7 @@
                                 createddate:new Date().toLocaleDateString(),
                             }
                               UserService.adduser(user).then((response)=>{
-                                  if(response[0].status==="NotInsert"){
-                                      swal({
-                                          button: "Tamam ",
-                                          title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
-                                          icon: "error"
-                                      })
-                                  }else if(response[0].status==="NotContactInsert") {
-                                      swal({
-                                          button: "Tamam ",
-                                          title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
-                                          icon: "error"
-                                      })
-                                  }
-                                      else if(response[0].status==="NotPswInsert"){
-                                          swal({
-                                              button: "Tamam ",
-                                              title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
-                                              icon: "error"
-                                          })
-                                      }else{
-                                    debugger
+                                  if(response[0]==undefined){
                                       RegisterService.deleteuser({code:this.$route.params.code}).then((response)=>{
                                           if(response[0].status==undefined){
                                               swal({
@@ -105,6 +85,29 @@
                                           }
 
                                       })
+
+                                  }
+                                 else if(response[0].status==="NotInsert"){
+                                      swal({
+                                          button: "Tamam ",
+                                          title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
+                                          icon: "error"
+                                      })
+                                  }else if(response[0].status==="NotContactInsert") {
+                                      swal({
+                                          button: "Tamam ",
+                                          title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
+                                          icon: "error"
+                                      })
+                                  }
+                                      else if(response[0].status==="NotPswInsert"){
+                                          swal({
+                                              button: "Tamam ",
+                                              title: "Kayıt Olma İşlemi Başarısız Lütfen Daha Sonra Tekrar Deneyiniz.",
+                                              icon: "error"
+                                          })
+                                      }else{
+                                    debugger
 
                                       }
                                 })
