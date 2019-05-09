@@ -3,14 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="109b32c3-cfa2-4488-ad04-33e0463f9cab" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Provider/WSProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Provider/WSProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/CommentService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/CommentService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/LoginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LoginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UserService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/UserDash.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Dashboard/UserDash.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Product/ProductDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Product/ProductDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RegisterCheck/RegisterCheck.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/shared/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/shared/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Message/MsgPopup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Message/MsgPopup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserProducts.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserProducts.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserProfileDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserProfileDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserRevenueDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserRevenueDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Profile/UserStarAndCommentDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Profile/UserStarAndCommentDetail.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,37 +28,84 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Dashboard/UserDash.vue">
+        <entry file="file://$PROJECT_DIR$/src/components/Profile/UserProfileDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="129" column="81" selection-start-line="129" selection-start-column="81" selection-end-line="129" selection-end-column="106" />
+            <state relative-caret-position="410">
+              <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/Profile/UserDetail.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Profile/UserStarAndCommentDetail.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Profile/UserProducts.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="17" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#5630#5688#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue">
+        <entry file="file://$PROJECT_DIR$/src/components/Profile/UserRevenueDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+            <state relative-caret-position="102">
+              <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/SharedProduct/SharedProduct.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="19" selection-end-column="22" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#p#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="e#2146#2208#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+                <element signature="e#16783#16844#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1122">
+              <caret line="66" column="1" selection-start-line="66" selection-start-column="1" selection-end-line="67" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Product/ProductDetail.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+            <state relative-caret-position="631">
+              <caret line="132" column="68" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="69" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
                 <element signature="e#4829#4872#0" expanded="true" />
@@ -65,47 +115,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/ProductSeenService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/Product/EditProduct.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="394" column="19" selection-start-line="394" selection-start-column="19" selection-end-line="409" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="19" />
+            <state relative-caret-position="153">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/NotificationService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="6" lean-forward="true" selection-end-line="39" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -124,36 +140,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>product</find>
-      <find>create</find>
-      <find>NE</find>
-      <find>productpagination</find>
-      <find>pageloading</find>
-      <find>push</find>
-      <find>getprodu</find>
-      <find>discountpr</find>
-      <find>routeprdetail</find>
-      <find>this.$store.getter</find>
-      <find>getproduc</find>
-      <find>getproductdetail</find>
-      <find>deneme</find>
-      <find>le</find>
-      <find>RegisterCheck</find>
-      <find>addfav</find>
-      <find>addFav</find>
-      <find>getnotification</find>
-      <find>setpr</find>
-      <find>getproduct</find>
-      <find>init</find>
-      <find>getnoti</find>
-      <find>updatedata</find>
-      <find>Notif</find>
-      <find>notificationlist</find>
       <find>created</find>
-      <find>isuserproduct</find>
       <find>seenproduct</find>
       <find>createnewmsg</find>
       <find>isuserp</find>
+      <find>addnotification</find>
+      <find>logout</find>
+      <find>getprod</find>
+      <find>appLogin</find>
+      <find>create</find>
+      <find>selaö</find>
+      <find>getproduct</find>
+      <find>caption</find>
+      <find>isuserproduct</find>
+      <find>sendmsg</find>
+      <find>img</find>
+      <find>usavatar</find>
+      <find>user</find>
+      <find>title</find>
+      <find>data</find>
+      <find>item</find>
+      <find>alertcontent</find>
+      <find>target</find>
+      <find>cardimg</find>
+      <find>setpr</find>
+      <find>usermsg</find>
+      <find>dataload</find>
+      <find>props</find>
+      <find>mounted</find>
+      <find>getuserproduct</find>
+      <find>commentserv</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,38 +178,27 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/FavoriteProduct/FavoriteProduct.vue" />
-        <option value="$PROJECT_DIR$/src/components/DiscountProducts/DiscountProducts.vue" />
-        <option value="$PROJECT_DIR$/src/components/FollowProduct/FollowProduct.vue" />
-        <option value="$PROJECT_DIR$/src/components/RequestProduct/RequestProduct.vue" />
-        <option value="$PROJECT_DIR$/src/components/SharedAnnouncement/SharedAnnouncement.vue" />
         <option value="$PROJECT_DIR$/src/components/SharedAnnouncement/SharedAnnouncementDetail.vue" />
         <option value="$PROJECT_DIR$/src/App.vue" />
         <option value="$PROJECT_DIR$/src/Service/UniversityService.js" />
-        <option value="$PROJECT_DIR$/src/main.js" />
         <option value="$PROJECT_DIR$/src/Plugins/hmac-sha256.js" />
         <option value="$PROJECT_DIR$/src/Plugins/enc-base64-min.js" />
         <option value="$PROJECT_DIR$/src/Service/RegisterService" />
         <option value="$PROJECT_DIR$/src/components/Register/Register.vue" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/components/shared/Nav.vue" />
-        <option value="$PROJECT_DIR$/src/Service/LoginService.js" />
         <option value="$PROJECT_DIR$/src/Service/PasswordService.js" />
         <option value="$PROJECT_DIR$/src/components/Profile/Password.vue" />
         <option value="$PROJECT_DIR$/src/Service/UserAvatarService.js" />
-        <option value="$PROJECT_DIR$/src/Service/UserService.js" />
         <option value="$PROJECT_DIR$/src/components/Profile/User.vue" />
         <option value="$PROJECT_DIR$/src/components/Profile/Profile.vue" />
         <option value="$PROJECT_DIR$/src/Service/CategoryService.js" />
         <option value="$PROJECT_DIR$/src/Service/CityService.js" />
-        <option value="$PROJECT_DIR$/src/Provider/WSProvider.js" />
         <option value="$PROJECT_DIR$/src/components/Card/Card.vue" />
-        <option value="$PROJECT_DIR$/src/components/Message/MsgPopup.vue" />
         <option value="$PROJECT_DIR$/src/Service/UserProductService.js" />
         <option value="$PROJECT_DIR$/src/Service/ProductService.js" />
         <option value="$PROJECT_DIR$/src/assets/css/loadingg.css" />
         <option value="$PROJECT_DIR$/src/Plugins/Component.js" />
-        <option value="$PROJECT_DIR$/src/Service/CommentService.js" />
         <option value="$PROJECT_DIR$/src/components/Pagination/Pagination.vue" />
         <option value="$PROJECT_DIR$/src/components/Revenue/Revenue.vue" />
         <option value="$PROJECT_DIR$/src/components/Profile/Edit.vue" />
@@ -204,21 +209,32 @@
         <option value="$PROJECT_DIR$/src/components/Product/EditProduct.vue" />
         <option value="$PROJECT_DIR$/src/components/Login/Login.vue" />
         <option value="$PROJECT_DIR$/src/Service/FavoriteService.js" />
-        <option value="$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue" />
         <option value="$PROJECT_DIR$/src/router.js" />
         <option value="$PROJECT_DIR$/src/components/shared/Header.vue" />
-        <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/src/components/Dashboard/UserDash.vue" />
         <option value="$PROJECT_DIR$/src/Service/NotificationService.js" />
         <option value="$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue" />
         <option value="$PROJECT_DIR$/src/Service/ProductSeenService.js" />
         <option value="$PROJECT_DIR$/src/components/Product/ProductDetail.vue" />
+        <option value="$PROJECT_DIR$/src/Service/UserService.js" />
+        <option value="$PROJECT_DIR$/src/Provider/WSProvider.js" />
+        <option value="$PROJECT_DIR$/src/Service/LoginService.js" />
+        <option value="$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue" />
+        <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/src/components/Message/MsgPopup.vue" />
+        <option value="$PROJECT_DIR$/src/store.js" />
+        <option value="$PROJECT_DIR$/src/components/Profile/UserProfileDetail.vue" />
+        <option value="$PROJECT_DIR$/src/components/Profile/UserProducts.vue" />
+        <option value="$PROJECT_DIR$/src/components/Profile/UserRevenueDetail.vue" />
+        <option value="$PROJECT_DIR$/src/Service/CommentService.js" />
+        <option value="$PROJECT_DIR$/src/components/Profile/UserDetail.vue" />
+        <option value="$PROJECT_DIR$/src/components/Profile/UserStarAndCommentDetail.vue" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
     <option name="width" value="1940" />
     <option name="height" value="1060" />
   </component>
@@ -251,48 +267,6 @@
               <item name="productproject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="ActivationVerify" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Card" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Complaint" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="CreateNewProduct" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Dashboard" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="Message" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -300,42 +274,7 @@
               <item name="productproject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="NotFound" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="NotificationList" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Pagination" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="Profile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="Register" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
@@ -362,18 +301,6 @@
               <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
               <item name="productproject" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Provider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="productproject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="productproject" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -383,6 +310,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
@@ -539,11 +467,15 @@
       <workItem from="1557064974378" duration="3392000" />
       <workItem from="1557123484432" duration="5363000" />
       <workItem from="1557223086202" duration="10345000" />
+      <workItem from="1557250266864" duration="2629000" />
+      <workItem from="1557405029760" duration="727000" />
+      <workItem from="1557418787837" duration="11195000" />
+      <workItem from="1557434910369" duration="1943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="760986000" />
+    <option name="totallyTimeSpent" value="777480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -596,16 +528,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/shared/Footer.vue</url>
-          <line>82</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/shared/Footer.vue</url>
-          <line>80</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Profile/Profile.vue</url>
           <line>3</line>
@@ -665,40 +587,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="39" column="45" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/UniversityService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Plugins/hmac-sha256.js" />
-    <entry file="file://$PROJECT_DIR$/src/Plugins/enc-base64-min.js" />
-    <entry file="file://$PROJECT_DIR$/src/Plugins/datatable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/RegisterService">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="77" selection-start-line="13" selection-start-column="77" selection-end-line="13" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jwt.php" />
-    <entry file="file://$PROJECT_DIR$/src/test.php" />
     <entry file="file://$PROJECT_DIR$/src/components/Product/Product.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="654">
@@ -747,13 +635,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/UserService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="13" column="45" lean-forward="true" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/CategoryService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -775,20 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/LoginService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Provider/WSProvider.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="70" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Card/Card.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -803,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Message/MsgPopup.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/UserProductService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -821,13 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="631">
           <caret line="6995" column="1" selection-start-line="6995" selection-start-column="1" selection-end-line="6995" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/CommentService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="69" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
         </state>
       </provider>
     </entry>
@@ -900,26 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Revenue/Revenue.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="102" column="69" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="56" column="75" selection-start-line="56" selection-start-column="67" selection-end-line="56" selection-end-column="75" />
-          <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Pagination/Pagination.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -928,28 +761,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/RegisterCheck/RegisterCheck.vue" />
-    <entry file="file://$PROJECT_DIR$/src/components/SharedProduct/SharedProduct.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5032">
-          <caret line="302" column="21" selection-start-line="302" selection-start-column="21" selection-end-line="304" selection-end-column="79" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#16783#16844#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="136" column="8" selection-start-line="136" selection-start-column="8" selection-end-line="136" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/router.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/FavoriteService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -971,31 +782,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/shared/Header.vue">
+    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/UserDash.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="73" column="147" selection-start-line="73" selection-start-column="147" selection-end-line="73" selection-end-column="147" />
+        <state relative-caret-position="2312">
+          <caret line="142" column="21" selection-start-line="142" selection-start-column="6" selection-end-line="142" selection-end-column="21" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#small#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#5630#5688#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store.js">
+    <entry file="file://$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1445">
+          <caret line="86" column="30" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/ProductSeenService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Product/EditProduct.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="6647">
           <caret line="394" column="19" selection-start-line="394" selection-start-column="19" selection-end-line="409" selection-end-column="67" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1007,51 +821,187 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Dashboard/UserDash.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="129" column="81" selection-start-line="129" selection-start-column="81" selection-end-line="129" selection-end-column="106" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#5630#5688#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/NotificationList/NotificationList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="86" column="30" lean-forward="true" selection-start-line="86" selection-start-column="30" selection-end-line="86" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#p#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#b#0;n#p#0;n#div#1;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#2146#2208#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/NotificationService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="10" column="6" lean-forward="true" selection-end-line="39" selection-end-column="36" />
+          <caret line="10" column="6" selection-end-line="39" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/ProductSeenService.js">
+    <entry file="file://$PROJECT_DIR$/src/Service/UserService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        <state relative-caret-position="308">
+          <caret line="31" column="14" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Provider/WSProvider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/LoginService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ActivationVerify/ActivationVerify.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="66" column="65" selection-start-line="66" selection-start-column="65" selection-end-line="66" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/shared/Header.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-649">
+          <caret line="73" column="147" selection-start-line="73" selection-start-column="147" selection-end-line="73" selection-end-column="147" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#small#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/shared/Footer.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="80" column="8" lean-forward="true" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="161" column="10" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="161" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+            <element signature="e#4967#5003#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Message/MsgPopup.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SharedProduct/SharedProduct.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+            <element signature="e#16783#16844#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="66" column="1" selection-start-line="66" selection-start-column="1" selection-end-line="67" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Revenue/Revenue.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1079">
+          <caret line="158" column="18" lean-forward="true" selection-start-line="138" selection-start-column="16" selection-end-line="158" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Product/ProductDetail.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="168" column="42" selection-start-line="168" selection-start-column="42" selection-end-line="168" selection-end-column="42" />
+        <state relative-caret-position="631">
+          <caret line="132" column="68" selection-start-line="132" selection-start-column="45" selection-end-line="132" selection-end-column="69" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#template#0;n#!!top" />
             <element signature="e#4829#4872#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/UserProducts.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#template#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/UserRevenueDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="91" selection-start-line="6" selection-start-column="91" selection-end-line="6" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/UserProfileDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="122" column="4" lean-forward="true" selection-start-line="122" selection-start-column="4" selection-end-line="122" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/UserStarAndCommentDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/CommentService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="69" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Profile/UserDetail.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="38" column="50" lean-forward="true" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
         </state>
       </provider>
     </entry>

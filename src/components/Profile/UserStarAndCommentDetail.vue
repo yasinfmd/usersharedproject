@@ -112,6 +112,7 @@
                 ]
             }
         },
+        props:['datalist'],
         created() {
             var sum=0
          const avaragearr=_.pluck(this.commentlist, 'rate');

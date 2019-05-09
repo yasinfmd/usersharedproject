@@ -17,6 +17,14 @@ var UserService={
 
         })
     },
+    getuserdetail:(param)=>{
+        var deferred = new Promise(function(resolve, reject) {
+            WSProvider.ajaxPost("http://localhost:8000/api/getuserdetail",param).then((response)=>{
+                resolve(response)
+            })
+        });
+        return deferred
+    },
     updateuser:(param)=>{
         var deferred = new Promise(function(resolve, reject) {
             WSProvider.ajaxPost("http://localhost:8000/api/updateuseravatar",param).then((response)=>{

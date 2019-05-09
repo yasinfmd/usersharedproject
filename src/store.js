@@ -11,9 +11,9 @@ const store = new Vuex.Store({
         ntf:0,
         token : "",
         headersearch:"",
-        setpr:"",
-        alertcontent:"",
-        target:"",
+
+
+
         apptxt:"Giriş Yap",
         chatpopupstyle:"none",
         appicon:"fas fa-sign-in-alt",
@@ -64,12 +64,7 @@ const store = new Vuex.Store({
         clearlocation(state){
             state.location=""
         },
-        setproduct(state,product){
-            state.setpr=product
-        },
-        clearproduct(state){
-            state.setpr=""
-        },
+
         setuserlocation(state,location){
             debugger
             state.location=location
@@ -177,17 +172,7 @@ const store = new Vuex.Store({
         searchdata({ commit, dispatch, state}, search){
                 commit("setsearchbar",search)
         },
-        setprdata({commit},prdata){
-            const setprdata=StorageControls.getItem("prdata")
-            if(setprdata!=undefined && setprdata!=""){
-                debugger
-                commit("setproduct",JSON.parse(Base64.decode(setprdata)))
-            }else{
-                debugger
-                StorageControls.setItem("prdata",Base64.encode(JSON.stringify(prdata)),"")
-                commit("setproduct",prdata)
-            }
-        },
+
         logout({ commit}){
             debugger
             commit("clearToken")
@@ -230,9 +215,6 @@ const store = new Vuex.Store({
         },
         searchbardata(state){
             return state.headersearch;
-        },
-        editprdata(state){
-            return state.setpr;
         },
         getappicon(state){
             return state.appicon

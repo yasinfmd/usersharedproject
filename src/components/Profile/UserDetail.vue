@@ -6,24 +6,24 @@
                     <ul class="nav nav-tabs custom-menu-wrap custon-tab-menu-style1">
                         <li class="nav-item cursorstyle" >
 
-                            <a style="cursor: pointer" :class="{'nav-link active':selectedComponent=='profiledetail','nav-link':selectedComponent!='profiledetail'}" @click="selectedComponent='profiledetail'">  <img src="https://cdn0.iconfinder.com/data/icons/linkedin-ui-colored/48/JD-07-32.png" style="padding-right: 10px">Profil</a>
+                            <a style="cursor: pointer" :class="{'nav-link active':selectedComponent=='profiledetail','nav-link':selectedComponent!='profiledetail'}" @mouseup="setselected('profiledetail')">  <img src="https://cdn0.iconfinder.com/data/icons/linkedin-ui-colored/48/JD-07-32.png" style="padding-right: 10px">Profil</a>
                         </li>
                         <li style="cursor: pointer" class="nav-item cursorstyle">
-                            <a :class="{'nav-link active':selectedComponent=='products','nav-link':selectedComponent!='products'}" @click="selectedComponent='products'"><img src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-02-32.png" style="padding-right: 10px">İlan Sahibinin Sattığı Ürünler</a>
+                            <a :class="{'nav-link active':selectedComponent=='products','nav-link':selectedComponent!='products'}" @mouseup="setselected('products')"><img src="https://cdn2.iconfinder.com/data/icons/xomo-basics/128/document-02-32.png" style="padding-right: 10px">İlan Sahibinin Sattığı Ürünler</a>
                         </li>
                         <li  style="cursor: pointer" class="nav-item cursorstyle">
-                            <a :class="{'nav-link active':selectedComponent=='usershared','nav-link':selectedComponent!='usershared'}" @click="selectedComponent='usershared'"><img src="https://cdn2.iconfinder.com/data/icons/business-and-economy/256/business_economic_finance_interprise_company_announcement-32.png" style="padding-right: 10px"> İlan Sahibinin Paylaştığı Duyurular</a>
+                            <a :class="{'nav-link active':selectedComponent=='usershared','nav-link':selectedComponent!='usershared'}" @mouseup="setselected('usershared')"><img src="https://cdn2.iconfinder.com/data/icons/business-and-economy/256/business_economic_finance_interprise_company_announcement-32.png" style="padding-right: 10px"> İlan Sahibinin Paylaştığı Duyurular</a>
                         </li>
                         <li style="cursor: pointer" class="nav-item cursorstyle">
-                            <a :class="{'nav-link active':selectedComponent=='revenue','nav-link':selectedComponent!='revenue'}" @click="selectedComponent='revenue'"><img src="https://cdn4.iconfinder.com/data/icons/banking-and-finance/500/hand-coins-32.png" style="padding-right: 10px">İlan Sahibinin Kazançları</a>
+                            <a :class="{'nav-link active':selectedComponent=='revenue','nav-link':selectedComponent!='revenue'}" @mouseup="setselected('revenue')"><img src="https://cdn4.iconfinder.com/data/icons/banking-and-finance/500/hand-coins-32.png" style="padding-right: 10px">İlan Sahibinin Kazançları</a>
                         </li>
                         <li style="cursor: pointer" class="nav-item cursorstyle">
-                            <a :class="{'nav-link active':selectedComponent=='comment','nav-link':selectedComponent!='comment'}" @click="selectedComponent='comment'"><img src="https://cdn0.iconfinder.com/data/icons/constructivism-for-the-bank/64/constr_support_chat-32.png" style="padding-right: 10px">Kullanıcı Yorumları</a>
+                            <a :class="{'nav-link active':selectedComponent=='comment','nav-link':selectedComponent!='comment'}"  @mouseup="setselected('comment')"><img src="https://cdn0.iconfinder.com/data/icons/constructivism-for-the-bank/64/constr_support_chat-32.png" style="padding-right: 10px">Kullanıcı Yorumları</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <keep-alive>
-                            <component :is="selectedComponent"></component>
+                            <component :is="selectedComponent" :datalist="data" :total="total"></component>
                         </keep-alive>
                     </div>
                 </div>
@@ -38,11 +38,16 @@
         import usershared from  './UserSharedDetail'
         import  revenue from './UserRevenueDetail'
         import  comment from './UserStarAndCommentDetail'
-    export  default {
+        import UserService from '../../Service/UserService'
+        import ProductService from '../../Service/ProductService'
+        import CommentService from '../../Service/CommentService'
+        export  default {
 
     data(){
         return{
-            selectedComponent:"profiledetail"
+            selectedComponent:"profiledetail",
+            data:"",
+            total:""
         }
     },
     components:{
@@ -53,13 +58,93 @@
         comment
     },
     methods:{
+        setselected(param){
+            //profiledetail
+            this.selectedComponent=param
+
+            switch (this.selectedComponent) {
+                case "profiledetail":
+                    this.getuser()
+                    break;
+                case "products":
+                    this.getuser()
+                    this.getuserproduct(1)
+                    break;
+                case "usershared":
+                    //
+                    break;
+                case "revenue":
+                    this.getuserproduct(3)
+                    break;
+                case "comment":
+                    this.getcomment();
+                    break;
+
+            }
+        },
+            getcomment(){
+            debugger
+                const _this=this;
+                CommentService.getcommentlist({
+                    urlparse:Component.urlParse(
+                        "comment.fromuser="+_this.$route.params.userid
+                    ),
+                    token: _this.$store.getters.getuser.token,
+                    email: _this.$store.getters.getuser.username,
+                    userid: _this.$store.getters.getuser.userid,
+                }).then((res)=>{
+                    if(res[0].status==undefined){
+                            this.data=res.data
+                    }else{
+
+                    }
+                })
+            },
+        getuserproduct(param){
+            debugger
+            const _this=this;
+            ProductService.getproduct(
+                {
+                    urlparse:
+                        Component.urlParse("photo.seqnumber=0 & userproduct.userid=" + _this.$route.params.userid + "& product.productstatus="+param),
+                    token: _this.$store.getters.getuser.token,
+                    email: _this.$store.getters.getuser.username,
+                    userid: _this.$store.getters.getuser.userid,
+                    pagination: 0
+                }
+            ).then((res)=>{
+                debugger
+                if(res.data){
+                    var sumprice=0
+                    res.data.forEach((x)=>{sumprice+=parseInt(x.price)})
+                    this.total=sumprice;
+                    this.data=res.data
+                }else{
+                    this.data=[]
+                }
+                debugger
+            })
+        },
+        getuser(){
+            const _this=this;
+            UserService.getuser({
+                urlparse:Component.urlParse(
+                    "user.userid="+_this.$route.params.userid
+                )}
+            ).then((res)=>{
+                if(res[0].status==undefined){
+                    this.data=res;
+                }else{
+                    _this.$router.push("/NotFound")
+                }
+            })
+        },
         initApp(){
             console.log(this.$route.params.userid)
         }
     },
     created() {
-        debugger
-        this.initApp();
+            this.getuser();
     }
 }
 </script>

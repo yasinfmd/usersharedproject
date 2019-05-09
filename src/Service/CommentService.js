@@ -9,6 +9,14 @@ var CommentService={
         });
         return deferred
     },
+    getcommentlist:(param)=>{
+        var deferred = new Promise(function(resolve, reject) {
+            WSProvider.ajaxPost("http://localhost:8000/api/getcomment",param).then((response)=>{
+                resolve(response)
+            })
+        });
+        return deferred
+    },
 }
 
 

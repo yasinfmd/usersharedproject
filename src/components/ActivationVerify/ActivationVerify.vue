@@ -64,7 +64,7 @@
                                 createddate:new Date().toLocaleDateString(),
                             }
                               UserService.adduser(user).then((response)=>{
-                                  if(response[0]==undefined){
+                                  if(response[0].status=="Success"){
                                       RegisterService.deleteuser({code:this.$route.params.code}).then((response)=>{
                                           if(response[0].status==undefined){
                                               swal({

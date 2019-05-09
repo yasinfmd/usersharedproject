@@ -1,5 +1,6 @@
 var WSProvider = {
     ajaxPost: function(serviceName, jsonParams) {
+      debugger
       var deferred = new Promise(function(resolve, reject) {
         return $.ajax({
           type: 'POST',

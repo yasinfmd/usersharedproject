@@ -26,7 +26,18 @@
                     usermsg:""
             }
         },
-        props:['msguser','usermsg','avatar'],
+        props:
+            {
+                msguser:{
+                    default:{
+                        usname:"",
+                        uslname:""
+                    }
+                },
+                avatar:{
+                    default:""
+                }
+            },
         created(){
 
         },
