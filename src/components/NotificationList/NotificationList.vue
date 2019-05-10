@@ -22,18 +22,6 @@
                     <div class="notifications">
                         <ul class="notification-list">
                             <li>
-                              <!--  <div class="media">
-                                <div class="media-left">
-                                    <a >
-                                        <img src="../../assets/icons/heart-64.png" class="media-object cat-icon rounded-circle" alt="...">
-                                    </a>
-
-
-                                </div>
-                                <div class="media-body">
-                                    <p class="media-heading"><b style="cursor: pointer" @click="routeuserdetail">Ahmet</b> Ürününü Favorilerine Ekledi</p>
-                                </div>
-                            </div>-->
                                 <div class="media" v-for="item in notificationlist">
                                     <div class="media-left">
                                         <a >
@@ -41,7 +29,7 @@
                                         </a>
                                     </div>
                                     <div class="media-body">
-                                        <p class="media-heading"><a style="text-decoration: underline; cursor: pointer" @mouseup="routeuser(item.userid)">{{item.username}} {{item.uslname}}</a>    <b style="cursor: pointer" @click="routeuserdetail">{{item.title}} </b> {{item.text}}</p>
+                                        <p class="media-heading"><a style="text-decoration: underline; cursor: pointer" @mouseup="routeuser(item.userid)">{{item.username}} {{item.uslname}}</a>    <b  >{{item.title}} </b> {{item.text}}  <small style="float: right">{{item.ntfdate}}   - {{item.ntftime}}</small></p>
                                     </div>
                                 </div>
 
@@ -66,6 +54,7 @@
             }
         },
         methods:{
+
             routeuser(id){
                 this.$router.push("/UserDetail/"+id);
             },
@@ -109,6 +98,9 @@
                                 if(x.nttype==1){
                                     x.imgicon="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678087-heart-64.png"
                                     x.text="Ürününü Favorilerine Ekledi"
+                                }else if(x.nttype==4){
+                                    x.imgicon="https://cdn4.iconfinder.com/data/icons/ios-web-user-interface-multi-circle-flat-vol-4/512/Chat_chat_bubble_comment_comments-64.png"
+                                    x.text="Ürününde Senden Bahsetti"
                                 }
                             this.notificationlist.push(x);
                                 this.dataload=true

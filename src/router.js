@@ -591,9 +591,17 @@ export const router = new VueRouter({
               "appnav":AppNav,
                 "appfooter":Footer
             },
+
             beforeEnter(to,from,next){
                 store.commit("setpopupstyle","none")
-                next()
+                store.dispatch("initAuth").then((res)=>{
+                    if(res==true){
+                        next();
+                    }
+                    else{
+                        next("/Login")
+                    }
+                })
             }
         },
 

@@ -1,7 +1,7 @@
 <template>
       <div class="container-fluid">
 
-<big-photo-card></big-photo-card>
+<big-photo-card ></big-photo-card>
         <div class="d-flex justify-content-center" >
             <div class="jumbotron" style="background-color: #f8f9fa;width: 100%">
                 <div class="sk-circle" v-if="!dataload">
@@ -23,20 +23,7 @@
                     <div class="row" >
 
                         <div class="panel panel-default">
-                        <div class="float-right">
-                            <div class="row">
 
-                                <div class="col">
-                                    <select class="form-control form-control" v-model="selectedfilter">
-                                        <option v-for="item in headerlist">{{item}}</option>
-                                    </select>
-                                </div>
-                                <p class="lead">--göre</p>
-                                <div class="col">
-                                    <input type="text" class="form-control" placeholder="Ara..">
-                                </div>
-                            </div>
-                        </div>
                         <table id="example"  style="width:100%;margin-top: 20px" >
 
                             <caption> Toplam Kayıt Sayısı {{allcount}}</caption>
@@ -229,8 +216,10 @@
     import ProductService from '../../Service/ProductService'
     import UserService from '../../Service/UserService'
     import CommentService from '../../Service/CommentService'
+    import NotificationService from '../../Service/NotificationService'
     export default {
         created(){
+            this.$store.commit("setactivepagination", 0)
                 this.getproduct()
         },
         data() {
@@ -240,7 +229,6 @@
                 allcount:"",
                 commentuser:"",
                 selecteduser:"",
-                headerlist:["Başlığa","Kategoriye","Açıklamaya","Tarihe","Saate","Fiyata"],
                 selectedfilter:"",
                 show:false,
                 activeproduct:"",
@@ -423,9 +411,32 @@ debugger
                     }
                 ).then((res)=>{
                         if(res[0].status==="Success"){
-                            swal("Yorum Başarılı", {
-                                icon: "success",
-                            });
+                            var _this=this;
+                            NotificationService.add(
+                                {
+                                    type:4,
+                                    touser:_this.$store.getters.getuser.userid,
+                                    prid:_this.activeproduct,
+                                    fromuser:_this.selecteduser,
+                                    token:_this.$store.getters.getuser.token,
+                                    email:_this.$store.getters.getuser.username,
+                                    userid:_this.$store.getters.getuser.userid,
+                                    date:new Date().toLocaleDateString(),
+                                    time:new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()
+                                }
+                            ).then((res)=>{
+                                if(res[0].status=="Success"){
+                                    swal("Yorum Başarılı", {
+                                        icon: "success",
+                                    });
+                                }else{
+                                    swal({
+                                        button: "Tamam ",
+                                        title: "Yorum Başarısız",
+                                        icon: "error"
+                                    })
+                                }
+                            })
                             this.selecteduser=""
                             this.commentuser=""
                             this.isactive = false
@@ -440,6 +451,9 @@ debugger
                             });
                         }
                 })
+            },
+            addnotification(prid,userid){
+
             },
             setimglist(prid,i){
             var _this=this;

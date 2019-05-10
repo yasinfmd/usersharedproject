@@ -152,6 +152,8 @@
                       token:_this.$store.getters.getuser.token,
                       email:_this.$store.getters.getuser.username,
                       userid:_this.$store.getters.getuser.userid,
+                      date:new Date().toLocaleDateString(),
+                      time:new Date().getHours()+":"+new Date().getMinutes()+":"+new Date().getSeconds()
                     }
             ).then((res)=>{
                 if(res[0].status=="Success"){
@@ -341,7 +343,6 @@
       },
     },
     created(){
-    console.log();
       this.$store.dispatch("initAuth").then((res)=>{
         if(res==true){
           this.getproduct();

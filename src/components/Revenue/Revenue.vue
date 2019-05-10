@@ -116,6 +116,7 @@
     import ProductService from '../../Service/ProductService'
     export default {
         created(){
+            this.$store.commit("setactivepagination", 0)
                 this.getuserproduct();
         },
         data(){

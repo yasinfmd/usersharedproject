@@ -23,7 +23,7 @@
                     </ul>
                     <div class="tab-content">
                         <keep-alive>
-                            <component :is="selectedComponent" :datalist="data" :total="total"></component>
+                            <component :is="selectedComponent" :datalist="data" :total="total" :avg="avaragestart" :result="resultstart" :half="halfstar"></component>
                         </keep-alive>
                     </div>
                 </div>
@@ -47,7 +47,10 @@
         return{
             selectedComponent:"profiledetail",
             data:"",
-            total:""
+            total:"",
+            avaragestart:0,
+            halfstar:false,
+            resultstart:0
         }
     },
     components:{
@@ -85,6 +88,7 @@
             getcomment(){
             debugger
                 const _this=this;
+
                 CommentService.getcommentlist({
                     urlparse:Component.urlParse(
                         "comment.fromuser="+_this.$route.params.userid
@@ -94,9 +98,19 @@
                     userid: _this.$store.getters.getuser.userid,
                 }).then((res)=>{
                     if(res[0].status==undefined){
-                            this.data=res.data
-                    }else{
+                        var sum=0
+                        res.forEach((x)=>{
+                            x.star=parseInt(x.star)
+                            sum+=x.star
+                        })
+                        debugger
+                            this.data=res
 
+                        this.avaragestart=parseInt((sum/res.length).toFixed(1))
+                        this.resultstart=Math.floor(this.avaragestart)
+                        this.avaragestart.toString().split(".").length==1?this.halfstar=false:this.halfstar=true;
+                    }else{
+                            this.data=[]
                     }
                 })
             },
@@ -126,18 +140,26 @@
             })
         },
         getuser(){
+            debugger
             const _this=this;
-            UserService.getuser({
-                urlparse:Component.urlParse(
-                    "user.userid="+_this.$route.params.userid
-                )}
-            ).then((res)=>{
-                if(res[0].status==undefined){
-                    this.data=res;
-                }else{
-                    _this.$router.push("/NotFound")
-                }
-            })
+            if(this.$store.getters.getuser.userid!=this.$route.params.userid){
+                UserService.getuser({
+                    urlparse:Component.urlParse(
+                        "user.userid="+_this.$route.params.userid
+                    )}
+                ).then((res)=>{
+                    if(res[0].status==undefined){
+                        this.data=res;
+                    }else{
+                        _this.$router.push("/NotFound")
+                    }
+                })
+            }else{
+
+                _this.$router.push("/NotFound")
+
+            }
+
         },
         initApp(){
             console.log(this.$route.params.userid)
