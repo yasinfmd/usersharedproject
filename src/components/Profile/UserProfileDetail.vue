@@ -84,7 +84,7 @@
                 //uuser id
                 this.$store.dispatch("initAuth").then((res)=>{
                     if(res==true){
-                        this.$router.push("/Complaint/"+"1")
+                        this.$router.push("/Complaint/"+user)
                     }else{
                         swal({
                             button: "Tamam ",

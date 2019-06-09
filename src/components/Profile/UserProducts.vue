@@ -58,11 +58,6 @@ import UserService from '../../Service/UserService'
           goproductdetail(prid){
               this.$router.push("/ProductDetail/"+prid)
           },
-
-        },
-        mounted(){
-            Component.datatable("userprdcttable")
-
         },
         props:['datalist'],
         data(){

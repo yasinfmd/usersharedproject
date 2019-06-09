@@ -54,7 +54,7 @@
           <div class="image-flip"  >
             <div class="mainflip">
               <div class="frontside" >
-                <div class="card" v-if="!item.backcard">
+                <div class="card" >
                 <div class="card-header cardheadercolor" style="background-color: rgb(84, 197, 249)">
                   <img src="../../assets/icons/tower-16.png"> <small>{{item.time}}</small>
                   <small class="datepadding">{{item.date}} </small>   <img src="../../assets/icons/calendar.png">
@@ -62,7 +62,6 @@
                 <div class="card-body text-center">
                   <p><img class=" img-fluid" :src="item.img" alt="card image"></p>
                   <h4 class="card-title">{{item.title}}    <small>({{item.price}} TL)</small></h4>
-                  <p class="card-text" style="cursor: pointer;text-decoration: underline" @click="turncard(item,i)"> İlana Ait Açıklama İçin Tıklayın.</p>
                   <button type="button" class="btn btn-primary btn-sm  cardbtncls" @click="routeprdetail(item.productid)">İlana Git <i class="fas fa-hand-point-left godetail"></i>  </button>
 
 
@@ -75,16 +74,7 @@
                         enter-active-class="animated tada"
                         leave-active-class="animated bounceOutRight"
                 >
-                <div class="card"   v-if="item.backcard">
-                  <div class="card-header cardheadercolor" style="background-color: rgb(84, 197, 249)">
-                    <img src="../../assets/icons/tower-16.png"> <small>{{item.time}}</small>
-                    <small class="datepadding">{{item.date}} </small>   <img src="../../assets/icons/calendar.png">
-                  </div>
-                  <div class="card-body text-center">
-                    <p class="card-text">{{item.descraption}}</p>
-                    <p @click="turncard(item,i)" style="cursor: pointer; text-decoration: underline"> Geri Dön </p>
-                  </div>
-                </div>
+
                 </transition>
               </div>
             </div>
@@ -118,10 +108,7 @@
       }
     },
     methods:{
-      turncard(item,i){
-        debugger
-          item.backcard=!item.backcard
-      },
+
       getnotification(){
         var _this=this
         NotificationService.get(
@@ -305,7 +292,6 @@
                 if(parseInt(x.price) < parseInt(x.oldprice)){
                   this.discountpr.push(x);
                 }
-                x.backcard=false
 
               })
                 if(param){

@@ -23,7 +23,7 @@
                     </ul>
                     <div class="tab-content">
                         <keep-alive>
-                            <component :is="selectedComponent" :datalist="data" :total="total" :avg="avaragestart" :result="resultstart" :half="halfstar"></component>
+                            <component :is="selectedComponent" :datalist="data" :total="total" :avg="avaragestart" :result="resultstart" :half="halfstar" :usercount="commentuser.length"></component>
                         </keep-alive>
                     </div>
                 </div>
@@ -50,7 +50,8 @@
             total:"",
             avaragestart:0,
             halfstar:false,
-            resultstart:0
+            resultstart:0,
+            commentuser:[]
         }
     },
     components:{
@@ -70,6 +71,7 @@
                     this.getuser()
                     break;
                 case "products":
+                    debugger
                     this.getuser()
                     this.getuserproduct(1)
                     break;
@@ -100,6 +102,9 @@
                     if(res[0].status==undefined){
                         var sum=0
                         res.forEach((x)=>{
+                            if(this.commentuser.includes(x.userid)!=true){
+                                this.commentuser.push(x.userid);
+                            }
                             x.star=parseInt(x.star)
                             sum+=x.star
                         })

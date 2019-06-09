@@ -245,7 +245,7 @@
             },
             routeuserprofile(param){
                 //param
-                this.$router.push("/UserDetail/"+"1")
+                this.$router.push("/UserDetail/"+param)
             },
             createnewmsg(param){
                 this.$store.dispatch("initAuth").then((res)=>{

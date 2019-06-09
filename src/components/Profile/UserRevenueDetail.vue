@@ -3,10 +3,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 class="display-5" v-if="datalist.length>0?false:true" >Bu Kullanıcıya Ait Bir  Kazanç Henüz Bulunmamaktadır <img src="https://cdn3.iconfinder.com/data/icons/emoticons-50/24/laugh_cry_emoticon_emoticons_emoji_emote-64.png"></h1>
-                <p class="lead" @mouseup="createnewpr" style="cursor: pointer">Ama Dilersen Buraya Tıklayarak Sen Biraz Kazanç Elde Edebilirsin ! <img src="https://cdn0.iconfinder.com/data/icons/streamline-emoji-1/48/048-money-mouth-face-1-32.png"></p>
+                <p class="lead" v-if="datalist.length>0?false:true" @mouseup="createnewpr" style="cursor: pointer">Ama Dilersen Buraya Tıklayarak Sen Biraz Kazanç Elde Edebilirsin ! <img src="https://cdn0.iconfinder.com/data/icons/streamline-emoji-1/48/048-money-mouth-face-1-32.png"></p>
                 <p class="lead" v-if="datalist.length>0?true:false" >Bu Kişi Toplam {{total}} TL Kazanç Elde Etti  <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678131-money-32.png"> </p>
                 <p class="lead"  v-if="datalist.length>0?true:false" style="cursor: pointer" @click="createnewpr">Hadi Sende Buraya Tıklayarak İlan Yükle Ve Kazanmaya Başla ! <img src="https://cdn3.iconfinder.com/data/icons/emoticons-50/24/smile_emoticon_emoticons_emoji_emote_2-32.png"> </p>
-                <table class="table table-striped" v-if="datalist.length>0?true:false" >
+                <table class="table table-striped" v-if="datalist.length>0?true:false" id="revenuetable" >
                     <thead>
                     <tr>
                         <th scope="col">#</th>

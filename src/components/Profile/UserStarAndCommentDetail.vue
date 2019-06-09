@@ -1,7 +1,7 @@
 <template>
     <div class="container tab-pane in active animated flipInX custon-tab-style1 " style="margin-top: 20px">
         <h1 class="display-5"  v-if="datalist.length>0?false:true" >Bu Kullanıcıya Henüz Yorum Yapılmadı <img src="https://cdn3.iconfinder.com/data/icons/emoticons-50/24/laugh_cry_emoticon_emoticons_emoji_emote-64.png"></h1>
-        <p class="lead" v-if="datalist.length>0?true:false" > Yorum Yapan Toplam Kullanıcı Sayısı : {{datalist.length}}</p>
+        <p class="lead" v-if="datalist.length>0?true:false" > Yorum Yapan Toplam Kullanıcı Sayısı : {{usercount}}</p>
 <p class="lead"  v-if="datalist.length>0?true:false" >Kullanıcı Ortalaması :
     <span class="float-center" v-for="stars in result" ><i class="text-warning fa fa-star"></i></span>
     <span class="float-center" v-if="half"><i class="text-warning fa fa-star-half-alt"></i></span>
@@ -41,7 +41,7 @@
             return{
             }
         },
-        props:['datalist','avg','result','half'],
+        props:['datalist','avg','result','half','usercount'],
         created() {
             var sum=0
          const avaragearr=_.pluck(this.commentlist, 'rate');

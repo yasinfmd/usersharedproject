@@ -17,6 +17,14 @@ var FavoriteProductService={
         });
         return deferred
     },
+    getfavpr:(param)=>{
+        var deferred = new Promise(function(resolve, reject) {
+            WSProvider.ajaxPost("http://localhost:8000/api/getfav",param).then((response)=>{
+                resolve(response)
+            })
+        });
+        return deferred
+    }
 
 }
 

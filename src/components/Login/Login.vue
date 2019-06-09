@@ -70,10 +70,7 @@
       route(param){
           this.$router.push("/"+param);
       },
-      aa(){
 
-      //
-      },
       checkvalidateemail(){
         if(this.logindata.username.trim()==""){
             this.invalidmail=true
