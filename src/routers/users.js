@@ -1,7 +1,7 @@
 import Header from '../components/shared/Header'
 import Footer from '../components/shared/Footer'
 import AppNav from '../components/shared/Nav.vue'
-import store from "../store"
+import store from "../store/store"
 const Revenue = resolve => {
     require.ensure(['../components/Revenue/Revenue'], () => {
         resolve(require('../components/Revenue/Revenue'))

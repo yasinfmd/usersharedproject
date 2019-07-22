@@ -1,7 +1,7 @@
 import Header from '../components/shared/Header'
 import Footer from '../components/shared/Footer'
 import AppNav from '../components/shared/Nav.vue'
-import store from "../store"
+import store from "../store/store"
 const ProtectionPersonalData = resolve => {
     require.ensure(['../components/ProtectionPersonalData/ProtectionPersonalData'], () => {
         resolve(require('../components/ProtectionPersonalData/ProtectionPersonalData'))

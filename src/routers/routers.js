@@ -13,7 +13,7 @@ const Dashboard = resolve => {
 }
 
 import VueRouter from 'vue-router';
-import store from "../store"
+import store from "../store/store"
 Vue.use(VueRouter)
 export const router = new VueRouter({
     routes: [{

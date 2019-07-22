@@ -329,12 +329,14 @@
       },
     },
     created(){
+      debugger
       this.$store.dispatch("initAuth").then((res)=>{
         if(res==true){
           this.getproduct();
           this.getnotification();
         }
         else{
+          debugger
           this.getproduct();
         }
       })

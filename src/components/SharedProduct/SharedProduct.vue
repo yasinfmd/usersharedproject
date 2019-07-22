@@ -269,8 +269,6 @@
             ImgCard,
             BigPhotoCard
         },
-        mounted(){
-        },
         methods: {
             bigphotodetail(image){
                 this.$store.dispatch("setbigphoto",image.img);
