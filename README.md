@@ -1,18 +1,29 @@
-# usershared
+# Öğrenci Paylaşım App Demo Frontend VueJS
 
-> A Vue.js project
+## `npm install`
+diyerek bağımlılıkların yüklenmesi
 
-## Build Setup
+## `npm run serve`
+diyerek projenin ayağa kaldırılması
 
-``` bash
-# install dependencies
-npm install
+## Katmanlar
+- Assets (Uygulama Sabit Dosyaları )
+- Components 
+- Provider
+- Service (Api Requests)
+- Plugins   
+- Router 
+- Store (Vuex Modules)
 
-# serve with hot reload at localhost:8080
-npm run dev
+## Teknolojiler
 
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+1. Vuejs
+2. Axios
+3. Moment
+4. Vue-Router
+5. Vuex
+6. Underscore
+8. Sweetalert
+9. Underscore
+10. Vuealidate
+11. Bootstrap
